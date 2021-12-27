@@ -249,7 +249,8 @@
                                 </rdg>
                                 <rdg wit="#brl">
                                     <forename>Gascoing</forename>
-                                    <surname> <nameLink>de</nameLink> Fois <!-- ALTERNATIF: de Foiz --></surname>
+                                    <surname> <nameLink>de</nameLink> Foiz</surname>
+                                    <surname type="alternate-orthograph"> <nameLink>de</nameLink> Foiz</surname>
                                 </rdg>
                             </app>
                         </persName>
@@ -501,7 +502,7 @@
                             </app>
                         </placeName>
                     </place>
-                    <place xml:id="nnb">
+                    <place xml:id="nrb">
                         <placeName type="contemporary-name">Narbonne</placeName>
                         <placeName type="text-name">
                             <app>
