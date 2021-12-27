@@ -477,7 +477,7 @@
                         <placeName type="contemporary-name">Béziers</placeName>
                         <placeName type="text-name">Besiers</placeName> 
                     </place>
-                    <place xml:id="crc">
+                    <place xml:id="crs">
                         <placeName type="text-name">Carcassonne</placeName> 
                     </place>
                     <place xml:id="tls">
@@ -545,25 +545,27 @@
                     <rdg wit="#brl"> <pb n="370 v"/> </rdg>
                     <rdg wit="#brn"> <pb n="333 r"/> </rdg>
                 </app>
-                Le duc de
-                <app>
-                    <rdg wit="#atw">Berri</rdg>
-                    <rdg wit="#brn #brl">Berry</rdg>
-                </app>
+                Le <persName ref="#djdb"> duc de
+                    <app>
+                        <rdg wit="#atw">Berri</rdg>
+                        <rdg wit="#brn #brl">Berry</rdg>
+                    </app>
+                </persName>
                 <app>
                     <rdg wit="#atw #brl">,</rdg>
                     <rdg wit="#brn"/>
                 </app>
-                madame
-                <app>
-                    <rdg wit="#atw #brl">Jehanne</rdg>
-                    <rdg wit="#brn">Jehenne</rdg>
-                </app>
-                <app>
-                    <rdg wit="#atw">d’Ermignac</rdg>
-                    <rdg wit="#brl">d’Armeignach</rdg>
-                    <rdg wit="#brn">d’Armignac</rdg>
-                </app>
+                <persName ref="mjda">madame
+                    <app>
+                        <rdg wit="#atw #brl">Jehanne</rdg>
+                        <rdg wit="#brn">Jehenne</rdg>
+                    </app>
+                    <app>
+                        <rdg wit="#atw">d’Ermignac</rdg>
+                        <rdg wit="#brl">d’Armeignach</rdg>
+                        <rdg wit="#brn">d’Armignac</rdg>
+                    </app>
+                </persName>
                 <app>
                     <rdg wit="#brl"/>
                     <rdg wit="#atw #brn">trespassee
@@ -682,16 +684,17 @@
                     <rdg wit="#atw #brn">envoyer</rdg>
                     <rdg wit="#brl">envoier</rdg>
                 </app>
-                devers le conte
-                <app>
-                    <rdg wit="#atw #brn">Gascon</rdg>
-                    <rdg wit="#brl">Gascoing</rdg>
-                </app>
-                de
-                <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Fois</rdg>
-                </app>
+                devers le <persName ref="#cgfb">conte
+                    <app>
+                        <rdg wit="#atw #brn">Gascon</rdg>
+                        <rdg wit="#brl">Gascoing</rdg>
+                    </app>
+                    de
+                    <app>
+                        <rdg wit="#atw #brn">Foix</rdg>
+                        <rdg wit="#brl">Fois</rdg>
+                    </app>
+                </persName>
                 <app>
                     <rdg wit="#atw #brl">,</rdg>
                     <rdg wit="#brn"/>
@@ -701,15 +704,18 @@
                     <rdg wit="#brl">quy</rdg>
                 </app>
                 avoit en garde
-                <app>
-                    <rdg wit="#atw #brl">la fille</rdg>
-                    <rdg wit="#brn">le filz</rdg>
-                </app>
-                au conte Jehan de
-                <app>
-                    <rdg wit="#atw">Bouloingne</rdg>
-                    <rdg wit="#brn #brl">Boulongne</rdg>
-                </app>
+                <persName ref="#fjda">
+                    <app>
+                        <rdg wit="#atw #brl">la fille</rdg>
+                        <rdg wit="#brn">le filz</rdg>
+                    </app>
+                    au <persName ref="#cjdb"> conte Jehan de
+                        <app>
+                            <rdg wit="#atw">Bouloingne</rdg>
+                            <rdg wit="#brn #brl">Boulongne</rdg>
+                        </app>
+                    </persName>
+                </persName>
                 et avoit
                 <app>
                     <rdg wit="#atw #brn"/>
@@ -723,11 +729,12 @@
                     </rdgGrp>
                     <rdg wit="#brn">IX</rdg>
                 </app>
-                ans. Et pour tant que le duc de
-                <app>
-                    <rdg wit="#atw">Berri</rdg>
-                    <rdg wit="#brn #brl">Berry</rdg>
-                </app>
+                ans. Et pour tant que le <persName ref="#djdb"> duc de
+                    <app>
+                        <rdg wit="#atw">Berri</rdg>
+                        <rdg wit="#brn #brl">Berry</rdg>
+                    </app>
+                </persName>
                 ne pouoit
                 <app>
                     <rdg wit="#atw">parvenir a ce mariage</rdg>
@@ -738,12 +745,13 @@
                     <rdg wit="#atw #brn">le dangier</rdg>
                     <rdg wit="#brl">les dangiers</rdg>
                 </app>
-                du conte de
-                <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Fois</rdg>
-                </app>
-                . Car au fort le dit conte ne pour pere
+                du <persName ref="#cgfb">conte de
+                    <app>
+                        <rdg wit="#atw #brn">Foix</rdg>
+                        <rdg wit="#brl">Fois</rdg>
+                    </app>
+                </persName>
+                . Car au fort le dit <persName ref="#cgfb">conte</persName> ne pour pere
                 <app>
                     <rdg wit="#atw #brn">,</rdg>
                     <rdg wit="#brl"/>
@@ -762,7 +770,7 @@
                     <rdg wit="#atw #brn">,</rdg>
                     <rdg wit="#brl"/>
                 </app>
-                ne pour amy que la damoiselle eust
+                ne pour amy que la <persName ref="#fjda">damoiselle</persName> eust
                 <app>
                     <rdg wit="#atw #brl">,</rdg>
                     <rdg wit="#brn"/>
@@ -788,11 +796,12 @@
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">sa</rdg>
                 </app>
-                plaisance. Il en parla au roy de France, son nepveu, et au duc de
-                <app>
-                    <rdg wit="#atw #brl">Bourgoingne</rdg>
-                    <rdg wit="#brn">Bourgongne</rdg>
-                </app>
+                plaisance. Il en parla au <persName ref="#rcha">roy de France</persName>, son nepveu, et au <persName ref="#dpdb">duc de
+                    <app>
+                        <rdg wit="#atw #brl">Bourgoingne</rdg>
+                        <rdg wit="#brn">Bourgongne</rdg>
+                    </app>
+                </persName>
                 , son frere
                 <app><rdg wit="#atw #brn">,</rdg>
                     <rdg wit="#brl">.</rdg>
@@ -820,7 +829,7 @@
                     </rdg>
                     <rdg wit="#brl">, avecques luy et embesoingnier</rdg>
                 </app>
-                . Le roy de France en
+                . Le <persName ref="#rcha">roy de France</persName> en
                 <app>
                     <rdg wit="#atw #brn">eut</rdg>
                     <rdg wit="#brl">ot</rdg>
@@ -830,7 +839,7 @@
                     <rdg wit="#atw #brn">ris</rdg>
                     <rdg wit="#brl">rys,</rdg>
                 </app>
-                pour tant que le duc de Berry estoit ja tout
+                pour tant que le <persName ref="#djdb">duc de Berry</persName> estoit ja tout
                 <app>
                     <rdg wit="#atw #brn">ancien</rdg>
                     <rdg wit="#brl">anchien,</rdg>
@@ -850,13 +859,13 @@
                 , que feréz vous
                 <app>
                     <rdgGrp>
-                        <rdg wit="#atw">d'une fillette</rdg>
-                        <rdg wit="#brn">d'une telle fillette</rdg>
+                        <rdg wit="#atw">d'une <persName ref="#fjda">fillette</persName></rdg>
+                        <rdg wit="#brn">d'une telle <persName ref="#fjda">fillette</persName></rdg>
                     </rdgGrp>
-                    <rdg wit="#brl">de une si jenne femme</rdg>
+                    <rdg wit="#brl">de une si <persName ref="#fjda">jenne femme</persName></rdg>
                 </app>
                 <app>
-                    <rdg wit="#brl #brn">? Elle</rdg>
+                    <rdg wit="#brl #brn">? <persName ref="#fjda">Elle</persName></rdg>
                     <rdg wit="#atw">qui</rdg>
                 </app>
                 n'a que
@@ -895,7 +904,7 @@
                     <rdg wit="#atw">en</rdg>
                     <rdg wit="#brn #brl">ent</rdg>
                 </app>
-                parler pour Jehan
+                parler pour <persName ref="#fjdb">Jehan</persName>
                 <app>
                     <rdg wit="#atw #brn">,</rdg>
                     <rdg wit="#brl"/>
@@ -936,21 +945,23 @@
                     <rdg wit="#atw #brn">respondit</rdg>
                     <rdg wit="#brl">respondi</rdg>
                 </app>
-                le duc de
-                <app>
-                    <rdg wit="#atw">Berri</rdg>
-                    <rdg wit="#brn #brl">Berry</rdg>
-                </app>
+                le <persName ref="#djdb">duc de
+                    <app>
+                        <rdg wit="#atw">Berri</rdg>
+                        <rdg wit="#brn #brl">Berry</rdg>
+                    </app>
+                </persName>
                 , "on en a parlé
                 <app>
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">,</rdg>
                 </app>
-                mais le conte de
-                <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Foiz</rdg>
-                </app>
+                mais le <persName ref="#cgfb">conte de
+                    <app>
+                        <rdg wit="#atw #brn">Foix</rdg>
+                        <rdg wit="#brl">Foiz</rdg>
+                    </app>
+                </persName>
                 n’y
                 <app>
                     <rdgGrp>
@@ -959,7 +970,7 @@
                     </rdgGrp>
                     <rdg wit="#brl">a voulu</rdg>
                 </app>
-                entendre pour la cause de ce que mon filz descend de ceulx
+                entendre pour la cause de ce que <persName ref="#cjdb">mon filz</persName> descend de ceulx
                 <app>
                     <rdg wit="#atw">d’Armignac et</rdg>
                     <rdg wit="#brl">d’Armeignach. Et</rdg>
@@ -970,7 +981,7 @@
                     <rdg wit="#atw #brl">long temps</rdg>
                     <rdg wit="#brn">longtemps</rdg>
                 </app>
-                ensemble. Se la fille est
+                ensemble. Se la <persName ref="#fjda">fille</persName> est
                 <app>
                     <rdg wit="#atw">jeune</rdg>
                     <rdg wit="#brn #brl">jenne</rdg>
@@ -1013,12 +1024,12 @@
                         <rdg wit="#brn">respondit</rdg>
                     </rdgGrp>
                 </app>
-                le roy,
+                le <persName ref="#rcha">roy</persName>,
                 <app>
                     <rdg wit="#atw">"</rdg>
                     <rdgGrp>
-                        <rdg wit="#brl">"beaulx oncles</rdg>
-                        <rdg wit="#brn">"bel oncle</rdg>
+                        <rdg wit="#brl">"<persName ref="#djdb">beaulx oncles</persName></rdg>
+                        <rdg wit="#brn">"<persName ref="#djdb">bel oncle</persName></rdg>
                     </rdgGrp>
                 </app>
                 <app>
@@ -1030,15 +1041,15 @@
                     <rdg wit="#atw">espareignera</rdg>
                     <rdg wit="#brn #brl">espargnera</rdg>
                 </app>
-                pas." Et puis dist le roy tout en
+                pas." Et puis dist le <persName ref="#rcha">roy</persName> tout en
                 <app>
                     <rdg wit="#atw #brn">riant</rdg>
                     <rdg wit="#brl">ryant</rdg>
                 </app>
                 :
                 <app>
-                    <rdg wit="#atw #brn">"Bel oncle</rdg>
-                    <rdg wit="#brl">"Or ça, beaulx oncles</rdg>
+                    <rdg wit="#atw #brn">"<persName ref="#djdb">Bel oncle</persName></rdg>
+                    <rdg wit="#brl">"Or ça, <persName ref="#djdb">beaulx oncles</persName></rdg>
                 </app>
                 ,
                 <app>
@@ -1075,11 +1086,12 @@
                     <rdg wit="#atw">guerres</rdg>
                     <rdg wit="#brn #brl">gaires</rdg>
                 </app>
-                de temps que le roy ordonna le sire de la Riviere, messire
-                <app>
-                    <rdg wit="#atw #brn">Brueil</rdg>
-                    <rdg wit="#brl">Burel</rdg>
-                </app>
+                de temps que le roy ordonna le <persName ref="#sbdr">sire de la Riviere, messire
+                    <app>
+                        <rdg wit="#atw #brn">Brueil</rdg>
+                        <rdg wit="#brl">Burel</rdg>
+                    </app>
+                </persName>
                 , son souverain
                 <app>
                     <rdg wit="#atw #brn"/>
@@ -1109,36 +1121,39 @@
                     <rdg wit="#atw #brn">lui</rdg>
                     <rdg wit="#brl">luy</rdg>
                 </app>
-                le conte
-                <app>
-                    <rdg wit="#atw #brn">d’Acy</rdg>
-                    <rdg wit="#brl">d’Assy</rdg>
-                </app>
-                . Et le duc de
-                <app>
-                    <rdg wit="#atw #brl">Bourgoingne</rdg>
-                    <rdg wit="#brn">Bourgongne</rdg>
-                </app>
+                le <persName ref="#cdas">conte
+                    <app>
+                        <rdg wit="#atw #brn">d’Acy</rdg>
+                        <rdg wit="#brl">d’Assy</rdg>
+                    </app>
+                </persName>
+                . Et le <persName ref="#dpdb">duc de
+                    <app>
+                        <rdg wit="#atw #brl">Bourgoingne</rdg>
+                        <rdg wit="#brn">Bourgongne</rdg>
+                    </app>
+                </persName>
                 y ordonna pour
                 <app>
                     <rdg wit="#atw #brn">lui</rdg>
                     <rdg wit="#brl">luy</rdg>
                 </app>
-                et en son nom l’evesque
+                et en son nom <persName ref="#egdv">l’evesque
+                    <app>
+                        <rdg wit="#atw #brl">d’Authun</rdg>
+                        <rdg wit="#brn">d’Autun</rdg>
+                    </app>
+                </persName>
+                et <persName ref="#mgdt">>messire
+                    <app>
+                        <rdg wit="#atw">Guillaume</rdg>
+                        <rdg wit="#brl">Guillemme</rdg>
+                        <rdg wit="#brn">Guillame</rdg>
+                    </app>
+                    de la Trimoulle</persName>
                 <app>
-                    <rdg wit="#atw #brl">d’Authun</rdg>
-                    <rdg wit="#brn">d’Autun</rdg>
-                </app>
-                et messire
-                <app>
-                    <rdg wit="#atw">Guillaume</rdg>
-                    <rdg wit="#brl">Guillemme</rdg>
-                    <rdg wit="#brn">Guillame</rdg>
-                </app>
-                de la Trimoulle
-                <app>
-                    <rdg wit="#atw #brn">. Et le duc de Berry y ordonna</rdg>
-                    <rdg wit="#brl">et le duc de Berry y ordonna</rdg>
+                    <rdg wit="#atw #brn">. Et le <persName ref="#djdb">>duc de Berry</persName> y ordonna</rdg>
+                    <rdg wit="#brl">et le <persName ref="#djdb">>duc de Berry</persName> y ordonna</rdg>
                 </app>
                 <app>
                     <rdg wit="#atw"/>
@@ -1149,7 +1164,7 @@
                     <rdg wit="#atw #brn">pria</rdg>
                     <rdg wit="#brl">prya</rdg>
                 </app>
-                le conte Jehan de Xancerre
+                le conte <persName ref="#cjdx">Jehan de Xancerre</persName>
                 <app>
                     <rdg wit="#atw #brl">ung</rdg>
                     <rdg wit="#brn">, un</rdg>
@@ -1178,11 +1193,12 @@
                     <rdg wit="#atw #brn">vers</rdg>
                     <rdg wit="#brl">devers</rdg>
                 </app>
-                le conte de
-                <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Fois</rdg>
-                </app>
+                le <persName ref="#cgfb">conte de
+                    <app>
+                        <rdg wit="#atw #brn">Foix</rdg>
+                        <rdg wit="#brl">Fois</rdg>
+                    </app>
+                </persName>
                 et
                 <app>
                     <rdg wit="#atw">pour</rdg>
@@ -1201,12 +1217,12 @@
                     </rdg>
                     <rdg wit="#brn #brl">de mariage</rdg>
                 </app>
-                pour le duc de Berry ceste
+                pour le <persName ref="#djdb">duc de Berry</persName> ceste
                 <app>
                     <rdg wit="#atw">jeune</rdg>
                     <rdg wit="#brn #brl">jenne</rdg>
                 </app>
-                dame
+                <persName ref="#fjda">dame</persName>
                 <app>
                     <rdg wit="#atw">a mariage</rdg>
                     <rdg wit="#brn #brl"/>
@@ -1215,7 +1231,7 @@
                     <rdg wit="#atw #brl">,</rdg>
                     <rdg wit="#brn"/>
                 </app>
-                se partirent de leurs lieux et se devoient trouver en Avignon
+                se partirent de leurs lieux et se devoient trouver en <placeName ref="#avg">Avignon</placeName>
                 <app>
                     <rdg wit="#atw #brn">
                         <app>
@@ -1227,13 +1243,13 @@
                             <rdg wit="#atw">deléz</rdg>
                             <rdg wit="#brn">delez</rdg>
                         </app>
-                        le pape Clement bien XV jours, qui cousin germain estoit a la damoiselle
+                        le <persName ref="#pclv">pape Clement</persName> bien XV jours, qui cousin germain estoit a la <persName ref="#fjda">damoiselle</persName>
                         <app>
                             <rdg wit="#atw"/>
                             <rdg wit="#brn">,</rdg>
                         </app>,
                     </rdg>
-                    <rdg wit="#brl">deléz le pape comme ils firent. Ce pape Clement, quy cousin estoit du pere a la damoiselle, les retint la bien</rdg>
+                    <rdg wit="#brl">deléz le pape comme ils firent. Ce <persName ref="#pclv">pape Clement</persName>, quy cousin estoit du <persName ref="#cjdb">pere</persName> a la <persName ref="#fjda">damoiselle</persName>, les retint la bien</rdg>
                 </app>
                 <app>
                     <rdg wit="#atw #brn">et environ la</rdg>
@@ -1253,12 +1269,14 @@
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">tous</rdg>
                 </app>
-                d’Avignon et prindrent le chemin de
-                <app>
-                    <rdg wit="#atw">Nimes</rdg>
-                    <rdg wit="#brn #brl">Nismes</rdg>
-                </app>
-                et de Montpellier
+                d’<placeName ref="#avg">Avignon</placeName> et prindrent le chemin de
+                <placeName ref="#nim">
+                    <app>
+                        <rdg wit="#atw">Nimes</rdg>
+                        <rdg wit="#brn #brl">Nismes</rdg>
+                    </app>
+                </placeName>
+                et de <placeName ref="#mtp">Montpellier</placeName>
                 <app>
                     <rdg wit="#atw">et chevaulcherent</rdg>
                     <rdg wit="#brl">. Si chevauchierent</rdg>
@@ -1269,15 +1287,17 @@
                     <rdg wit="#atw #brn">fraiz et</rdg>
                     <rdg wit="#brl">frais. Si</rdg>
                 </app>
-                passerent Besiers et vindrent a 
-                <app>
-                    <rdg wit="#atw #brl">Carcassonne</rdg>
-                    <rdg wit="#brn">
-                        Carcasson
-                        <pb n="334 r"/>
-                        ne
-                    </rdg>
-                </app>
+                passerent <placeName ref="#bsr">Besiers</placeName> et vindrent a
+                <placeName ref="#crs">
+                    <app>
+                        <rdg wit="#atw #brl">Carcassonne</rdg>
+                        <rdg wit="#brn">
+                            Carcasson
+                            <pb n="334 r"/>
+                            ne
+                        </rdg>
+                    </app>
+                </placeName>
                 <app>
                     <rdg wit="#atw">ou</rdg>
                     <rdg wit="#brl">. Et la</rdg>
@@ -1292,7 +1312,7 @@
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">ilz</rdg>
                 </app>
-                messire Loÿs de Xancerre, mareschal de France, 
+                messire <persName ref="#mdlx">Loÿs de Xancerre</persName>, mareschal de France, 
                 <app>
                     <rdg wit="#atw #brn">qui les recueillit grandement</rdg>
                     <rdg wit="#brl">
@@ -1311,14 +1331,15 @@
                             <rdg wit="#brl">eulz</rdg>
                             <rdg wit="#brn">eulx</rdg>
                         </app>
-                        assez du conte de
-                        <app>
-                            <rdg wit="#brl">Fois,</rdg>
-                            <rdg wit="#brn">Foix</rdg>
-                        </app>
+                        assez du <persName ref="#cgfb">conte de
+                            <app>
+                                <rdg wit="#brl">Fois,</rdg>
+                                <rdg wit="#brn">Foix</rdg>
+                            </app>
+                        </persName>
                         de son estat et de son affaire. Car il y avoit esté
                         <app>
-                            <rdg wit="#brl">de Carcassonne</rdg>
+                            <rdg wit="#brl">de <placeName ref="#crs">Carcassonne</placeName></rdg>
                             <rdg wit="#brn"/>
                         </app>
                         n’avoit point passé deux
@@ -1338,7 +1359,7 @@
                             <pb n="371 v"/>
                         </rdg>
                     </rdgGrp>
-                    <rdg wit="#brn">De Carcassonne, il</rdg>
+                    <rdg wit="#brn">De <placeName ref="#crs">Carcassonne</placeName>, il</rdg>
                 </app>
                 se
                 <app>
@@ -1357,7 +1378,7 @@
                     <rdg wit="#brl">en la cité de</rdg>
                     <rdg wit="#atw #brn">a</rdg>
                 </app>
-                Thoulouse
+                <placeName ref="#tls">Thoulouse</placeName>
                 <app>
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">,</rdg>
@@ -1380,10 +1401,10 @@
                     <rdg wit="#atw #brl">devers</rdg>
                     <rdg wit="#brn">deverz</rdg>
                 </app>
-                le conte de
+                le
                 <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Fois, quy</rdg>
+                    <rdg wit="#atw #brn"><persName ref="#cgfb">conte de Foix</persName></rdg>
+                    <rdg wit="#brl"><persName ref="#cgfb">conte de Fois</persName>, quy</rdg>
                 </app>
                 <app>
                     <rdg wit="#atw #brl">,</rdg>
@@ -1393,11 +1414,12 @@
                     <rdg wit="#atw #brn">qui</rdg>
                     <rdg wit="#brl">quy</rdg>
                 </app>
-                se tenoit a Orthaiz en
-                <app>
-                    <rdg wit="#atw #brn">Bierne</rdg>
-                    <rdg wit="#brl">Berne</rdg>
-                </app>
+                se tenoit a <placeName ref="#otz">Orthaiz en
+                    <app>
+                        <rdg wit="#atw #brn">Bierne</rdg>
+                        <rdg wit="#brl">Berne</rdg>
+                    </app>
+                </placeName>
                 . Si
                 <app>
                     <rdg wit="#atw">s’entammerent</rdg>
@@ -1425,11 +1447,12 @@
                     <rdg wit="#atw #brn">du</rdg>
                     <rdg wit="#brl">de</rdg>
                 </app>
-                commencement le conte de
-                <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Fois</rdg>
-                </app>
+                commencement le <persName ref="#cgfb">conte de
+                    <app>
+                        <rdg wit="#atw #brn">Foix</rdg>
+                        <rdg wit="#brl">Fois</rdg>
+                    </app>
+                </persName>
                 fut
                 <app>
                     <rdg wit="#atw #brn">moult</rdg>
@@ -1445,15 +1468,7 @@
                     <rdg wit="#atw #brl">ce</rdg>
                     <rdg wit="#brn">tant</rdg>
                 </app>
-                que le duc de Lancastre
-                <app>
-                    <rdg wit="#atw #brl">,</rdg>
-                    <rdg wit="#brn"/>
-                </app>
-                <app>
-                    <rdg wit="#atw #brn">qui</rdg>
-                    <rdg wit="#brl">quy</rdg>
-                </app>
+                que le <persName ref="#djdg">duc de Lancastre</persName>
                 <app>
                     <rdg wit="#atw #brl">,</rdg>
                     <rdg wit="#brn"/>
@@ -1467,15 +1482,17 @@
                     <rdg wit="#brl">pour ce temps se tenoit</rdg>
                 </app> 
                 a
-                <app>
-                    <rdg wit="#atw">Bourdeaulz</rdg>
-                    <rdg wit="#brl #brn">Bourdeaulx</rdg>
-                </app>
+                <placeName ref="#bdx">
+                    <app>
+                        <rdg wit="#atw">Bourdeaulz</rdg>
+                        <rdg wit="#brl #brn">Bourdeaulx</rdg>
+                    </app>
+                </placeName>
                 ou a
                 <app>
-                    <rdg wit="#atw">Lierbonne,</rdg>
-                    <rdg wit="#brl">Liebourne, en</rdg>
-                    <rdg wit="#brn">Narbonne</rdg>
+                    <rdg wit="#atw"><placeName ref="#nrb">Lierbonne</placeName>,</rdg>
+                    <rdg wit="#brl"><placeName ref="#nrb">Liebourne</placeName>, en</rdg>
+                    <rdg wit="#brn"><placeName ref="#nrb">Narbonne</placeName></rdg>
                 </app>
                 faisoit parler et
                 <app>
@@ -1487,11 +1504,12 @@
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">messire</rdg>
                 </app>
-                Henry, conte
-                <app>
-                    <rdg wit="#atw">d’Erbi,</rdg>
-                    <rdg wit="#brn #brl">d’Erby.</rdg>
-                </app>
+                <persName ref="#hcde">Henry, conte
+                    <app>
+                        <rdg wit="#atw">d’Erbi,</rdg>
+                        <rdg wit="#brn #brl">d’Erby.</rdg>
+                    </app>
+                </persName>
                 <app>
                     <rdg wit="#atw">si</rdg>
                     <rdg wit="#brl">Si</rdg>
@@ -1520,7 +1538,7 @@
                     <rdg wit="#atw #brn">a ces seigneurs faire qu’on disoit que le mariage pour lequel ilz sejournoient a</rdg>
                     <rdg wit="#brl">advenir, que on disoit que le mariage pour lequel ces seigneurs s’arresterent en la bonne cité de</rdg>
                 </app>
-                Thoulouse
+                <placeName ref="#tls">Thoulouse</placeName>
                 <app>
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">,</rdg>
@@ -1531,11 +1549,6 @@
                     <rdg wit="#brl">, et</rdg>
                 </app>
                 tout leur estat et
-                responces
-                et les ordonnances, responces et traittiéz du conte de Foix
-                et toutes les ordonnances, responses et traittiés du conte de Fois
-                et les ordonnances, responces et traitiéz du conte de Foix
-                
                 <app>
                     <rdg wit="#atw #brn"/>
                     <rdg wit="#brl">toutes</rdg>
@@ -1551,11 +1564,12 @@
                     <rdg wit="#brl">traittiés</rdg>
                     <rdg wit="#brn">traitiéz</rdg>
                 </app>
-                du conte de
-                <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Fois,</rdg>
-                </app>
+                du <persName ref="#cgfb">conte de
+                    <app>
+                        <rdg wit="#atw #brn">Foix</rdg>
+                        <rdg wit="#brl">Fois,</rdg>
+                    </app>
+                </persName>
                 de jour en jour
                 <app>
                     <rdg wit="#atw #brn">, de sepmaine en sepmaine</rdg>
@@ -1567,7 +1581,7 @@
                     <rdg wit="#brl">envoierent</rdg>
                     <rdg wit="#brn">envoyoient</rdg>
                 </app>
-                soingneusement devers le duc de Berry
+                soingneusement devers le <persName ref="#djdb">duc de Berry</persName>
                 <app>
                     <rdg wit="#atw #brl">,</rdg>
                     <rdg wit="#brn"/>
@@ -1576,7 +1590,7 @@
                     <rdg wit="#atw #brn">qui</rdg>
                     <rdg wit="#brl">quy</rdg>
                 </app>
-                se tenoit a la Nonnette en Auvergne. Et le duc
+                se tenoit a <placeName ref="#nnt">la Nonnette en Auvergne</placeName>. Et le <persName ref="#djdb">duc</persName>
                 <app>
                     <rdg wit="#atw #brn">qui</rdg>
                     <rdg wit="#brl">, quy</rdg>
@@ -1657,11 +1671,12 @@
                     <rdg wit="#brl">fesist.</rdg>
                     <rdg wit="#brn">feïst.</rdg>
                 </app>
-                Le conte de
-                <app>
-                    <rdg wit="#atw #brn">Foix</rdg>
-                    <rdg wit="#brl">Foiz</rdg>
-                </app>
+                Le <persName ref="#cgfb">conte de
+                    <app>
+                        <rdg wit="#atw #brn">Foix</rdg>
+                        <rdg wit="#brl">Foiz</rdg>
+                    </app>
+                </persName>
                 ,
                 <app>
                     <rdg wit="#atw #brn">qui</rdg>
@@ -1690,7 +1705,7 @@
                     <rdg wit="#atw #brn">l’ardant</rdg>
                     <rdg wit="#brl">l’ardent</rdg>
                 </app>
-                desir du duc de Berry
+                desir du <persName ref="#djdb">duc de Berry</persName>
                 <app>
                     <rdg wit="#atw">traitoit saigement</rdg>
                     <rdg wit="#brn #brl">, traittoit sagement</rdg>
@@ -1722,7 +1737,7 @@
                     <rdg wit="#atw #brn">grant priere</rdg>
                     <rdg wit="#brl">grans prieres</rdg>
                 </app>
-                il
+                <persName ref="#cgfb">il</persName>
                 <app>
                     <rdg wit="#brl">ot</rdg>
                     <rdg wit="#atw">eut</rdg><rdg wit="#brn">eust</rdg>
@@ -1738,8 +1753,8 @@
                 </app>
                 ans
                 <app>
-                    <rdg wit="#atw #brn">qu’il</rdg>
-                    <rdg wit="#brl">que il</rdg>
+                    <rdg wit="#atw #brn">qu’<persName ref="#cgfb">il</persName></rdg>
+                    <rdg wit="#brl">que <persName ref="#cgfb">il</persName></rdg>
                 </app>
                 <app>
                     <rdg wit="#atw">l’avoit</rdg>
@@ -1749,7 +1764,7 @@
                     <rdg wit="#atw #brn">gardee</rdg>
                     <rdg wit="#brl">gardé</rdg>
                 </app>
-                la damoiselle
+                la <persName ref="#fjda">damoiselle</persName>
                 <app>
                     <rdg wit="#atw #brn">,</rdg>
                     <rdg wit="#brl"/>
@@ -1805,11 +1820,12 @@
                     <rdg wit="#atw"/>
                     <rdg wit="#brn #brl">aussi</rdg>
                 </app>
-                que le duc de
-                <app>
-                    <rdg wit="#atw">Berri</rdg>
-                    <rdg wit="#brn #brl">Berry</rdg>
-                </app>
+                que le <persName ref="#djdb">duc de
+                    <app>
+                        <rdg wit="#atw">Berri</rdg>
+                        <rdg wit="#brn #brl">Berry</rdg>
+                    </app>
+                </persName>
                 sentist que il
                 <app>
                     <rdg wit="#atw">feist</rdg>
@@ -1817,10 +1833,12 @@
                     <rdg wit="#brn">feïst</rdg>
                 </app>
                 aucune chose pour
-                <app>
-                    <rdg wit="#atw">lui</rdg>
-                    <rdg wit="#brn #brl">luy</rdg>
-                </app>
+                <persName ref="#cgfb">
+                    <app>
+                        <rdg wit="#atw">lui</rdg>
+                        <rdg wit="#brn #brl">luy</rdg>
+                    </app>
+                </persName>
                 .
             </ab>
             
