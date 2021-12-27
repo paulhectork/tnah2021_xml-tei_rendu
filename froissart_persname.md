@@ -5,7 +5,7 @@
 |duc de Berri / Berry|duc de Berry|duc de Berry|Jean Ier de Berry|djdb|
 |Jehanne d'Ermignac|Jehanne d'Armeignach|Jehenne d'Armignac|Jeanne d'Armignac|mjda|
 |Gascon de Foix|Gascoing de Fois/Foiz|Gascon de Foix|Gaston III de Foix-Béarn Fébus|cgfb|
-|fille au conte Jehan de Bouloingne|fille au conte Jehan de Boulongne|filz au conte Jehan de Boulongne|Jeanne, comtesse d’Auvergne et de Boulogne|Jeanne II d'Auvergne|fjda|
+|fille au conte Jehan de Bouloingne|fille au conte Jehan de Boulongne|filz au conte Jehan de Boulongne|Jeanne, comtesse d’Auvergne et de Boulogne|fjda|
 |Jehan de Bouloingne|Jehan de Boulongne|Jehan de Boulongne|Jean II d'Auvergne|cjdb|
 |roy de France|roy de France|roy de France|Charles VI|rcha|
 |duc de Bourgoingne|duc de Bourgoingne|duc de Bourgongne|Philippe II de Bourgogne|dpdb|
