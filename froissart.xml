@@ -1,7 +1,4 @@
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
-  schematypens="http://purl.oclc.org/dsdl/schematron"?>
-<!-- <cx:apparatus xmlns:cx="http://interedition.eu/collatex/ns/1.0"> -->
+<?xml-model href="ODD_froissart.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <!-- méthode de signalement des sigles etc: "SIGLE. Nom complet" (cf <orgName>) -->
   <teiHeader>
@@ -197,7 +194,7 @@
             et pour coller au plus près de ces variations, l'utilisation de &lt;rdg&gt; rassemblant plusieurs témoins et contenant un ou plusieurs &lt;app&gt; (comme décrit au dessus) est privilégiée.</item>
         </list>
         </p>
-        <p>Pour chaque élément &lt;app&gt;, un attribut "@corresp=" est utilisé pour préciser la nature de la différence entre les témoins. Les valeurs possible pour cet attribut sont:<list>
+        <p>Pour chaque élément &lt;app&gt;, un attribut "@corresp" est utilisé pour préciser la nature de la différence entre les témoins. Les valeurs possible pour cet attribut sont:<list>
           <item xml:id="orth">différence orthographique</item>
           <item xml:id="punct">différence de ponctuation</item>
           <item xml:id="sentence-order">différence dans l'ordre des mots dans un bloc de texte</item>
@@ -255,9 +252,9 @@
               <roleName type="nobility">duc</roleName>
               <nameLink>de</nameLink>
               <surname>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#brl #brn">Berry</lem>
-                  <rdg wit="atw">
+                  <rdg wit="#atw">
                     <choice>
                       <orig>Berri</orig>
                       <orig>Berry</orig>
@@ -280,14 +277,14 @@
             <persName type="text-name">
               <addName type="honorific">madame</addName>
               <forename>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#atw #brl">Jehanne</lem>
-                  <rdg wit="brn">Jehenne</rdg>
+                  <rdg wit="#brn">Jehenne</rdg>
                 </app>
               </forename>
               <nameLink>d'</nameLink>
               <surname>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#brl">Armeignach</lem>
                   <rdg wit="#atw">Ermignac</rdg>
                   <rdg wit="#brn">Armignac</rdg>
@@ -307,13 +304,13 @@
             </persName>
             <persName type="text-name">
               <roleName type="honorific">conte</roleName>
-              <app>
+              <app corresp="#orth">
                 <lem wit="#brl">
                   <forename>Gascoing</forename>
                   <surname>
                     <nameLink>de</nameLink>Foiz</surname>
                   <surname type="alternate-orthograph">
-                    <nameLink>de</nameLink>Foiz</surname>
+                    <nameLink>de</nameLink>Foix</surname>
                 </lem>
                 <rdg wit="#atw #brn">
                   <forename>Gascon</forename>
@@ -336,7 +333,7 @@
             </persName>
             <persName type="text-name">
               <roleName>
-                <app>
+                <app corresp="#word-diff">
                   <lem wit="#atw #brl">la fille</lem>
                   <rdg wit="#brn">le filz</rdg>
                 </app>
@@ -355,7 +352,7 @@
               <forename>Jehan</forename>
               <nameLink>de</nameLink>
               <surname>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#brl #brn">Boulongne</lem>
                   <rdg wit="#atw">Bouloingne</rdg>
                 </app>
@@ -382,7 +379,7 @@
               <roleName type="nobility">duc</roleName>
               <nameLink>de</nameLink>
               <surname>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#atw #brl">Bourgoingne</lem>
                   <rdg wit="#brn">Bourgongne</rdg>
                 </app>
@@ -418,7 +415,7 @@
               <placeName>Riviere</placeName>
               <roleName type="nobility">messire</roleName>
               <surname>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#brl">Burel</lem>
                   <rdg wit="#atw #brn">Brueil</rdg>
                 </app>
@@ -435,7 +432,7 @@
               <roleName type="nobility">conte</roleName>
               <nameLink>d'</nameLink>
               <surname>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#brl">Assy</lem>
                   <rdg wit="#atw #brn">Acy</rdg>
                 </app>
@@ -453,7 +450,7 @@
               <roleName type="ecclesiastic">evesque</roleName>
               <nameLink>d'</nameLink>
               <placeName>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#atw #brl">Authun</lem>
                   <rdg wit="#brn">Autun</rdg>
                 </app>
@@ -469,7 +466,7 @@
             <persName type="text-name">
               <roleName type="nobility">messire</roleName>
               <forename>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#brl">Guillemme</lem>
                   <rdg wit="#atw">Guillaume</rdg>
                   <rdg wit="#brn">Guillame</rdg>
@@ -544,7 +541,7 @@
               <roleName type="nobility">conte</roleName>
               <nameLink>d'</nameLink>
               <forename>
-                <app>
+                <app corresp="#orth">
                   <lem wit="#brl #brn">Erby</lem>
                   <rdg wit="#atw">Erbi</rdg>
                 </app>
@@ -706,7 +703,7 @@
         </app>
         <app corresp="#punct">
           <lem wit="#atw #brl">,</lem>
-          <rdg wit="brn"/>
+          <rdg wit="#brn"/>
         </app>avoit grant<app corresp="#orth">
           <lem wit="#brl">ymagination</lem>
           <rdg wit="#atw #brn">ymaginacion</rdg>
@@ -1005,7 +1002,7 @@
           <rdg wit="#brn"/>
         </app>." Voire,"<app corresp="#word-diff">
           <rdg wit="#atw">dit</rdg>
-          <rdgGrp type="orth">
+          <rdgGrp corresp="#orth">
             <lem wit="#brl">respondy</lem>
             <rdg wit="#brn">respondit</rdg>
           </rdgGrp>
@@ -1620,4 +1617,3 @@
     </body>
   </text>
 </TEI>
-<!-- </cx:apparatus>  -->
