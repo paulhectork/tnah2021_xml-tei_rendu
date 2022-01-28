@@ -3,7 +3,7 @@
 |**Antwerp**|**Berlin**|**Bern**|**Nom contemporain**|**Identifiant**|
 |---|---|---|---|---|
 |duc de Berri / Berry|duc de Berry|duc de Berry|Jean Ier de Berry|djdb|
-|Jehanne d'Ermignac|Jehanne d'Armeignach|Jehenne d'Armignac|Jeanne d'Armignac|mjda|
+|Jehanne d'Ermignac|Jehanne d'Armeignach|Jehenne d'Armignac|Jeanne d'Armagnac|mjda|
 |Gascon de Foix|Gascoing de Fois/Foiz|Gascon de Foix|Gaston III de Foix-Béarn Fébus|cgfb|
 |fille au conte Jehan de Bouloingne|fille au conte Jehan de Boulongne|filz au conte Jehan de Boulongne|Jeanne, comtesse d’Auvergne et de Boulogne|fjda|
 |Jehan de Bouloingne|Jehan de Boulongne|Jehan de Boulongne|Jean II d'Auvergne|cjdb|
