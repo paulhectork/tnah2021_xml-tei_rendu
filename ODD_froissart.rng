@@ -5,7 +5,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2022-01-23T17:43:36Z. .
+Schema generated from ODD source 2022-01-28T00:08:55Z. .
 TEI Edition: Version 4.3.0. Last updated on
         31st August 2021, revision b4f72b1ff
 TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.3.0/
@@ -591,21 +591,6 @@ Suggested values include: 1] top; 2] bottom; 3] margin; 4] opposite; 5] overleaf
          <sch:assert test="@type">The <sch:name/> element should not be categorized in detail with @subtype unless also categorized in general with @type</sch:assert>
       </sch:rule>
    </pattern>
-   <define name="att.pointing.attributes">
-      <ref name="att.pointing.attribute.target"/>
-   </define>
-   <define name="att.pointing.attribute.target">
-      <optional>
-         <attribute name="target">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">specifies the destination of the reference by supplying one or more URI References</a:documentation>
-            <list>
-               <oneOrMore>
-                  <data type="anyURI"/>
-               </oneOrMore>
-            </list>
-         </attribute>
-      </optional>
-   </define>
    <define name="att.sortable.attributes">
       <ref name="att.sortable.attribute.sortKey"/>
    </define>
@@ -1773,7 +1758,15 @@ The element indicated by @spanTo (<sch:value-of select="@spanTo"/>) must follow 
                        a:defaultValue="N">
                <a:documentation>specifies whether or not its parent element is fragmented in some way, typically by some other overlapping structure: for example a speech which is divided between two or more verse stanzas, a paragraph which is split across a page division, a verse line which is divided between two speakers.</a:documentation>
                <choice>
+                  <value>Y</value>
+                  <a:documentation/>
                   <value>N</value>
+                  <a:documentation>(no) the element is not fragmented, or no claim is made as to its completeness</a:documentation>
+                  <value>I</value>
+                  <a:documentation/>
+                  <value>M</value>
+                  <a:documentation/>
+                  <value>F</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -1874,10 +1867,10 @@ Normalization 12. Critical Apparatus]</a:documentation>
          <ref name="att.ranging.attribute.confidence"/>
          <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Type de date</a:documentation>
                <choice>
                   <value>date-de-rendu</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Date de rendu du devoir</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -1907,7 +1900,16 @@ Normalization 12. Critical Apparatus]</a:documentation>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
          <ref name="att.internetMedia.attributes"/>
-         <ref name="att.pointing.attributes"/>
+         <optional>
+            <attribute name="target">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Cible vers un document externe via son URL / URI</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -1981,7 +1983,6 @@ Normalization 12. Critical Apparatus]</a:documentation>
       <element name="item">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(item) contains one component of a list. [3.8. Lists 2.6. The Revision Description]</a:documentation>
          <ref name="macro.specialPara"/>
-         <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
@@ -1990,6 +1991,12 @@ Normalization 12. Critical Apparatus]</a:documentation>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
          <ref name="att.sortable.attributes"/>
+         <optional>
+            <attribute name="xml:id">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) L'identifiant des types de différences possibles entre les témoins.</a:documentation>
+               <data type="ID"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2031,10 +2038,19 @@ Normalization 12. Critical Apparatus]</a:documentation>
          <ref name="att.global.rendition.attribute.rend"/>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
-         <ref name="att.global.source.attribute.source"/>
          <ref name="att.placement.attributes"/>
          <ref name="att.written.attributes"/>
          <ref name="att.anchoring.attributes"/>
+         <optional>
+            <attribute name="source">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Une source externe d'où est dérivée la note</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2055,9 +2071,33 @@ Elements]</a:documentation>
          <ref name="att.spanning.attributes"/>
          <ref name="att.breaking.attributes"/>
          <attribute name="unit">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">provides a conventional name for the kind of section changing at this milestone.</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">L'unité signifiante utilisée pour décrire le changement / le type de changement ayant lieu</a:documentation>
             <choice>
-               <value>tei:p</value>
+               <value>page</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>column</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>line</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>book</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>poem</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>canto</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>speaker</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>stanza</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>act</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>scene</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>section</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>absent</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <value>unnumbered</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             </choice>
          </attribute>
@@ -2070,7 +2110,6 @@ Elements]</a:documentation>
 Elements]</a:documentation>
          <empty/>
          <ref name="att.global.attribute.xmlid"/>
-         <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
          <ref name="att.global.attribute.xmlspace"/>
@@ -2080,6 +2119,12 @@ Elements]</a:documentation>
          <ref name="att.edition.attributes"/>
          <ref name="att.spanning.attributes"/>
          <ref name="att.breaking.attributes"/>
+         <optional>
+            <attribute name="n">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(number) Le numéro de la nouvelle page dans les documents originaux</a:documentation>
+               <data type="string"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2155,7 +2200,6 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                <ref name="note"/>
             </zeroOrMore>
          </group>
-         <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
@@ -2163,6 +2207,12 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.global.rendition.attribute.rend"/>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
+         <optional>
+            <attribute name="xml:id">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
+               <data type="ID"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2221,8 +2271,16 @@ Elements 7.2.5. Speech Contents]</a:documentation>
             <attribute name="type">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the title according to some convenient typology.</a:documentation>
                <choice>
+                  <value>main</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">main title</a:documentation>
+                  <value>sub</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(subordinate) subtitle, title of part</a:documentation>
+                  <value>alt</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(alternate) alternate title, often in another language, by which the work is also known</a:documentation>
                   <value>short</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">abbreviated form of title</a:documentation>
+                  <value>desc</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(descriptive) descriptive paraphrase of the work functioning as a title</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -2290,8 +2348,10 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -2301,7 +2361,35 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                        a:defaultValue="draft">
                <a:documentation>describes the status of a document either currently or, when associated with a dated element, at the time indicated.</a:documentation>
                <choice>
+                  <value>approved</value>
+                  <a:documentation/>
+                  <value>candidate</value>
+                  <a:documentation/>
+                  <value>cleared</value>
+                  <a:documentation/>
+                  <value>deprecated</value>
+                  <a:documentation/>
                   <value>draft</value>
+                  <a:documentation/>
+                  <value>embargoed</value>
+                  <a:documentation/>
+                  <value>expired</value>
+                  <a:documentation/>
+                  <value>frozen</value>
+                  <a:documentation/>
+                  <value>galley</value>
+                  <a:documentation/>
+                  <value>proposed</value>
+                  <a:documentation/>
+                  <value>published</value>
+                  <a:documentation/>
+                  <value>recommendation</value>
+                  <a:documentation/>
+                  <value>submitted</value>
+                  <a:documentation/>
+                  <value>unfinished</value>
+                  <a:documentation/>
+                  <value>withdrawn</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -2348,7 +2436,16 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.global.rendition.attribute.rend"/>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
-         <ref name="att.global.linking.attribute.corresp"/>
+         <optional>
+            <attribute name="corresp">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(corresponds) @corresp sert à indiquer le type de variation qu'il y a entre deux témoins ou plus.</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2376,7 +2473,16 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
          <ref name="att.written.attribute.hand"/>
-         <ref name="att.witnessed.attributes"/>
+         <optional>
+            <attribute name="wit">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(witness or witnesses) Indique le témoin grâce à son identifiant @xml:id</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2404,13 +2510,22 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
          <ref name="att.written.attribute.hand"/>
-         <ref name="att.witnessed.attributes"/>
+         <optional>
+            <attribute name="wit">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(witness or witnesses) Indique le témoin grâce à son identifiant @xml:id</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
    <define name="rdgGrp">
       <element name="rdgGrp">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reading group) within a textual variation, groups two or more readings perceived to have a genetic relationship or other affinity. [12.1. The Apparatus Entry, Readings, and Witnesses]</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reading group) L'élément &lt;rdgGrp&gt; sert à réunir plusieurs témoins qui diffèrent d'autres groupes de témoins mais partagent une ou plusieurs caractéristiques communes. Les différents témoins diffèrent cependant, et l'attribut "corresp" permet d'indiquer le type de différences [12.1. The Apparatus Entry, Readings, and Witnesses]</a:documentation>
          <group>
             <optional>
                <ref name="lem"/>
@@ -2441,15 +2556,15 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.global.rendition.attribute.rend"/>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
-         <ref name="att.global.linking.attribute.corresp"/>
          <ref name="att.written.attribute.hand"/>
          <optional>
-            <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">classifies the reading according to some useful typology.</a:documentation>
-               <choice>
-                  <value>orth</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               </choice>
+            <attribute name="corresp">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(corresponds) @corresp sert à indiquer le type de variation qu'il y a entre deux témoins ou plus.</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
+                  </oneOrMore>
+               </list>
             </attribute>
          </optional>
          <empty/>
@@ -2478,18 +2593,14 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.placement.attributes"/>
          <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">describes the type of information given about the witness.</a:documentation>
-               <data type="token">
-                  <param name="pattern">[^\p{C}\p{Z}]+</param>
-               </data>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indication sur le type de détail décrit dans l'élément.</a:documentation>
+               <empty/>
             </attribute>
          </optional>
          <attribute name="wit">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(witnesses) indicates the sigil or sigla identifying the witness or witnesses to which the detail refers.</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(witnesses) Indique le témoin grâce à son identifiant @xml:id</a:documentation>
             <list>
-               <oneOrMore>
-                  <data type="anyURI"/>
-               </oneOrMore>
+               <rng:empty xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
             </list>
          </attribute>
          <empty/>
@@ -2535,7 +2646,6 @@ Elements 7.2.5. Speech Contents]</a:documentation>
                <ref name="note"/>
             </choice>
          </zeroOrMore>
-         <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
@@ -2544,6 +2654,12 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
          <ref name="att.sortable.attributes"/>
+         <optional>
+            <attribute name="xml:id">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) L'identifiant de chacun des manuscrits encodés</a:documentation>
+               <data type="ID"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2560,17 +2676,23 @@ Elements 7.2.5. Speech Contents]</a:documentation>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
          <attribute name="method">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates which method is used to encode the apparatus of variants.</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indique la méthode utilisée pour constituer l'apparat critique.</a:documentation>
             <choice>
+               <value>location-referenced</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">apparatus uses line numbers or other canonical reference scheme referenced in a base text.</a:documentation>
+               <value>double-end-point</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">apparatus indicates the precise locations of the beginning and ending of each lemma relative to a base text.</a:documentation>
                <value>parallel-segmentation</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">alternate readings of a passage are given in parallel in the text; no notion of a base text is necessary.</a:documentation>
             </choice>
          </attribute>
          <attribute name="location">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates whether the apparatus appears within the running text or external to it.</a:documentation>
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Indique si les autres témoins sont contenus ou non dans ce fichier.</a:documentation>
             <choice>
                <value>internal</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">apparatus appears within the running text.</a:documentation>
+               <value>external</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">apparatus appears outside the base text.</a:documentation>
             </choice>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -2711,9 +2833,17 @@ The element <name/> may appear once only
          <ref name="att.ranging.attribute.confidence"/>
          <optional>
             <attribute name="unit">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">names the unit used for the measurement</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Dimension des manuscrits, en centimètres</a:documentation>
                <choice>
                   <value>cm</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(centimetres) </a:documentation>
+                  <value>mm</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>in</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>line</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <value>char</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
                </choice>
             </attribute>
@@ -2818,6 +2948,17 @@ The element <name/> may appear once only
          <ref name="att.ranging.attribute.max"/>
          <ref name="att.ranging.attribute.confidence"/>
          <ref name="att.editLike.attributes"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Le type de date</a:documentation>
+               <choice>
+                  <value>date-range</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Une période (par opposition à une date précise)</a:documentation>
+                  <value>precise</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Une date précise</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -3360,8 +3501,6 @@ The element <name/> may appear once only
          <ref name="att.global.rendition.attribute.rend"/>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
-         <ref name="att.global.responsibility.attribute.cert"/>
-         <ref name="att.global.responsibility.attribute.resp"/>
          <ref name="att.datable.w3c.attribute.when"/>
          <ref name="att.datable.w3c.attribute.notBefore"/>
          <ref name="att.datable.w3c.attribute.notAfter"/>
@@ -3374,8 +3513,51 @@ The element <name/> may appear once only
          <ref name="att.datable.custom.attribute.to-custom"/>
          <ref name="att.datable.custom.attribute.datingPoint"/>
          <ref name="att.datable.custom.attribute.datingMethod"/>
-         <ref name="att.editLike.attributes"/>
-         <ref name="att.canonical.attribute.ref"/>
+         <optional>
+            <attribute name="cert">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(certainty) Indication du degré de certitude de la correspondance entre le nom contemporain et le nom dans le texte d'un personnage.</a:documentation>
+               <choice>
+                  <data type="double"/>
+                  <choice>
+                     <value>high</value>
+                     <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                     <value>medium</value>
+                     <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                     <value>low</value>
+                     <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                     <value>unknown</value>
+                     <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  </choice>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute name="resp">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(responsible party) Le responsable du nom : la personne ou institution responsable de l'orthographe du nom</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <choice>
+                        <value>#tof</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Valeur à utiliser si c'est l'Online Froissart qui est responsable de l'orthographe</a:documentation>
+                        <value>#phk</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Valeur à utiliser si c'est Paul Kervegan (l'encodeur de la présente édition critique) qui est responsable de l'orthographe ; dans ce cas, l'orthographe a été récupérée sur <a xmlns="http://www.w3.org/1999/xhtml"
+                              href="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal">Wikipedia</a>.</a:documentation>
+                     </choice>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
+         <optional>
+            <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+                       name="instant"
+                       a:defaultValue="false">
+               <a:documentation>indicates whether this is an instant revision or not.</a:documentation>
+               <choice>
+                  <value>false</value>
+                  <a:documentation/>
+               </choice>
+            </attribute>
+         </optional>
          <optional>
             <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
                        name="full"
@@ -3388,13 +3570,23 @@ The element <name/> may appear once only
             </attribute>
          </optional>
          <optional>
+            <attribute name="ref">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reference) Attribut utilisé pour renvoyer à des personnages mentionnés dans la &lt;listPerson&gt;. Le renvoi se fait grâce à l'attribut @xml:id des personnages.</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <data type="anyURI"/>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
+         <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Le type de nom contenu dans l'élément</a:documentation>
                <choice>
                   <value>contemporary-name</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Orthographe contemporaine du nom</a:documentation>
                   <value>text-name</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Orthographe utilisée dans des textes</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3420,16 +3612,20 @@ The element <name/> may appear once only
                <a:documentation>indicates whether the name component is given in full, as an abbreviation or simply as an initial.</a:documentation>
                <choice>
                   <value>yes</value>
+                  <a:documentation>(yes) the name component is spelled out in full.</a:documentation>
+                  <value>abb</value>
+                  <a:documentation/>
+                  <value>init</value>
                   <a:documentation/>
                </choice>
             </attribute>
          </optional>
          <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Spécification sur le nom écrit dans l'élément</a:documentation>
                <choice>
                   <value>alternate-orthograph</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Valeur utilisée pour indiquer l'utilisation de plusieurs orthographes pour un même nom sans un témoin.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3455,6 +3651,10 @@ The element <name/> may appear once only
                <a:documentation>indicates whether the name component is given in full, as an abbreviation or simply as an initial.</a:documentation>
                <choice>
                   <value>yes</value>
+                  <a:documentation>(yes) the name component is spelled out in full.</a:documentation>
+                  <value>abb</value>
+                  <a:documentation/>
+                  <value>init</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -3481,6 +3681,10 @@ The element <name/> may appear once only
                <a:documentation>indicates whether the name component is given in full, as an abbreviation or simply as an initial.</a:documentation>
                <choice>
                   <value>yes</value>
+                  <a:documentation>(yes) the name component is spelled out in full.</a:documentation>
+                  <value>abb</value>
+                  <a:documentation/>
+                  <value>init</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -3522,16 +3726,20 @@ The element <name/> may appear once only
                <a:documentation>indicates whether the name component is given in full, as an abbreviation or simply as an initial.</a:documentation>
                <choice>
                   <value>yes</value>
+                  <a:documentation>(yes) the name component is spelled out in full.</a:documentation>
+                  <value>abb</value>
+                  <a:documentation/>
+                  <value>init</value>
                   <a:documentation/>
                </choice>
             </attribute>
          </optional>
          <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Type de nom additionnel</a:documentation>
                <choice>
                   <value>honorific</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Valeur à utiliser pour indiquer un titre honorifique</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3557,20 +3765,24 @@ The element <name/> may appear once only
                <a:documentation>indicates whether the name component is given in full, as an abbreviation or simply as an initial.</a:documentation>
                <choice>
                   <value>yes</value>
+                  <a:documentation>(yes) the name component is spelled out in full.</a:documentation>
+                  <value>abb</value>
+                  <a:documentation/>
+                  <value>init</value>
                   <a:documentation/>
                </choice>
             </attribute>
          </optional>
          <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Description du type de fonction liée au titre de la personne</a:documentation>
                <choice>
                   <value>ecclesiastic</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Titre religieux</a:documentation>
                   <value>honorific</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Titre honorifique</a:documentation>
                   <value>nobility</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Titre de noblesse</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3602,7 +3814,6 @@ The element <name/> may appear once only
          <ref name="att.global.rendition.attribute.rend"/>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
-         <ref name="att.canonical.attribute.ref"/>
          <optional>
             <attribute xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
                        name="full"
@@ -3610,18 +3821,53 @@ The element <name/> may appear once only
                <a:documentation>indicates whether the name component is given in full, as an abbreviation or simply as an initial.</a:documentation>
                <choice>
                   <value>yes</value>
+                  <a:documentation>(yes) the name component is spelled out in full.</a:documentation>
+                  <value>abb</value>
+                  <a:documentation/>
+                  <value>init</value>
                   <a:documentation/>
                </choice>
             </attribute>
          </optional>
          <optional>
+            <attribute name="ref">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(reference) Référence à un nom de la &lt;listPlace&gt; Le renvoi se fait grâce à l'attribut @xml:id des lieux.</a:documentation>
+               <list>
+                  <oneOrMore>
+                     <choice>
+                        <value>#avg</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Avignon</a:documentation>
+                        <value>#nim</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Nîmes</a:documentation>
+                        <value>#mtp</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Montpellier</a:documentation>
+                        <value>#bsr</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Béziers</a:documentation>
+                        <value>#crs</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Carcassonne</a:documentation>
+                        <value>#tls</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Toulouse</a:documentation>
+                        <value>#otz</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Orthez</a:documentation>
+                        <value>#bdx</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Bordeaux</a:documentation>
+                        <value>#nrb</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Narbonne</a:documentation>
+                        <value>#nnt</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Renvoi à Nonnette</a:documentation>
+                     </choice>
+                  </oneOrMore>
+               </list>
+            </attribute>
+         </optional>
+         <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Type de nom de lieu décrit dans l'élément</a:documentation>
                <choice>
                   <value>contemporary-name</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Nom contemporain</a:documentation>
                   <value>text-name</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Nom de lieu dans le texte</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3730,8 +3976,10 @@ The element <name/> may appear once only
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3786,8 +4034,10 @@ The element <name/> may appear once only
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -3840,7 +4090,6 @@ The element <name/> may appear once only
                </choice>
             </zeroOrMore>
          </choice>
-         <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
@@ -3850,6 +4099,47 @@ The element <name/> may appear once only
          <ref name="att.global.rendition.attribute.rendition"/>
          <ref name="att.editLike.attributes"/>
          <ref name="att.sortable.attributes"/>
+         <optional>
+            <attribute name="xml:id">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) Identifiants des personnages du texte.</a:documentation>
+               <choice>
+                  <value>djdb</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jean Ier de Berry</a:documentation>
+                  <value>mjda</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jeanne d'Armagnac</a:documentation>
+                  <value>cgfb</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Gaston III de Foix-Béarn</a:documentation>
+                  <value>fjda</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jeanne, comtesse d'Auvergne et de Boulogne</a:documentation>
+                  <value>cjdb</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jean II d'Auvergne</a:documentation>
+                  <value>rcha</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Charles VI</a:documentation>
+                  <value>dpdb</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Philippe II de Bourgogne</a:documentation>
+                  <value>fjdb</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jean II de Berry</a:documentation>
+                  <value>sbdr</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Bureau de la Rivière</a:documentation>
+                  <value>egdv</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Guillaume VI de Vienne</a:documentation>
+                  <value>cdas</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jean de la Personne</a:documentation>
+                  <value>mgdt</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Guillaume de la Trémoille</a:documentation>
+                  <value>cjdx</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jean III de Sancerre</a:documentation>
+                  <value>pclv</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Clément VII</a:documentation>
+                  <value>mldx</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Louis de Sancerre</a:documentation>
+                  <value>djdg</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Jean de Gand</a:documentation>
+                  <value>hcde</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Henri IV</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -3886,7 +4176,6 @@ The element <name/> may appear once only
                </choice>
             </zeroOrMore>
          </group>
-         <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
@@ -3896,6 +4185,33 @@ The element <name/> may appear once only
          <ref name="att.global.rendition.attribute.rendition"/>
          <ref name="att.editLike.attributes"/>
          <ref name="att.sortable.attributes"/>
+         <optional>
+            <attribute name="xml:id">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) Identifiants des différents lieux du texte.</a:documentation>
+               <choice>
+                  <value>avg</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Avignon</a:documentation>
+                  <value>nim</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Nîmes</a:documentation>
+                  <value>mtp</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Montpellier</a:documentation>
+                  <value>bsr</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Béziers</a:documentation>
+                  <value>crs</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Carcassonne</a:documentation>
+                  <value>tls</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Toulouse</a:documentation>
+                  <value>otz</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Orthez</a:documentation>
+                  <value>bdx</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Bordeaux</a:documentation>
+                  <value>nrb</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Narbonne</a:documentation>
+                  <value>nnt</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiant de Nonnette</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -3951,56 +4267,18 @@ The element <name/> may appear once only
          <ref name="att.datable.custom.attribute.datingMethod"/>
          <ref name="att.editLike.attributes"/>
          <ref name="att.sortable.attributes"/>
-         <choice>
-            <optional>
-               <attribute name="active">
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the active participants in a non-mutual relationship, or all the participants in a mutual one.</a:documentation>
-                  <list>
-                     <oneOrMore>
-                        <data type="anyURI"/>
-                     </oneOrMore>
-                  </list>
-               </attribute>
-            </optional>
-            <optional>
-               <attribute name="mutual">
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a list of participants amongst all of whom the relationship holds equally.</a:documentation>
-                  <list>
-                     <oneOrMore>
-                        <data type="anyURI"/>
-                     </oneOrMore>
-                  </list>
-               </attribute>
-            </optional>
-         </choice>
+         <empty/>
          <optional>
             <attribute name="name">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">supplies a name for the kind of relationship of which this is an instance.</a:documentation>
-               <choice>
-                  <value>ally</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>brother</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>cousin</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>guardian</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>married</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>parent</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-                  <value>uncle</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-               </choice>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Le nom de la relation décrite.</a:documentation>
+               <empty/>
             </attribute>
          </optional>
          <optional>
             <attribute name="passive">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the passive participants in a non-mutual relationship.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Identifiants du / de la participant.e dominant.e ou passif.ve dans une relation non-horizontale.</a:documentation>
                <list>
-                  <oneOrMore>
-                     <data type="anyURI"/>
-                  </oneOrMore>
+                  <rng:empty xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
                </list>
             </attribute>
          </optional>
@@ -4344,7 +4622,13 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="add">
                <a:documentation>specifies the effect of this declaration on its parent object.</a:documentation>
                <choice>
+                  <value>add</value>
+                  <a:documentation/>
+                  <value>delete</value>
+                  <a:documentation/>
                   <value>change</value>
+                  <a:documentation>this declaration changes the declaration of the same name in the current definition</a:documentation>
+                  <value>replace</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -4382,7 +4666,13 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="add">
                <a:documentation>specifies the effect of this declaration on its parent object.</a:documentation>
                <choice>
+                  <value>add</value>
+                  <a:documentation/>
+                  <value>delete</value>
+                  <a:documentation/>
                   <value>change</value>
+                  <a:documentation>this declaration changes the declaration of the same name in the current definition</a:documentation>
+                  <value>replace</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -4390,8 +4680,10 @@ Child elements of <name/> are only allowed when an external module is being load
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates whether this is a model class or an attribute class</a:documentation>
             <choice>
+               <value>model</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(content model) members of this class appear in the same content models</a:documentation>
                <value>atts</value>
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(attributes) members of this class share common attributes</a:documentation>
             </choice>
          </attribute>
          <empty/>
@@ -4502,9 +4794,13 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="add">
                <a:documentation>specifies the effect of this declaration on its parent object.</a:documentation>
                <choice>
-                  <value>change</value>
+                  <value>add</value>
                   <a:documentation/>
                   <value>delete</value>
+                  <a:documentation>if present already, the whole of the declaration for this object is removed from the current setup</a:documentation>
+                  <value>change</value>
+                  <a:documentation>this declaration changes the declaration of the same name in the current definition</a:documentation>
+                  <value>replace</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -4573,6 +4869,12 @@ Child elements of <name/> are only allowed when an external module is being load
                <a:documentation>specifies the effect of this declaration on its parent object.</a:documentation>
                <choice>
                   <value>add</value>
+                  <a:documentation>this declaration is added to the current definitions</a:documentation>
+                  <value>delete</value>
+                  <a:documentation/>
+                  <value>change</value>
+                  <a:documentation/>
+                  <value>replace</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -4584,7 +4886,11 @@ Child elements of <name/> are only allowed when an external module is being load
                <a:documentation>specifies the extensibility of the list of values specified.</a:documentation>
                <choice>
                   <value>closed</value>
-                  <a:documentation/>
+                  <a:documentation>only the values specified are permitted.</a:documentation>
+                  <value>semi</value>
+                  <a:documentation>(semi-open) all the values specified should be supported, but other values are legal and software should have appropriate fallback processing for them.</a:documentation>
+                  <value>open</value>
+                  <a:documentation>the values specified are sample values only.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -4690,7 +4996,6 @@ Child elements of <name/> are only allowed when an external module is being load
       <element name="extent">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(extent) describes the approximate size of a text stored on some carrier medium or of some other object, digital or non-digital, specified in any convenient units. [2.2.3. Type and Extent of File 2.2. The File Description 3.12.2.4. Imprint, Size of a Document, and Reprint Information 10.7.1. Object Description]</a:documentation>
          <ref name="macro.phraseSeq"/>
-         <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
@@ -4698,6 +5003,12 @@ Child elements of <name/> are only allowed when an external module is being load
          <ref name="att.global.rendition.attribute.rend"/>
          <ref name="att.global.rendition.attribute.style"/>
          <ref name="att.global.rendition.attribute.rendition"/>
+         <optional>
+            <attribute name="xml:id">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) provides a unique identifier for the element bearing the attribute.</a:documentation>
+               <data type="ID"/>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -4791,8 +5102,10 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -4839,8 +5152,10 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -4870,8 +5185,10 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -4898,8 +5215,10 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -4977,7 +5296,7 @@ Child elements of <name/> are only allowed when an external module is being load
    </define>
    <define name="ab">
       <element name="ab">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(anonymous block) contains any arbitrary component-level unit of text, acting as an anonymous container for phrase or inter level elements analogous to, but without the semantic baggage of, a paragraph. [16.3. Blocks, Segments, and Anchors]</a:documentation>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(anonymous block) Pour cet encodage, &lt;ab&gt; sert à contenir l'ensemble du texte [16.3. Blocks, Segments, and Anchors]</a:documentation>
          <ref name="macro.paraContent"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="oddbyexample-ab-abstractModel-structure-ab-constraint-report-16">
@@ -5000,7 +5319,6 @@ Child elements of <name/> are only allowed when an external module is being load
             </rule>
          </pattern>
          <ref name="att.global.attribute.xmlid"/>
-         <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
          <ref name="att.global.attribute.xmlbase"/>
          <ref name="att.global.attribute.xmlspace"/>
@@ -5010,11 +5328,20 @@ Child elements of <name/> are only allowed when an external module is being load
          <ref name="att.declaring.attributes"/>
          <ref name="att.written.attributes"/>
          <optional>
+            <attribute name="n">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(number) gives a number (or other label) for an element, which is not necessarily unique within the document.</a:documentation>
+               <choice>
+                  <value>3A-306</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Le numéro du chapitre encodé</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
+         <optional>
             <attribute name="type">
-               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Description de l'unité encodée</a:documentation>
                <choice>
                   <value>SHF-chapter</value>
-                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">L'unitée encodée est un chapitre SHF</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -5024,7 +5351,15 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="N">
                <a:documentation>specifies whether or not its parent element is fragmented in some way, typically by some other overlapping structure: for example a speech which is divided between two or more verse stanzas, a paragraph which is split across a page division, a verse line which is divided between two speakers.</a:documentation>
                <choice>
+                  <value>Y</value>
+                  <a:documentation/>
                   <value>N</value>
+                  <a:documentation>(no) the element is not fragmented, or no claim is made as to its completeness</a:documentation>
+                  <value>I</value>
+                  <a:documentation/>
+                  <value>M</value>
+                  <a:documentation/>
+                  <value>F</value>
                   <a:documentation/>
                </choice>
             </attribute>
@@ -5242,8 +5577,10 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
@@ -5278,28 +5615,15 @@ Child elements of <name/> are only allowed when an external module is being load
                        a:defaultValue="false">
                <a:documentation>indicates whether or not this element is selected by default when its parent is selected.</a:documentation>
                <choice>
-                  <value>false</value>
+                  <value>true</value>
                   <a:documentation/>
+                  <value>false</value>
+                  <a:documentation>This element can only be selected explicitly, unless it is the only one of its kind, in which case it is selected if its parent is selected.</a:documentation>
                </choice>
             </attribute>
          </optional>
          <empty/>
       </element>
-   </define>
-   <define name="att.witnessed.attributes">
-      <ref name="att.witnessed.attribute.wit"/>
-   </define>
-   <define name="att.witnessed.attribute.wit">
-      <optional>
-         <attribute name="wit">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(witness or witnesses) contains a space-delimited list of one or more pointers indicating the witnesses which attest to a given reading.</a:documentation>
-            <list>
-               <oneOrMore>
-                  <data type="anyURI"/>
-               </oneOrMore>
-            </list>
-         </attribute>
-      </optional>
    </define>
    <define name="model.rdgLike">
       <choice>

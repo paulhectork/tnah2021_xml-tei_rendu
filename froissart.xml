@@ -72,7 +72,7 @@
               </physDesc>
               <history>
                 <origin>
-                  <origDate>1475-1485</origDate>
+                  <origDate type="date-range">1475-1485</origDate>
                 </origin>
               </history>
               <additional>
@@ -111,7 +111,7 @@
               </physDesc>
               <history>
                 <origin>
-                  <origDate>1468-1469</origDate>
+                  <origDate type="precise">1468-1469</origDate>
                 </origin>
               </history>
               <additional>
@@ -157,7 +157,7 @@
               </physDesc>
               <history>
                 <origin>
-                  <origDate>1470-1490</origDate>
+                  <origDate type="date-range">1470-1490</origDate>
                 </origin>
                 <provenance>Anciennement propriété du Comte Alexandre de Donha, bourgeois de Berne, qui en fait don à la bibliothèque en 1697.</provenance>
               </history>
@@ -230,7 +230,7 @@
       <creation>
         <!-- informations sur la création du texte originel -->
         <title>Chroniques</title>
-        <origDate>XIVe siècle</origDate>
+        <origDate type="date-range">XIVe siècle</origDate>
         <country>France</country>
         <lang>Moyen français</lang>
       </creation>
@@ -263,7 +263,7 @@
                 </app>
               </surname>
             </persName>
-            <note source="Online Froissart">Le duc Jean de Berry (134°-1416), troisième fils du roi Jean II de France et de Bonne de Luxembourg, frère du roi Charles V de France et
+            <note source="Online Froissart">Le duc Jean de Berry (1340-1416), troisième fils du roi Jean II de France et de Bonne de Luxembourg, frère du roi Charles V de France et
             oncle du roi Charles VI. Il a épousé Jeanne d'Armagnac, fille du comte Jean Ier et sœur du comte Jean II. Jean de Berry, avec son frère
             Philippe, duc de Bourgogne, étaient des figues dominantes dans le royaume de France et des personnages centraux de la politique française
             durant la majeure partie du règne de Charles VI, d'abord du fait de la position d'infériorité du roi, et ensuite à cause de sa folie.</note>

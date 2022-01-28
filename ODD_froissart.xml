@@ -28,7 +28,8 @@
             <classRef key="model.rdgPart"/>
             <moduleRef key="textcrit"
                include="app lem rdg rdgGrp witDetail listWit witness variantEncoding"/>
-            <elementSpec ident="app" mode="change">
+            
+            <elementSpec ident="app" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="from" mode="delete"/>
@@ -38,7 +39,7 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
-                  <attDef ident="corresp" mode="add"> <!-- mode = add ou mode = change ? -->
+                  <attDef ident="corresp" mode="change">
                      <desc>@corresp sert à indiquer le type de variation qu'il y a entre deux témoins ou plus.</desc>
                      <valList type="closed">
                         <valItem ident="#orth">
@@ -64,12 +65,13 @@
                         </valItem>
                      </valList>
                      <remarks><p>L'attribut @corresp est utilisé à la place de l'attribut @type, pour indiquer le type de différence entre les témoins :
-                     l'utilisation de @corresp, avec une valeur renvoyant à une liste définie dans l'ODD et dans le &lt;teiHeader&gt; permet de rentrer plusieurs valeurs,
-                     et donc d'indiquer si besoin plusieurs types de variation entre deux témoins.</p></remarks>
+                        l'utilisation de @corresp, avec une valeur renvoyant à une liste définie dans l'ODD et dans le &lt;teiHeader&gt; permet de rentrer plusieurs valeurs,
+                        et donc d'indiquer si besoin plusieurs types de variation entre deux témoins.</p></remarks>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="lem" mode="change">
+            
+            <elementSpec ident="lem" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -77,7 +79,7 @@
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="wit" mode="change">
-                     <desc>L'attribut @wit est obligatoire et sert à faire correspondre un témoin à un passage encodé.</desc>
+                     <desc>Indique le témoin grâce à son identifiant @xml:id</desc>
                      <valList type="closed">
                         <valItem ident="#brl">
                            <desc>Renvoi au témoin Berlin Rehdiger 3, la leçon principale de cette édition critique</desc>
@@ -94,14 +96,16 @@
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="rdg" mode="change">
+            
+            <elementSpec ident="rdg" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
-                  <attDef ident="wit" mode="change"> <!-- mode=add ou change ?? -->
+                  <attDef ident="wit" mode="change">
+                     <desc>Indique le témoin grâce à son identifiant @xml:id</desc>
                      <valList type="closed">
                         <valItem ident="#atw">
                            <desc>Renvoi au témoin Antwerp M. 15.6</desc>
@@ -110,12 +114,13 @@
                            <desc>Renvoi au témoin BernA14</desc>
                         </valItem>
                      </valList>
-                     <remarks><p>Le témoin choisi comme leçon principale ne peut pas être encodé comme &lt;redg&gt;.
+                     <remarks><p>Le témoin choisi comme leçon principale ne peut pas être encodé comme &lt;rdg&gt;.
                         L'attribut @wit ne peut donc pas renvoyer au témoin Berlin Rehdiger 3.</p></remarks>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="rdgGrp" mode="change">
+            
+            <elementSpec ident="rdgGrp" mode="change"> <!-- attList ok -->
                <desc>L'élément &lt;rdgGrp&gt; sert à réunir plusieurs témoins qui diffèrent d'autres groupes de témoins mais partagent une ou plusieurs
                   caractéristiques communes. Les différents témoins diffèrent cependant, et l'attribut "corresp" <!-- comment dire que c un attribut --> permet
                   d'indiquer le type de différences</desc>
@@ -124,7 +129,7 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
-                  <attDef ident="corresp" mode="delete">
+                  <attDef ident="corresp" mode="change">
                      <desc>@corresp sert à indiquer le type de variation qu'il y a entre deux témoins ou plus.</desc>
                      <valList type="closed">
                         <valItem ident="#orth">
@@ -149,35 +154,47 @@
                            <desc>Valeur utilisée pour indiquer la différence dans l'ornementation entre un témoin et un autre de ce groupe</desc>
                         </valItem>
                      </valList>
-                     <remarks><p>L'attribut @corresp est utilisé à la place de l'attribut @type, pour indiquer le type de différence entre les témoins :
-                        l'utilisation de @corresp, avec une valeur renvoyant à une liste définie dans l'ODD et dans le &lt;teiHeader&gt; permet de rentrer plusieurs valeurs,
-                        et donc d'indiquer si besoin plusieurs types de variation entre deux témoins.</p></remarks>
+                     <remarks>
+                        <p>L'attribut @corresp est utilisé à la place de l'attribut @type, pour indiquer le type de différence entre les témoins</p>
+                        <p>Les valeurs de @corresp font référence à des @xml:id décrites dans /TEI/teiHeader[1]/encodingDesc[1]/editorialDecl[1]/p[3]/list[1]
+                           (une liste de valeurs dans le &lt;encodingDesc&gt;).</p></remarks>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="witDetail" mode="change">
+            
+            <elementSpec ident="witDetail" mode="change"> <!-- attList ok -->
                <attList>
-                  <attDef ident="type" mode="change">
-                     <valList mode="add" type="open">
-                        <valItem ident="precision-about-page-numbering"/>
-                     </valList>
-                     <remarks><p>La valeur de l'attribut est "open" : on peut indiquer d'autres détails sur les manuscrits.</p></remarks>
-                  </attDef>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="target" mode="delete"/>
-                  <!-- 
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="precision-about-page-numbering"/>
+                     <desc>Indication sur le type de détail décrit dans l'élément.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="precision-about-page-numbering">
+                           <desc>Valeur servant à indiquer un détail à propos de la numérotation des pages dans l'encodage.</desc>
+                        </valItem>
                      </valList>
                   </attDef>
-                  -->
+                  <attDef ident="wit" mode="change">
+                     <desc>Indique le témoin grâce à son identifiant @xml:id</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="#atw">
+                           <desc>Renvoi au témoin Antwerp M. 15.6</desc>
+                        </valItem>
+                        <valItem ident="#brl">
+                           <desc>Renvoi au témoin Berlin Rehdiger 3, la leçon principale de cette édition critique</desc>
+                        </valItem>
+                        <valItem ident="#brn">
+                           <desc>Renvoi au témoin Bern A14</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="listWit" mode="change">
+            
+            <elementSpec ident="listWit" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -185,38 +202,51 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="witness" mode="change">
+            
+            <elementSpec ident="witness" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
+                  <attDef ident="xml:id" mode="change">
+                     <desc>L'identifiant de chacun des manuscrits encodés</desc>
+                     <valList type="closed">
+                        <valItem ident="atw">
+                           <desc>Renvoi au témoin Antwerp M. 15.6</desc>
+                        </valItem>
+                        <valItem ident="brl">
+                           <desc>Renvoi au témoin Berlin Rehdiger 3, la leçon principale de cette édition critique</desc>
+                        </valItem>
+                        <valItem ident="brn">
+                           <desc>Renvoi au témoin Bern A14</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="variantEncoding" mode="change">
+            
+            <elementSpec ident="variantEncoding" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="method" mode="change">
-                     <valList mode="add" type="closed">
+                     <desc>Indique la méthode utilisée pour constituer l'apparat critique.</desc>
+                     <valList mode="change" type="closed">
                         <valItem ident="parallel-segmentation">
                            <desc>Valeur à utiliser pour encoder une édition en segmentation parrallèle</desc>
                         </valItem>
-                        <valItem ident="location-referenced">
-                           <desc>Valeur à utiliser pour encoder une édition en "location-referenced"</desc>
-                        </valItem>
-                        <valItem ident="double-end-point">
-                           <desc>Valeur à utiliser pour une édition en "double-end-point"</desc>
-                        </valItem>
                      </valList>
+                     <remarks><p>Cette ODD est pensée pour une édition critique en segmentation parrallèle ; c'est dont la
+                        seule valeur autorisée pour l'attribut @method.</p></remarks>
                   </attDef>
                   <attDef ident="location" mode="change">
-                     <valList mode="add" type="closed">
+                     <desc>Indique si les autres témoins sont contenus ou non dans ce fichier.</desc>
+                     <valList mode="change" type="closed">
                         <valItem ident="internal">
                            <desc>Valeur à utiliser pour une édition critique où tous les témoins sont contenus dans l'élément &lt;TEI&gt;</desc>
                         </valItem>
-                        <valItem ident="externam">
-                           <desc>Valeur à utiliser pour une édition critique où des témoins peuvent être contenus ailleurs que dans le &lt;TEI&gt;</desc>
-                        </valItem>
                      </valList>
+                     <remarks><p>L'ODD est pensée pour une segmentation parrallèle où tous les témoins sont contenus dans le fichier XML;
+                        c'est donc la seule valeur autorisée pour l'attribut @location.</p></remarks>
                   </attDef>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -224,7 +254,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <classSpec ident="att.textCritical" type="atts" mode="change">
+            
+            <classSpec ident="att.textCritical" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="cause" mode="delete"/>
                   <attDef ident="varSeq" mode="delete"/>
@@ -232,11 +263,14 @@
                </attList>
             </classSpec>
             
+            
+            
             <!--Checking module msdescription-->
             <classRef key="model.physDescPart"/>
             <moduleRef key="msdescription"
                include="msDesc dimensions height depth width origDate msIdentifier institution repository collection msName msContents physDesc objectDesc supportDesc support history origin provenance additional adminInfo recordHist source"/>
-            <elementSpec ident="msDesc" mode="change">
+            
+            <elementSpec ident="msDesc" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -250,7 +284,8 @@
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="dimensions" mode="change">
+            
+            <elementSpec ident="dimensions" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -258,14 +293,16 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="unit" mode="change">
-                     <valList mode="add" type="closed">
+                     <desc>Dimension des manuscrits, en centimètres</desc>
+                     <valList mode="change" type="closed">
                         <valItem ident="cm"/>
                      </valList>
                   </attDef>
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="height" mode="change">
+            
+            <elementSpec ident="height" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -274,7 +311,8 @@
                   <attDef ident="unit" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="depth" mode="change">
+            
+            <elementSpec ident="depth" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -283,7 +321,8 @@
                   <attDef ident="unit" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="width" mode="change">
+            
+            <elementSpec ident="width" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -292,7 +331,8 @@
                   <attDef ident="unit" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="origDate" mode="change">
+            
+            <elementSpec ident="origDate" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -300,10 +340,21 @@
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="when-iso" mode="delete"/>
                   <attDef ident="unit" mode="delete"/>
-                  <attDef ident="type" mode="delete"/>
+                  <attDef ident="type" mode="change">
+                     <desc>Le type de date</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="date-range">
+                           <desc>Une période (par opposition à une date précise)</desc>
+                        </valItem>
+                        <valItem ident="precise">
+                           <desc>Une date précise</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="msIdentifier" mode="change">
+            
+            <elementSpec ident="msIdentifier" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -311,7 +362,18 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="institution" mode="change">
+            
+            <elementSpec ident="institution" mode="change"> <!-- attList ok -->
+               <attList>
+                  <attDef ident="corresp" mode="delete"/>
+                  <attDef ident="cert" mode="delete"/>
+                  <attDef ident="resp" mode="delete"/>
+                  <attDef ident="source" mode="delete"/>
+                  <attDef ident="ref" mode="delete"/>
+               </attList>
+            </elementSpec>
+            
+            <elementSpec ident="repository" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -320,16 +382,8 @@
                   <attDef ident="ref" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="repository" mode="change">
-               <attList>
-                  <attDef ident="corresp" mode="delete"/>
-                  <attDef ident="cert" mode="delete"/>
-                  <attDef ident="resp" mode="delete"/>
-                  <attDef ident="source" mode="delete"/>
-                  <attDef ident="ref" mode="delete"/>
-               </attList>
-            </elementSpec>
-            <elementSpec ident="collection" mode="change">
+            
+            <elementSpec ident="collection" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -339,7 +393,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="msName" mode="change">
+            
+            <elementSpec ident="msName" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -348,7 +403,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="msContents" mode="change">
+            
+            <elementSpec ident="msContents" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -356,7 +412,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="physDesc" mode="change">
+            
+            <elementSpec ident="physDesc" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -364,7 +421,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="objectDesc" mode="change">
+            
+            <elementSpec ident="objectDesc" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="form" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -373,7 +431,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="supportDesc" mode="change">
+            
+            <elementSpec ident="supportDesc" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="material" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -382,7 +441,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="support" mode="change">
+            
+            <elementSpec ident="support" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -390,7 +450,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="history" mode="change">
+            
+            <elementSpec ident="history" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -398,7 +459,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="origin" mode="change">
+            
+            <elementSpec ident="origin" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -407,7 +469,8 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="provenance" mode="change">
+            
+            <elementSpec ident="provenance" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -417,7 +480,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="additional" mode="change">
+            
+            <elementSpec ident="additional" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -425,7 +489,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="adminInfo" mode="change">
+            
+            <elementSpec ident="adminInfo" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -433,7 +498,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="recordHist" mode="change">
+            
+            <elementSpec ident="recordHist" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -441,7 +507,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="source" mode="change">
+            
+            <elementSpec ident="source" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -449,12 +516,16 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
+            
+            
+            
             <!--Checking module namesdates-->
             <classRef key="att.datable.iso"/>
             <classRef key="model.persNamePart"/>
             <moduleRef key="namesdates"
                include="orgName persName surname forename genName nameLink addName roleName placeName country settlement listPerson listPlace listRelation person place relation"/>
-            <elementSpec ident="orgName" mode="change">
+            
+            <elementSpec ident="orgName" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -470,7 +541,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="persName" mode="change">
+            
+            <elementSpec ident="persName" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
@@ -481,42 +553,136 @@
                      </valList>
                   </attDef>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="contemporary-name"/>
-                        <valItem ident="text-name"/>
+                     <desc>Le type de nom contenu dans l'élément</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="contemporary-name">
+                           <desc>Orthographe contemporaine du nom</desc>
+                        </valItem>
+                        <valItem ident="text-name">
+                           <desc>Orthographe utilisée dans des textes</desc>
+                        </valItem>
                      </valList>
+                  </attDef>
+                  <attDef ident="instant" mode="change">
+                     <valList mode="add" type="closed">
+                        <valItem ident="false"/>
+                     </valList>
+                  </attDef>
+                  <attDef ident="resp" mode="change">
+                     <desc>Le responsable du nom : la personne ou institution responsable de l'orthographe du nom</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="#tof">
+                           <desc>Valeur à utiliser si c'est l'Online Froissart qui est responsable de l'orthographe</desc>
+                        </valItem>
+                        <valItem ident="#phk">
+                           <desc>Valeur à utiliser si c'est Paul Kervegan (l'encodeur de la présente édition critique) qui est responsable
+                              de l'orthographe ; dans ce cas, l'orthographe a été récupérée sur <ref target="https://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal">Wikipedia</ref>.</desc>
+                        </valItem>
+                     </valList>
+                  </attDef> 
+                  <attDef ident="cert" mode="change">
+                     <desc>Indication du degré de certitude de la correspondance entre le nom contemporain et le nom dans le texte d'un personnage.</desc>
+                     <valList mode="change">
+                        <valItem ident="high">
+                           <desc>Haut degré de certitude</desc>
+                        </valItem>
+                        <valItem ident="medium">
+                           <desc>Certitude moyenne</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
+                  <attDef ident="ref" mode="change">
+                     <desc>Attribut utilisé pour renvoyer à des personnages mentionnés dans la &lt;listPerson&gt;.
+                        Le renvoi se fait grâce à l'attribut @xml:id des personnages.</desc>
+                     <valList>
+                        <valItem ident="#djdb">
+                           <desc>Renvoi au duc Jean Ier de Berry</desc>
+                        </valItem>
+                        <valItem ident="#mjda">
+                           <desc>Renvoi à Jeanne d'Armagnac</desc>
+                        </valItem>
+                        <valItem ident="#cgfb">
+                           <desc>Renvoi à Gaston III de Foix-Béarn Fébus</desc>
+                        </valItem>
+                        <valItem ident="#fjda">
+                           <desc>Renvoi à Jeanne, comtesse d'Auvergne et de Boulogne</desc>
+                        </valItem>
+                        <valItem ident="#cjdb">
+                           <desc>Renvoi à Jean II d'Auvergne</desc>
+                        </valItem>
+                        <valItem ident="#rcha">
+                           <desc>Renvoi à Charles VI roi de France</desc>
+                        </valItem>
+                        <valItem ident="#dpdb">
+                           <desc>Renvoi à Philippe II de Bourgogne</desc>
+                        </valItem>
+                        <valItem ident="#fjdb">
+                           <desc>Renvoi à Jean II de Berry</desc>
+                        </valItem>
+                        <valItem ident="#sbdr">
+                           <desc>Renvoi à Bureau de la Rivière</desc>
+                        </valItem>
+                        <valItem ident="#cdas">
+                           <desc>Renvoi à Jean de la Personne</desc>
+                        </valItem>
+                        <valItem ident="#egdv">
+                           <desc>Renvoi à Guillaume VI de Vienne</desc>
+                        </valItem>
+                        <valItem ident="#mgdt">
+                           <desc>Renvoi à Guillaume de la Trémoille</desc>
+                        </valItem>
+                        <valItem ident="#cjdx">
+                           <desc>Renvoi à Jean III de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#pclv">
+                           <desc>Renvoi à Clément VII, pape</desc>
+                        </valItem>
+                        <valItem ident="#mdlx">
+                           <desc>Renvoi à Louis de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#djdg">
+                           <desc>Renvoi à Jean de Gand</desc>
+                        </valItem>
+                        <valItem ident="#hcde">
+                           <desc>Renvoi à Henri IV (conte d'Erbi dans le texte)</desc>
+                        </valItem>
+                     </valList>
+                     <remarks><p>Les attributs de @ref font référence aux attributs @xml:id des &lt;person&gt; contenus dans le &lt;listPerson&gt;.</p></remarks>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="surname" mode="change">
+            
+            <elementSpec ident="surname" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="full" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="yes"/>
                      </valList>
                   </attDef>
                   <attDef ident="ref" mode="delete"/>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
+                     <desc>Spécification sur le nom écrit dans l'élément</desc>
+                     <valList mode="change" type="closed">
                         <valItem ident="alternate-orthograph">
-                           <desc>Valeur utilisée pour indiquée l'utilisation de plusieurs orthographes pour un même nom sans un témoin.</desc>
+                           <desc>Valeur utilisée pour indiquer l'utilisation de plusieurs orthographes pour un même nom sans un témoin.</desc>
                         </valItem>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="forename" mode="change">
+            
+            <elementSpec ident="forename" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="full" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="yes"/>
                      </valList>
                   </attDef>
@@ -524,22 +690,25 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="genName" mode="change">
+            
+            <elementSpec ident="genName" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="full" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="yes"/>
                      </valList>
                   </attDef>
                   <attDef ident="ref" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
                </attList>
+               
             </elementSpec>
-            <elementSpec ident="nameLink" mode="change">
+            
+            <elementSpec ident="nameLink" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -548,47 +717,60 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="addName" mode="change">
+            
+            <elementSpec ident="addName" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="full" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="yes"/>
                      </valList>
                   </attDef>
                   <attDef ident="ref" mode="delete"/>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="honorific"/>
+                     <desc>Type de nom additionnel</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="honorific">
+                           <desc>Valeur à utiliser pour indiquer un titre honorifique</desc>
+                        </valItem>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="roleName" mode="change">
+            
+            <elementSpec ident="roleName" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="full" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="yes"/>
                      </valList>
                   </attDef>
                   <attDef ident="ref" mode="delete"/>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="ecclesiastic"/>
-                        <valItem ident="honorific"/>
-                        <valItem ident="nobility"/>
+                     <desc>Description du type de fonction liée au titre de la personne</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="ecclesiastic">
+                           <desc>Titre religieux</desc>
+                        </valItem>
+                        <valItem ident="honorific">
+                           <desc>Titre honorifique</desc>
+                        </valItem>
+                        <valItem ident="nobility">
+                           <desc>Titre de noblesse</desc>
+                        </valItem>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="placeName" mode="change">
+            
+            <elementSpec ident="placeName" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="when-iso" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -596,19 +778,62 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="full" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="yes"/>
                      </valList>
                   </attDef>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="contemporary-name"/>
-                        <valItem ident="text-name"/>
+                     <desc>Type de nom de lieu décrit dans l'élément</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="contemporary-name">
+                           <desc>Nom contemporain</desc>
+                        </valItem>
+                        <valItem ident="text-name">
+                           <desc>Nom de lieu dans le texte</desc>
+                        </valItem>
                      </valList>
+                  </attDef>
+                  <attDef ident="ref" mode="change">
+                     <desc>Référence à un nom de la &lt;listPlace&gt;
+                        Le renvoi se fait grâce à l'attribut @xml:id des lieux.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="#avg">
+                           <desc>Renvoi à Avignon</desc>
+                        </valItem>
+                        <valItem ident="#nim">
+                           <desc>Renvoi à Nîmes</desc>
+                        </valItem>
+                        <valItem ident="#mtp">
+                           <desc>Renvoi à Montpellier</desc>
+                        </valItem>
+                        <valItem ident="#bsr">
+                           <desc>Renvoi à Béziers</desc>
+                        </valItem>
+                        <valItem ident="#crs">
+                           <desc>Renvoi à Carcassonne</desc>
+                        </valItem>
+                        <valItem ident="#tls">
+                           <desc>Renvoi à Toulouse</desc>
+                        </valItem>
+                        <valItem ident="#otz">
+                           <desc>Renvoi à Orthez</desc>
+                        </valItem>
+                        <valItem ident="#bdx">
+                           <desc>Renvoi à Bordeaux</desc>
+                        </valItem>
+                        <valItem ident="#nrb">
+                           <desc>Renvoi à Narbonne</desc>
+                        </valItem>
+                        <valItem ident="#nnt">
+                           <desc>Renvoi à Nonnette</desc>
+                        </valItem>
+                     </valList>
+                     <remarks><p>Les attributs de @ref font référence aux attributs @xml:id des &lt;place&gt; contenus dans le &lt;listPlace&gt;.</p></remarks>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="country" mode="change">
+            
+            <elementSpec ident="country" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -619,7 +844,8 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="settlement" mode="change">
+            
+            <elementSpec ident="settlement" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -630,7 +856,8 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="listPerson" mode="change">
+            
+            <elementSpec ident="listPerson" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -638,13 +865,14 @@
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="listPlace" mode="change">
+            
+            <elementSpec ident="listPlace" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -652,13 +880,14 @@
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="listRelation" mode="change">
+            
+            <elementSpec ident="listRelation" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -667,7 +896,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="person" mode="change">
+            
+            <elementSpec ident="person" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="role" mode="delete"/>
                   <attDef ident="sex" mode="delete"/>
@@ -676,28 +906,298 @@
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
+                  <attDef ident="xml:id" mode="change">
+                     <desc>Identifiants des personnages du texte.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="djdb">
+                           <desc>Jean Ier de Berry</desc>
+                        </valItem>
+                        <valItem ident="mjda">
+                           <desc>Jeanne d'Armagnac</desc>
+                        </valItem>
+                        <valItem ident="cgfb">
+                           <desc>Gaston III de Foix-Béarn</desc>
+                        </valItem>
+                        <valItem ident="fjda">
+                           <desc>Jeanne, comtesse d'Auvergne et de Boulogne</desc>
+                        </valItem>
+                        <valItem ident="cjdb">
+                           <desc>Jean II d'Auvergne</desc>
+                        </valItem>
+                        <valItem ident="rcha">
+                           <desc>Charles VI</desc>
+                        </valItem>
+                        <valItem ident="dpdb">
+                           <desc>Philippe II de Bourgogne</desc>
+                        </valItem>
+                        <valItem ident="fjdb">
+                           <desc>Jean II de Berry</desc>
+                        </valItem>
+                        <valItem ident="sbdr">
+                           <desc>Bureau de la Rivière</desc>
+                        </valItem>
+                        <valItem ident="egdv">
+                           <desc>Guillaume VI de Vienne</desc>
+                        </valItem>
+                        <valItem ident="cdas">
+                           <desc>Jean de la Personne</desc>
+                        </valItem>
+                        <valItem ident="mgdt">
+                           <desc>Guillaume de la Trémoille</desc>
+                        </valItem>
+                        <valItem ident="cjdx">
+                           <desc>Jean III de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="pclv">
+                           <desc>Clément VII</desc>
+                        </valItem>
+                        <valItem ident="mldx">
+                           <desc>Louis de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="djdg">
+                           <desc>Jean de Gand</desc>
+                        </valItem>
+                        <valItem ident="hcde">
+                           <desc>Henri IV</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="place" mode="change">
+            
+            <elementSpec ident="place" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
+                  <attDef ident="xml:id" mode="change">
+                     <desc>Identifiants des différents lieux du texte.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="avg">
+                           <desc>Identifiant de Avignon</desc>
+                        </valItem>
+                        <valItem ident="nim">
+                           <desc>Identifiant de Nîmes</desc>
+                        </valItem>
+                        <valItem ident="mtp">
+                           <desc>Identifiant de Montpellier</desc>
+                        </valItem>
+                        <valItem ident="bsr">
+                           <desc>Identifiant de Béziers</desc>
+                        </valItem>
+                        <valItem ident="crs">
+                           <desc>Identifiant de Carcassonne</desc>
+                        </valItem>
+                        <valItem ident="tls">
+                           <desc>Identifiant de Toulouse</desc>
+                        </valItem>
+                        <valItem ident="otz">
+                           <desc>Identifiant de Orthez</desc>
+                        </valItem>
+                        <valItem ident="bdx">
+                           <desc>Identifiant de Bordeaux</desc>
+                        </valItem>
+                        <valItem ident="nrb">
+                           <desc>Identifiant de Narbonne</desc>
+                        </valItem>
+                        <valItem ident="nnt">
+                           <desc>Identifiant de Nonnette</desc>
+                        </valItem>
+                     </valList>
+                     <remarks><p>Ces identifiants servent à faire référence aux descriptions des lieux de &lt;listPlace&gt; dans le corps du texte :
+                        dans le texte, les lieux sont à encoder dans des &lt;place&gt; contenant des attribut @ref.</p></remarks>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="relation" mode="change">
+            
+            <elementSpec ident="relation" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="name" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="ally"/>
-                        <valItem ident="brother"/>
-                        <valItem ident="cousin"/>
-                        <valItem ident="guardian"/>
-                        <valItem ident="married"/>
-                        <valItem ident="parent"/>
-                        <valItem ident="uncle"/>
+                     <desc>Le nom de la relation décrite.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="ally">
+                           <desc>Alliance entre deux personnages.</desc>
+                        </valItem>
+                        <valItem ident="brother">
+                           <desc>Deux personnages sont frères</desc>
+                           <remarks><p>Il s'y a pas de sœurs dans l'extrait encodé, et donc pas de valeur "sister" équivalente à "brother"</p></remarks>
+                        </valItem>
+                        <valItem ident="cousin">
+                           <desc>Cousinage entre deux personnages</desc>
+                        </valItem>
+                        <valItem ident="guardian">
+                           <desc>Un personnage est le ou la gardien.ne légal.e d'un.e autre personne.</desc>
+                        </valItem>
+                        <valItem ident="married">
+                           <desc>Marriage entre deux personnages.</desc>
+                        </valItem>
+                        <valItem ident="parent">
+                           <desc>Un personnage est père / mère d'un.e autre.</desc>
+                        </valItem>
+                        <valItem ident="uncle">
+                           <desc>Un personnage est l'oncle d'un.e autre.</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
+                  <attDef ident="mutual" mode="change">
+                     <desc>Identifiants des participant.e.s à une relation mutuelle (définie par l'égalité entre les personnages.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="#djdb">
+                           <desc>Jean Ier de Berry</desc>
+                        </valItem>
+                        <valItem ident="#mjda">
+                           <desc>Jeanne d'Armagnac</desc>
+                        </valItem>
+                        <valItem ident="#cgfb">
+                           <desc>Gaston III de Foix-Béarn</desc>
+                        </valItem>
+                        <valItem ident="#fjda">
+                           <desc>Jeanne, comtesse d'Auvergne et de Boulogne</desc>
+                        </valItem>
+                        <valItem ident="#cjdb">
+                           <desc>Jean II d'Auvergne</desc>
+                        </valItem>
+                        <valItem ident="#rcha">
+                           <desc>Charles VI</desc>
+                        </valItem>
+                        <valItem ident="#dpdb">
+                           <desc>Philippe II de Bourgogne</desc>
+                        </valItem>
+                        <valItem ident="#fjdb">
+                           <desc>Jean II de Berry</desc>
+                        </valItem>
+                        <valItem ident="#sbdr">
+                           <desc>Bureau de la Rivière</desc>
+                        </valItem>
+                        <valItem ident="#cdas">
+                           <desc>Jean de la Personne</desc>
+                        </valItem>
+                        <valItem ident="#mgdt">
+                           <desc>Guillaume de la Trémoille</desc>
+                        </valItem>
+                        <valItem ident="#cjdx">
+                           <desc>Jean III de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#pclv">
+                           <desc>Clément VII</desc>
+                        </valItem>
+                        <valItem ident="#mldx">
+                           <desc>Louis de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#djdg">
+                           <desc>Jean de Gand</desc>
+                        </valItem>
+                        <valItem ident="#hcde">
+                           <desc>Henri IV (conte d'Erbi dans le texte)</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
+                  <attDef ident="active" mode="change">
+                     <desc>Identifiants du / de la participant.e dominant.e ou actif.ve dans une relation non-horizontale.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="#djdb">
+                           <desc>Jean Ier de Berry</desc>
+                        </valItem>
+                        <valItem ident="#mjda">
+                           <desc>Jeanne d'Armagnac</desc>
+                        </valItem>
+                        <valItem ident="#cgfb">
+                           <desc>Gaston III de Foix-Béarn</desc>
+                        </valItem>
+                        <valItem ident="#fjda">
+                           <desc>Jeanne, comtesse d'Auvergne et de Boulogne</desc>
+                        </valItem>
+                        <valItem ident="#cjdb">
+                           <desc>Jean II d'Auvergne</desc>
+                        </valItem>
+                        <valItem ident="#rcha">
+                           <desc>Charles VI</desc>
+                        </valItem>
+                        <valItem ident="#dpdb">
+                           <desc>Philippe II de Bourgogne</desc>
+                        </valItem>
+                        <valItem ident="#fjdb">
+                           <desc>Jean II de Berry</desc>
+                        </valItem>
+                        <valItem ident="#sbdr">
+                           <desc>Bureau de la Rivière</desc>
+                        </valItem>
+                        <valItem ident="#cdas">
+                           <desc>Jean de la Personne</desc>
+                        </valItem>
+                        <valItem ident="#mgdt">
+                           <desc>Guillaume de la Trémoille</desc>
+                        </valItem>
+                        <valItem ident="#cjdx">
+                           <desc>Jean III de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#pclv">
+                           <desc>Clément VII</desc>
+                        </valItem>
+                        <valItem ident="#mldx">
+                           <desc>Louis de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#djdg">
+                           <desc>Jean de Gand</desc>
+                        </valItem>
+                        <valItem ident="#hcde">
+                           <desc>Henri IV (conte d'Erbi dans le texte)</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
+                  <attDef ident="passive" mode="change">
+                     <desc>Identifiants du / de la participant.e dominant.e ou passif.ve dans une relation non-horizontale.</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="#djdb">
+                           <desc>Jean Ier de Berry</desc>
+                        </valItem>
+                        <valItem ident="#mjda">
+                           <desc>Jeanne d'Armagnac</desc>
+                        </valItem>
+                        <valItem ident="#cgfb">
+                           <desc>Gaston III de Foix-Béarn</desc>
+                        </valItem>
+                        <valItem ident="#fjda">
+                           <desc>Jeanne, comtesse d'Auvergne et de Boulogne</desc>
+                        </valItem>
+                        <valItem ident="#cjdb">
+                           <desc>Jean II d'Auvergne</desc>
+                        </valItem>
+                        <valItem ident="#rcha">
+                           <desc>Charles VI</desc>
+                        </valItem>
+                        <valItem ident="#dpdb">
+                           <desc>Philippe II de Bourgogne</desc>
+                        </valItem>
+                        <valItem ident="#fjdb">
+                           <desc>Jean II de Berry</desc>
+                        </valItem>
+                        <valItem ident="#sbdr">
+                           <desc>Bureau de la Rivière</desc>
+                        </valItem>
+                        <valItem ident="#cdas">
+                           <desc>Jean de la Personne</desc>
+                        </valItem>
+                        <valItem ident="#mgdt">
+                           <desc>Guillaume de la Trémoille</desc>
+                        </valItem>
+                        <valItem ident="#cjdx">
+                           <desc>Jean III de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#pclv">
+                           <desc>Clément VII</desc>
+                        </valItem>
+                        <valItem ident="#mldx">
+                           <desc>Louis de Sancerre</desc>
+                        </valItem>
+                        <valItem ident="#djdg">
+                           <desc>Jean de Gand</desc>
+                        </valItem>
+                        <valItem ident="#hcde">
+                           <desc>Henri IV (conte d'Erbi dans le texte)</desc>
+                        </valItem>
                      </valList>
                   </attDef>
                   <attDef ident="corresp" mode="delete"/>
@@ -709,7 +1209,10 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <classSpec ident="att.datable.iso" type="atts" mode="change">
+            
+            
+            
+            <classSpec ident="att.datable.iso" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="notBefore-iso" mode="delete"/>
                   <attDef ident="notAfter-iso" mode="delete"/>
@@ -717,16 +1220,18 @@
                   <attDef ident="to-iso" mode="delete"/>
                </attList>
             </classSpec>
+            
             <!--Checking module dictionaries-->
-            <classRef key="att.lexicographic"/>
-            <classRef key="model.entryLike"/>
-            <classRef key="model.formPart"/>
-            <classRef key="model.gramPart"/>
-            <classRef key="model.lexicalRefinement"/>
-            <classRef key="model.morphLike"/>
-            <classRef key="model.ptrLike.form"/>
-            <moduleRef key="dictionaries" include="lang"/>
-            <elementSpec ident="lang" mode="change">
+            <classRef key="att.lexicographic"/>  <!-- ok -->
+            <classRef key="model.entryLike"/>  <!-- ok -->
+            <classRef key="model.formPart"/>  <!-- ok -->
+            <classRef key="model.gramPart"/>  <!-- ok -->
+            <classRef key="model.lexicalRefinement"/>  <!-- ok -->
+            <classRef key="model.morphLike"/>  <!-- ok -->
+            <classRef key="model.ptrLike.form"/>  <!-- ok -->
+            <moduleRef key="dictionaries" include="lang"/>  <!-- ok -->
+            
+            <elementSpec ident="lang" mode="change">  <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -734,7 +1239,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <classSpec ident="att.lexicographic" type="atts" mode="change">
+            
+            <classSpec ident="att.lexicographic" type="atts" mode="change">  <!-- ok -->
                <attList>
                   <attDef ident="expand" mode="delete"/>
                   <attDef ident="split" mode="delete"/>
@@ -743,13 +1249,17 @@
                   <attDef ident="mergedIn" mode="delete"/>
                </attList>
             </classSpec>
+            
+            
+            
             <!--Checking module tagdocs-->
-            <classRef key="att.combinable"/>
-            <classRef key="att.identified"/>
-            <classRef key="model.contentPart"/>
+            <classRef key="att.combinable"/>  <!-- ok -->
+            <classRef key="att.identified"/>  <!-- ok -->
+            <classRef key="model.contentPart"/>  <!-- ok -->
             <moduleRef key="tagdocs"
                include="classRef moduleRef schemaSpec elementSpec classSpec attList attDef valItem valList"/>
-            <elementSpec ident="classRef" mode="change">
+            
+            <elementSpec ident="classRef" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="expand" mode="delete"/>
                   <attDef ident="include" mode="delete"/>
@@ -760,7 +1270,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="moduleRef" mode="change">
+            
+            <elementSpec ident="moduleRef" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="prefix" mode="delete"/>
                   <attDef ident="except" mode="delete"/>
@@ -771,7 +1282,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="schemaSpec" mode="change">
+            
+            <elementSpec ident="schemaSpec" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="prefix" mode="delete"/>
                   <attDef ident="targetLang" mode="delete"/>
@@ -785,7 +1297,8 @@
                   <attDef ident="status" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="elementSpec" mode="change">
+            
+            <elementSpec ident="elementSpec" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="prefix" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -793,16 +1306,17 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="mode" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="change"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="classSpec" mode="change">
+            
+            <elementSpec ident="classSpec" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="atts"/>
                      </valList>
                   </attDef>
@@ -812,18 +1326,19 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="mode" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="change"/>
                      </valList>
                   </attDef>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="atts"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="attList" mode="change">
+            
+            <elementSpec ident="attList" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="org" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -832,7 +1347,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="attDef" mode="change">
+            
+            <elementSpec ident="attDef" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="usage" mode="delete"/>
                   <attDef ident="ns" mode="delete"/>
@@ -841,14 +1357,15 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="mode" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="change"/>
                         <valItem ident="delete"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="valItem" mode="change">
+            
+            <elementSpec ident="valItem" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -857,10 +1374,11 @@
                   <attDef ident="mode" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="valList" mode="change">
+            
+            <elementSpec ident="valList" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="closed"/>
                      </valList>
                   </attDef>
@@ -869,34 +1387,39 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="mode" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="add"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <classSpec ident="att.identified" type="atts" mode="change">
+            
+            <classSpec ident="att.identified" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="predeclare" mode="delete"/>
                   <attDef ident="module" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.anchoring" type="atts" mode="change">
+            
+            <classSpec ident="att.anchoring" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="targetEnd" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.ascribed.directed" type="atts" mode="change">
+            
+            <classSpec ident="att.ascribed.directed" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="toWhom" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.canonical" type="atts" mode="change">
+            
+            <classSpec ident="att.canonical" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="key" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.dimensions" type="atts" mode="change">
+            
+            <classSpec ident="att.dimensions" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="quantity" mode="delete"/>
                   <attDef ident="extent" mode="delete"/>
@@ -904,106 +1427,125 @@
                   <attDef ident="scope" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.damaged" type="atts" mode="change">
+            
+            <classSpec ident="att.damaged" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="agent" mode="delete"/>
                   <attDef ident="degree" mode="delete"/>
                   <attDef ident="group" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.datable" type="atts" mode="change">
+            
+            <classSpec ident="att.datable" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="calendar" mode="delete"/>
                   <attDef ident="period" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.divLike" type="atts" mode="change">
+            
+            <classSpec ident="att.divLike" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="org" mode="delete"/>
                   <attDef ident="sample" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.editLike" type="atts" mode="change">
+            
+            <classSpec ident="att.editLike" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="evidence" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.media" type="atts" mode="change">
+            
+            <classSpec ident="att.media" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="width" mode="delete"/>
                   <attDef ident="height" mode="delete"/>
                   <attDef ident="scale" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.interpLike" type="atts" mode="change">
+            
+            <classSpec ident="att.interpLike" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="inst" mode="delete"/>
                </attList>
             </classSpec>
+            
             <classSpec ident="att.naming" type="atts" mode="change">
                <attList>
                   <attDef ident="role" mode="delete"/>
                   <attDef ident="nymRef" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.typed" type="atts" mode="change">
+            
+            <classSpec ident="att.typed" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="subtype" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.pointing" type="atts" mode="change">
+            
+            <classSpec ident="att.pointing" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="targetLang" mode="delete"/>
                   <attDef ident="evaluate" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.pointing.group" type="atts" mode="change">
+            
+            <classSpec ident="att.pointing.group" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="domains" mode="delete"/>
                   <attDef ident="targFunc" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.segLike" type="atts" mode="change">
+            
+            <classSpec ident="att.segLike" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="function" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.timed" type="atts" mode="change">
+            
+            <classSpec ident="att.timed" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="start" mode="delete"/>
                   <attDef ident="end" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.transcriptional" type="atts" mode="change">
+            
+            <classSpec ident="att.transcriptional" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="status" mode="delete"/>
                   <attDef ident="cause" mode="delete"/>
                   <attDef ident="seq" mode="delete"/>
                </attList>
             </classSpec>
-            <classSpec ident="att.personal" type="atts" mode="change">
+            
+            <classSpec ident="att.personal" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="sort" mode="delete"/>
                </attList>
             </classSpec>
+            
+            
+            
             <!--Checking module core-->
             <classRef key="att.milestoneUnit"/>
             <moduleRef key="core"
                include="p desc choice orig date ref list item head note milestone pb lb author respStmt resp title publisher pubPlace bibl textLang"/>
-            <elementSpec ident="p" mode="change">
+            
+            <elementSpec ident="p" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="part" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="N"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="desc" mode="change">
+            
+            <elementSpec ident="desc" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -1013,7 +1555,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="choice" mode="change">
+            
+            <elementSpec ident="choice" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1021,7 +1564,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="orig" mode="change">
+            
+            <elementSpec ident="orig" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1029,7 +1573,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="date" mode="change">
+            
+            <elementSpec ident="date" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1038,14 +1583,32 @@
                   <attDef ident="ref" mode="delete"/>
                   <attDef ident="unit" mode="delete"/>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="date-de-rendu"/>
+                     <desc>Type de date</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="date-de-rendu">
+                           <desc>Date de rendu du devoir</desc>
+                        </valItem>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="ref" mode="change">
+            
+            <elementSpec ident="ref" mode="change"> <!-- attList ok -->
                <attList>
+                  <attDef ident="corresp" mode="delete"/>
+                  <attDef ident="cert" mode="delete"/>
+                  <attDef ident="resp" mode="delete"/>
+                  <attDef ident="source" mode="delete"/>
+                  <attDef ident="type" mode="delete"/>
+                  <attDef ident="target" mode="change">
+                     <desc>Cible vers un document externe via son URL / URI</desc>
+                  </attDef>
+               </attList>
+            </elementSpec>
+            
+            <elementSpec ident="list" mode="change"> <!-- attList ok -->
+               <attList>
+                  <attDef ident="type" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
@@ -1053,25 +1616,44 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="list" mode="change">
-               <attList>
-                  <attDef ident="type" mode="delete"/>
-                  <attDef ident="corresp" mode="delete"/>
-                  <attDef ident="cert" mode="delete"/>
-                  <attDef ident="resp" mode="delete"/>
-                  <attDef ident="source" mode="delete"/>
-                  <attDef ident="type" mode="delete"/>
-               </attList>
-            </elementSpec>
+            
             <elementSpec ident="item" mode="change">
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
+                  <attDef ident="xml:id" mode="change">
+                     <desc>L'identifiant des types de différences possibles entre les témoins.</desc>
+                     <valList type="closed">
+                        <valItem ident="orth">
+                           <desc>Valeur utilisée pour indiquer une différence orthographique entre des témoins</desc>
+                        </valItem>
+                        <valItem ident="punct">
+                           <desc>Valeur utilisée pour indiquer une différence de ponctuation entre deux témoins</desc>
+                        </valItem>
+                        <valItem ident="sentence-order">
+                           <desc>Valeur utilisée pour indiquer une différence dans l'ordre des mots entre deux témoins</desc>
+                        </valItem>
+                        <valItem ident="word-diff">
+                           <desc>Valeur utiliser pour indiquer une différence dans les mots utilisés entre deux témoins</desc>
+                        </valItem>
+                        <valItem ident="add-words">
+                           <desc>Valeur utilisée pour indiquer qu'un ou plusieurs témoins présente plusieurs mots qui ne se trouvent pas dans les autres témoins</desc>
+                        </valItem>
+                        <valItem ident="text-segmentation">
+                           <desc>Valeur utilisée pour indiquer que la segmentation du texte en paragraphes ou pages varie d'un témoin à l'autre</desc>
+                        </valItem>
+                        <valItem ident="ornementation">
+                           <desc>Valeur utilisée pour indiquer la différence dans l'ornementation entre un témoin et un autre</desc>
+                        </valItem>
+                     </valList>
+                     <remarks><p>Dans le corps du texte, les différences sont à indiquer dans l'attribut @corresp des éléments &lt;app&gt; et &lt;rdgGrp&gt;, précédés d'un "#"..</p></remarks>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="head" mode="change">
+            
+            <elementSpec ident="head" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1080,6 +1662,7 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
+            
             <elementSpec ident="note" mode="change">
                <attList>
                   <attDef ident="corresp" mode="delete"/>
@@ -1087,16 +1670,24 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="target" mode="delete"/>
                   <attDef ident="type" mode="delete"/>
+                  <attDef ident="source" mode="change">
+                     <desc>Une source externe d'où est dérivée la note</desc>
+                     <valList>
+                        <valItem ident="Online Froissart"/>
+                     </valList>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="milestone" mode="change">
+            
+            <elementSpec ident="milestone" mode="change"> <!-- attList ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="unit" mode="change">
-                     <valList mode="add" type="closed">
+                     <desc>L'unité signifiante utilisée pour décrire le changement / le type de changement ayant lieu</desc>
+                     <valList mode="change" type="closed">
                         <valItem ident="tei:p">
                            <desc>Cette valeur sert à indiquer un changement de paragraphe. À privilier à l'utilisation de &lt;p&gt;, qui complique l'alignement des témoins.</desc>
                         </valItem>
@@ -1105,7 +1696,47 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="pb" mode="change">
+            
+            <elementSpec ident="pb" mode="change"> <!-- ok -->
+               <attList>
+                  <attDef ident="corresp" mode="delete"/>
+                  <attDef ident="cert" mode="delete"/>
+                  <attDef ident="resp" mode="delete"/>
+                  <attDef ident="source" mode="delete"/>
+                  <attDef ident="type" mode="delete"/>
+                  <attDef ident="n" mode="change">
+                     <desc>Le numéro de la nouvelle page dans les documents originaux</desc>
+                     <valList>
+                        <valItem ident="370 v">
+                           <desc>Page 370 verso</desc>
+                        </valItem>
+                        <valItem ident="340 v">
+                           <desc>Page 340 verso</desc>
+                        </valItem>
+                        <valItem ident="333 r">
+                           <desc>Page 333 recto</desc>
+                        </valItem>
+                        <valItem ident="333 v">
+                           <desc>Page 333 verso</desc>
+                        </valItem>
+                        <valItem ident="371 r">
+                           <desc>Page 371 recto</desc>
+                        </valItem>
+                        <valItem ident="341 r">
+                           <desc>Page 341 recto</desc>
+                        </valItem>
+                        <valItem ident="334 r">
+                           <desc>Page 334 recto</desc>
+                        </valItem>
+                        <valItem ident="371 v">
+                           <desc>Page 371 verso</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
+               </attList>
+            </elementSpec>
+            
+            <elementSpec ident="lb" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1114,16 +1745,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="lb" mode="change">
-               <attList>
-                  <attDef ident="corresp" mode="delete"/>
-                  <attDef ident="cert" mode="delete"/>
-                  <attDef ident="resp" mode="delete"/>
-                  <attDef ident="source" mode="delete"/>
-                  <attDef ident="type" mode="delete"/>
-               </attList>
-            </elementSpec>
-            <elementSpec ident="author" mode="change">
+            
+            <elementSpec ident="author" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1133,16 +1756,25 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="respStmt" mode="change">
+            
+            <elementSpec ident="respStmt" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="ref" mode="delete"/>
+                  <attDef ident="xml:id" mode="change">
+                     <valList>
+                        <valItem ident="xml:id">
+                           <desc>L'identifiant unique de l'institution ou personne responsable.</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="resp" mode="change">
+            
+            <elementSpec ident="resp" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1152,11 +1784,12 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="title" mode="change">
+            
+            <elementSpec ident="title" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="level" mode="delete"/>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="short"/>
                      </valList>
                   </attDef>
@@ -1165,7 +1798,7 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="short"/>
                      </valList>
                   </attDef>
@@ -1173,7 +1806,8 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="publisher" mode="change">
+            
+            <elementSpec ident="publisher" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1182,7 +1816,8 @@
                   <attDef ident="ref" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="pubPlace" mode="change">
+            
+            <elementSpec ident="pubPlace" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1191,26 +1826,28 @@
                   <attDef ident="ref" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="bibl" mode="change">
+            
+            <elementSpec ident="bibl" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="status" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="draft"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="textLang" mode="change">
+            
+            <elementSpec ident="textLang" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="mainLang" mode="delete"/>
                   <attDef ident="otherLangs" mode="delete"/>
@@ -1220,11 +1857,14 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
+            
+            
+            
             <!--Checking module figures-->
             <!--Checking module header-->
             <moduleRef key="header"
                include="teiHeader fileDesc titleStmt principal extent publicationStmt idno sourceDesc encodingDesc projectDesc editorialDecl segmentation profileDesc abstract creation"/>
-            <elementSpec ident="teiHeader" mode="change">
+            <elementSpec ident="teiHeader" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1232,7 +1872,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="fileDesc" mode="change">
+            
+            <elementSpec ident="fileDesc" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1240,7 +1881,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="titleStmt" mode="change">
+            
+            <elementSpec ident="titleStmt" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1248,7 +1890,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="principal" mode="change">
+            
+            <elementSpec ident="principal" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1258,7 +1901,24 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="extent" mode="change">
+            
+            <elementSpec ident="extent" mode="change"> <!-- ok -->
+               <attList>
+                  <attDef ident="corresp" mode="delete"/>
+                  <attDef ident="cert" mode="delete"/>
+                  <attDef ident="resp" mode="delete"/>
+                  <attDef ident="source" mode="delete"/>
+                  <attDef ident="xml:id" mode="change">
+                     <valList>
+                        <valItem ident="phk">
+                           <desc>Identifiant de l'encodeur.</desc>
+                        </valItem>
+                     </valList>
+                  </attDef>
+               </attList>
+            </elementSpec>
+            
+            <elementSpec ident="publicationStmt" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1266,15 +1926,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="publicationStmt" mode="change">
-               <attList>
-                  <attDef ident="corresp" mode="delete"/>
-                  <attDef ident="cert" mode="delete"/>
-                  <attDef ident="resp" mode="delete"/>
-                  <attDef ident="source" mode="delete"/>
-               </attList>
-            </elementSpec>
-            <elementSpec ident="idno" mode="change">
+            
+            <elementSpec ident="idno" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="type" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -1285,20 +1938,22 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="sourceDesc" mode="change">
+            
+            <elementSpec ident="sourceDesc" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="encodingDesc" mode="change">
+            
+            <elementSpec ident="encodingDesc" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1306,46 +1961,50 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="projectDesc" mode="change">
+            
+            <elementSpec ident="projectDesc" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="editorialDecl" mode="change">
+            
+            <elementSpec ident="editorialDecl" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="segmentation" mode="change">
+            
+            <elementSpec ident="segmentation" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="profileDesc" mode="change">
+            
+            <elementSpec ident="profileDesc" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1353,7 +2012,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="abstract" mode="change">
+            
+            <elementSpec ident="abstract" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1361,7 +2021,8 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="creation" mode="change">
+            
+            <elementSpec ident="creation" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1370,31 +2031,49 @@
                   <attDef ident="when-iso" mode="delete"/>
                </attList>
             </elementSpec>
+            
+            
+            
             <!--Checking module gaiji-->
             <!--Checking module verse-->
             <!--Checking module transcr-->
             <!--Checking module linking-->
             <classRef key="att.global.linking"/>
             <moduleRef key="linking" include="ab"/>
-            <elementSpec ident="ab" mode="change">
+            
+            <elementSpec ident="ab" mode="change"> <!-- ok -->
+               <desc>Pour cet encodage, &lt;ab&gt; sert à contenir l'ensemble du texte</desc>
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="type" mode="change">
-                     <valList mode="add" type="closed">
-                        <valItem ident="SHF-chapter"/>
+                     <desc>Description de l'unité encodée</desc>
+                     <valList mode="change" type="closed">
+                        <valItem ident="SHF-chapter">
+                           <desc>L'unitée encodée est un chapitre SHF</desc>
+                        </valItem>
                      </valList>
                   </attDef>
                   <attDef ident="part" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="N"/>
+                     </valList>
+                  </attDef>
+                  <attDef ident="n" mode="change">
+                     <valList mode="change" type="closed">
+                        <valItem ident="3A-306">
+                           <desc>Le numéro du chapitre encodé</desc>
+                        </valItem>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <classSpec ident="att.global.linking" type="atts" mode="change">
+            
+            
+            
+            <classSpec ident="att.global.linking" type="atts" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="synch" mode="delete"/>
                   <attDef ident="sameAs" mode="delete"/>
@@ -1405,8 +2084,11 @@
                   <attDef ident="select" mode="delete"/>
                </attList>
             </classSpec>
+            
+            
+            
             <!--Checking module analysis-->
-            <classRef key="att.linguistic"/>
+            <classRef key="att.linguistic"/> <!-- ok -->
             <classSpec ident="att.linguistic" type="atts" mode="change">
                <attList>
                   <attDef ident="lemma" mode="delete"/>
@@ -1416,9 +2098,12 @@
                   <attDef ident="join" mode="delete"/>
                </attList>
             </classSpec>
+            
+            
+            
             <!--Checking module textstructure-->
             <moduleRef key="textstructure" include="TEI text body"/>
-            <elementSpec ident="TEI" mode="change">
+            <elementSpec ident="TEI" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="version" mode="delete"/>
                   <attDef ident="corresp" mode="delete"/>
@@ -1428,7 +2113,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="text" mode="change">
+            
+            <elementSpec ident="text" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1437,7 +2123,8 @@
                   <attDef ident="type" mode="delete"/>
                </attList>
             </elementSpec>
-            <elementSpec ident="body" mode="change">
+            
+            <elementSpec ident="body" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
@@ -1445,8 +2132,10 @@
                   <attDef ident="source" mode="delete"/>
                </attList>
             </elementSpec>
+            
+            
             <!--Checking module corpus-->
-            <moduleRef key="corpus" include="particDesc settingDesc"/>
+            <moduleRef key="corpus" include="particDesc settingDesc"/> <!-- ok -->
             <elementSpec ident="particDesc" mode="change">
                <attList>
                   <attDef ident="corresp" mode="delete"/>
@@ -1454,20 +2143,21 @@
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
                </attList>
             </elementSpec>
-            <elementSpec ident="settingDesc" mode="change">
+            
+            <elementSpec ident="settingDesc" mode="change"> <!-- ok -->
                <attList>
                   <attDef ident="corresp" mode="delete"/>
                   <attDef ident="cert" mode="delete"/>
                   <attDef ident="resp" mode="delete"/>
                   <attDef ident="source" mode="delete"/>
                   <attDef ident="default" mode="change">
-                     <valList mode="add" type="closed">
+                     <valList mode="change" type="closed">
                         <valItem ident="false"/>
                      </valList>
                   </attDef>
