@@ -6,11 +6,12 @@
    <teiHeader>
       <fileDesc>
          <titleStmt>
-            <title type="short">oddbyexample</title>
-            <title>ODD by Example customization</title>
+            <title type="short">odd froissart</title>
+            <title>ODD de l'édition critique numérique des Chroniques (XIVè s.) de Jean Froissart en XML TEI</title>
          </titleStmt>
          <publicationStmt>
             <p>Unpublished first draft </p>
+            <p>ODD réalisée à partir de oddbyexample, une feuille XSLT créée par le TEI Consortium.</p>
          </publicationStmt>
          <sourceDesc>
             <p>Derived from <ref target="https://www.tei-c.org/Vault/P5/current/xml/tei/odd/p5subset.xml">base odd</ref> after an analysis of 5 files in file:/home/paulhector/documents/enc_tnah/xml-tei/rendu/</p>
@@ -27,31 +28,60 @@
                <p>Ce projet est une proposition d'encodage numérique d'un passage des <emph>Chroniques</emph> de Jean Froissart à l'aide de la 
                   <emph><orgName><ref target="https://www.tei-c.org">Text Encoding Initiative</ref></orgName></emph>. L'apparat critique est composé de trois témoins
                   encodés en segmentation parrallèle (<gloss>collation des différentes version d'un textes faite en les mettant en parrallèle dans le corps du document</gloss>).
-               </p>
+                  Grâce à l'encodage déjà réalisé et de la présente ODD qui documente le projet et la méthode à suivre pour la collation, il est possible de compléter l'encodage
+                  par l'ajout d'autres manuscrits, ou d'encoder d'autres chapitres des <emph>Chroniques</emph>.</p>
                <div3>
                   <head>Le second mariage du duc de Berry : présentation de l'extrait encodé</head>
-                  <p>Ce passage est extrait du troisième volumes des <emph>Chroniques</emph> de Froissart.</p>
+                  <p>Ce passage est extrait du troisième volumes des <emph>Chroniques</emph> de Froissart. Dans cet extrait, <persName>Jean Froissart</persName> rapporte la manière
+                     dont le <persName>duc Jean de Berry</persName> a organisé son second mariage avec <persName>Jeanne, comtesse d’Auvergne et de Boulogne</persName>.
+                     Dès la mort de sa première femme, le duc a organisé des négociations avec le comte <persName>Gaston de Foix-Béarn</persName>, surnommé Fébus. Ce dernier refuse de laisser
+                     le duc lui prendre sa protégée sans négociation, à cause de de querelles familiales. Afin de convaincre <persName>Fébus</persName>, le <persName>duc de Berry</persName> cherche à trouver
+                     un accord ; pour ce faire, il mobilise tout son important cercle d'influence, dont le <persName>duc de Bourgogne</persName> et même <persName>Charles VI</persName> le roi de France.</p>
+                  <p>Les messagers du duc et ses proches se lançent donc dans un voyage pour rencontrer le conte de Foix, s'arrêtant à Avignon chez le <persName>pape Clément</persName>.
+                     <ref target="https://fr.wikipedia.org/wiki/Gaston_III_de_Foix-B%C3%A9arn#Le_communicant">sa finesse politique</ref>, <persName>Fébus</persName> s'est servi de <persName>Jeanne</persName>
+                     afin d'obtenir les bonnes grâces du duc. Il accepte donc de céder la jeune femme au duc, pour obtenir ses bonnes grâces.</p>
+                  <p>Ce court réçit est, comme l'ensemble des <emph>Chroniques</emph>, est un témoignagne du climat politique de la Guerre de Cent Ans, mais aussi des mœurs du XVe siècle : le texte décrit 
+                     la façon dont les mariages s'organisent durant le Moyen-Âge tardif ; les réactions du roi de France et du <persName>duc de Bourgogne</persName> quant à différence d'âge du duc et de sa future
+                     épouse donnent à voir l'organisation des relations entre les genres au <date>XVe siècle</date>.</p>
                </div3>
                <div3>
                   <head>Les trois témoins</head>
-                  <p>L'édition critique est réalisée à partir de trois témoins :
-                  <list type="index">
-                     <item>Le manuscrit de la <emph><ref target="https://staatsbibliothek-berlin.de/" xml:lang="de">Staatsbibliothek zu Berlin - Preussischer Kulturbesitz</ref></emph>
-                        (la bibliothèque nationale, située à Berlin). Ce manuscrit est également connu comme le Berlin Rehdiger 3, Rehdiger 3, le <emph xml:lang="de">Breslauer Froissart</emph> 
-                        ou, en français, le Froissart de Breslau. C'est le plus ancien des trois manuscrits ; il est donc choisi comme la leçon principale.</item>
-                     <item>Le manuscrit du <emph><ref target="https://www.museumplantinmoretus.be/fr" xml:lang="nl">Museum Plantin-Moretus</ref></emph> d'Anvers, 
-                        çi-dessous également nommé Antwerp M 15.6.</item>
-                     <item>Le manuscrit de la <emph><ref target="http://katalog.burgerbib.ch/suchinfo.aspx" xml:lang="de">Burgerbibliothek Bern</ref></emph>,
-                     la bibliothèque de la Bourgeoisie de Berne, en Suisse. Le manuscrit est également nommé Bern A14.</item>
-                  </list></p>
+                  <p>L'édition critique est réalisée à partir de trois témoins, tous trois écrits en moyen français :
+                     <list type="index">
+                        <item>Le manuscrit de la <emph><ref target="https://staatsbibliothek-berlin.de/" xml:lang="de">Staatsbibliothek zu Berlin - Preussischer Kulturbesitz</ref></emph>
+                           (la bibliothèque nationale, située à Berlin). Ce manuscrit est également connu comme le Berlin Rehdiger 3, Rehdiger 3, le <emph xml:lang="de">Breslauer Froissart</emph> 
+                           ou, en français, le Froissart de Breslau. C'est le plus ancien des trois manuscrits ; il est donc choisi comme la leçon principale.</item>
+                        <item>Le manuscrit du <emph><ref target="https://www.museumplantinmoretus.be/fr" xml:lang="nl">Museum Plantin-Moretus</ref></emph> d'Anvers, 
+                           çi-dessous également nommé Antwerp M 15.6.</item>
+                        <item>Le manuscrit de la <emph><ref target="http://katalog.burgerbib.ch/suchinfo.aspx" xml:lang="de">Burgerbibliothek Bern</ref></emph>,
+                           la bibliothèque de la Bourgeoisie de Berne, en Suisse. Le manuscrit est également nommé Bern A14.</item>
+                     </list>
+                  </p>
+                  <p>Le texte des trois témoins est retranscrit et aligné sur <orgName> <ref target="https://www.dhi.ac.uk/onlinefroissart">The Online Froissart</ref></orgName>. Ce 
+                     site, issu d'un projet inter-universitaire dirigé par <persName>Peter Ainsworth</persName> et <persName>Godfried Croenen</persName>. Ce projet propose une édition 
+                     numérique de plusieurs témoins des <emph>Chroniques</emph>, avec un alignement par chapitres. À partir de cette base, la présente édition, documentée dans cette ODD, 
+                     propose une édition critique plus fine, qui retrace toutes les variations entre les trois témoins.</p>
                   <div4>
                      <head>Le Berlin Rehdiger 3</head>
+                     <p>Le manuscrit de Berlin a été copié au XVe siècle, entre 1468 et 1469. Le troisième volume des chroniques est également enrichi de 
+                        miniatures. La présence de ces miniatures est attestée sur l'<orgName>Online Froissart</orgName> Il est l'un des quatres volumes conservés par la 
+                        <emph><orgName xml:lang="de">Staatbibliothek</orgName></emph>. Tous les volumes viennent du dépôt Breslau et sont conservés par le département des manuscrits médiévaux 
+                        (<emph>Manuscrpta medievalia</emph>). Le premier volume mesure 344 folio, le deuxième 414, le troisième (qui contient le chapitre encodé) 373, et le quatrième 
+                        volume 324 pages.</p>
+                     <p>Ce manuscrit est le plus ancien des trois manuscrits qui constituent la présente édition critique. C'est aussi le plus précisément daté. 
+                        C'est pourquoi il a été choisi comme le témoin principal, et encodé dans l'élément <gi>lem</gi>.</p>
                   </div4>
                   <div4>
                      <head>Le Antwerp M 15.6</head>
+                     <p>Le manuscrit d'Anvers a également été copié au <date>XVe siècle</date> sur parchemin, entre <date>1475 et 1485</date>. Le troisième volume, d'où est extrait le 
+                        manuscrit encodé, est composé de 350 folios. Il est actuellement conservé par le musée <emph><orgName>Plantin-Moretus</orgName></emph> à Anvers, en Belgique.</p>
                   </div4>
                   <div4>
                      <head>Le Bern A14</head>
+                     <p>Le manuscrit de Berne a été écrit entre <date>1470 et 1490</date>. Le troisième volume mesure 336 folio ; il est complété par une page de couverture
+                        et un page de dos et mesure 44 centimètres de haut, 34,5 cm de large et 10 cm de profondeur. Anciennement propriété du comte <persName>Alexandre de Donha</persName>
+                        , un bourgeois de Berne. Celui-çi en a fait don à la <emph><orgName>Bibliothèque de la Bourgeoisie</orgName></emph> de Berne (Suisse) en <date>1697</date>.
+                        Depuis cette date, c'est cette institution qui conserve le manuscrit.</p>
                   </div4>
                </div3>
             </div2>
@@ -60,6 +90,7 @@
             </div2>
          </div1>
          <div1>
+            <head>Documentation - les éléments et attributs utilisés</head>
             <schemaSpec ident="oddbyexample" start="TEI " docLang="fr">
                <moduleRef key="tei"/>
                <!--Checking module textcrit-->
@@ -305,7 +336,8 @@
                <!--Checking module msdescription-->
                <classRef key="model.physDescPart"/>
                <moduleRef key="msdescription"
-                  include="msDesc dimensions height depth width origDate msIdentifier institution repository collection msName msContents physDesc objectDesc supportDesc support history origin provenance additional adminInfo recordHist source"/>
+                  include="msDesc dimensions height depth width origDate msIdentifier institution repository collection msName msContents physDesc objectDesc supportDesc support 
+                  history origin provenance additional adminInfo recordHist source"/>
                
                <elementSpec ident="msDesc" mode="change"> <!-- attList ok -->
                   <attList>
