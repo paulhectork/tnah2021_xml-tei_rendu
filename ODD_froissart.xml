@@ -153,6 +153,17 @@
                            </app>
                         </egXML>
                      </p>
+                     <p>Pour cet encodage, on considère que les différences au niveau de la structure de la phrase sont plus importantes que les différences orthographiques. L'encodage suit ce principe:
+                        quand la mêmephrase est dans un ordre différent dans différents témoins, cette phrase est encodée comme un élément entier, plutôt que de rassembler les mêmes mots de la phrase 
+                        dans un seul élément <gi>app</gi>(ce qui permettrait de mettre en avant les différences orthographiques entre ces mêmes mots). Dans l'exemple ci-dessous, par exemple, plutôt que
+                        de chercher à rassembler les mêmes mots des deux témoins, l'encodage met en avant une différence dans la structure de la phrase.
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <app corresp="#sentence-order">
+                              <lem wit="#brn #brl">a ce mariage parvenir</lem>
+                              <rdg wit="#atw">parvenir a ce mariage</rdg>
+                           </app>
+                        </egXML>
+                     </p>
                      <p>Dans cet édition critique, la ponctuation a été prise en compte : une différence de ponctuation entre les témoins sera encodée dans un <gi>app</gi>.
                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
                            <app corresp="#punct">
@@ -164,16 +175,97 @@
                   </div4>
                   <div4>
                      <head>Imbrication des <gi>app</gi> et modularité de l'édition critique</head>
-                     <p>Comme cela a été dit plus haut, la présente édition critique suit un principe de modularité : elle permet de voir "les-variations-dans-les-variations"</p>
-                     quand la même phrase est dans un ordre différent dans différents témoins, cette phrase est encodée comme un élément entier, 
-                     plutôt que de rassembler les mêmes mots de la phrase dans un seul élément &lt;app&gt;(ce qui permettrait de mettre en avant les différences orthographiques entre ces mêmes mots)
+                     <p>Comme cela a été dit plus haut, la présente édition critique suit un principe de modularité : elle permet de voir "les-variations-dans-les-variations".
+                        DPour permettre l'étude de variance la plus précise possible, l'encodage suit un principe de modularité: lorsque 2 témoins sont semblables et diffèrent du 3e témoin, 
+                        alors ces 2 témoins sont encodés dans un seul élément <gi>rdg</gi> (ou <gi>lem</gi>). Les variations au sein de ces 2 témoins sont signalées dans un <gi>app</gi> 
+                        à l'intérieur du <gi>rdg</gi> ou du <gi>lem</gi>. L'édition est donc construite en variations/sous-variations.</p>
+                     <p> L'exemple ci-dessous montre une imbrication où un <gi>app</gi> contient 
+                        <list>
+                           <item>Un <gi>lem</gi></item>
+                           <item> Un <gi>rdg</gi> ; ce dernier élément contient deux <gi>app</gi> à la suite.</item>
+                        </list>
+                        Cette organisation permet d'indiquer deux  niveaux de variations : 
+                        <list>
+                           <item>Un premier entre <gi>rdg</gi> et <gi>lem</gi> : l'ordre des mots diffère entre les deux éléments</item>
+                           <item>Un deuxième niveau de variation, au sein du <gi>rdg</gi> : dans cet élément, il y a une différence de ponctuation et une différence dans les mots utilisés (un mot est
+                              présent dans un témoin et non dans un autre), ce qui correspond à deux <gi>app</gi>.</item>
+                        </list>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <app corresp="#sentence-order">
+                              <lem wit="#brl">sa premiere femme trespassee</lem>
+                              <rdg wit="#atw #brn">trespassee
+                                 <app corresp="#punct">
+                                    <rdg wit="#atw">,</rdg>
+                                    <rdg wit="#brn"/>
+                                 </app>sa premiere<app corresp="#word-diff">
+                                    <rdg wit="#atw">femme</rdg>
+                                    <rdg wit="#brn"/>
+                                 </app>
+                              </rdg>
+                           </app>
+                        </egXML>
+                     </p>
                   </div4>
                   <div4>
                      <head>Groupement des témoins : l'usage du <gi>rdgGrp</gi></head>
+                     <p>L'élément <gi>rdgGrp</gi> permet de rassembler plusieurs témoins partageant des caractéristiques. Il est à utiliser quand les témoins du <gi>rdgGrp</gi> présentent pas
+                        assez de similarités pour être encodés dans un même <gi>rdg</gi> / <gi>lem</gi>. Dans les faits, les <gi>rdgGrp</gi> sont principalement utilisés lorsque un <gi>app</gi> 
+                        ne contient qu'un mot et que, dans ce <gi>app</gi>, un groupe de témoins se distingue d'un autre (voir l'exemple qui suit). Sinon, pour privilégier l'étude de la variation
+                        entre les témoins et pour coller au plus près de ces variations, l'utilisation d'éléments <gi>app</gi> imbriqués(comme décrit au dessus) est privilégiée.
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <app corresp="#word-diff">
+                              <rdg wit="#atw">dit</rdg>
+                              <rdgGrp corresp="#orth">
+                                 <lem wit="#brl">respondy</lem>
+                                 <rdg wit="#brn">respondit</rdg>
+                              </rdgGrp>
+                           </app>
+                        </egXML>
+                     </p>
                   </div4>
                </div3>
                <div3>
-                  <head>Caractérisation de l'encodage : utilisation des attributs <att>wit</att>, <att>corresp</att> <att>persName</att> et <att>placeName</att></head>
+                  <head>Caractérisation de l'encodage : utilisation des attributs <att>wit</att>, <att>corresp</att> et des éléments <att>persName</att> et <att>placeName</att></head>
+                  <div4>
+                     <head>Identifier les témoins avec l'attribut <att>wit</att></head>
+                     <p>Placé sur les éléments <gi>rdg</gi> et <gi>lem</gi>, l'attribut <att>wit</att> permet d'identifier les témoins au sein de l'apparat critique. Trois valeurs sont possibles:
+                        <list>
+                           <item><emph>#atw</emph> : l'identifiant du témoin d'Anvers</item>
+                           <item><emph>#brl</emph> : l'identifiant du témoin de Berlin</item>
+                           <item><emph>#brn</emph> : l'identifiant du témoin de Berne.</item>
+                        </list>
+                        Ces trois valeurs font référence à l'attribut <att>xml:id</att> des témoins, qui est donné dans les éléments <gi>witness</gi> du <gi>teiHeader</gi> 
+                        (/TEI/teiHeader[1]/fileDesc[1]/sourceDesc[1]/listWit[1]/witness).</p>
+                  </div4>
+                  <div4>
+                     <head>Caractériser la différence entre les témoins avec <att>corresp</att></head>
+                     <p>L'attribut <att>corresp</att> permet de caractériser la différence entre les témoins selon un vocabulaire contrôlé, défini (entre autres) dans le <gi>teiHeader</gi> 
+                        (/TEI/teiHeader[1]/encodingDesc[1]/editorialDecl[1]/p[3]). Il est utilisé à la place du <att>type</att> (qui est préconisé par le <emph><orgName>TEI consortium</orgName></emph>) :
+                        contrairement à <att>type</att>, <att>corresp</att> permet de fournir plusieurs valeurs et donc d'indiquer plusieurs différences entre les témoins au sein d'un même <gi>app</gi>. 
+                        La liste des valeurs possibles pour <att>corresp</att> est :
+                        <list>
+                           <item> <emph>#orth</emph> : différence orthographique</item>
+                           <item> <emph>#punct</emph> : différence de ponctuation</item>
+                           <item> <emph>#sentence-order</emph> : différence dans l'ordre des mots dans un bloc de texte</item>
+                           <item> <emph>#word-diff</emph> : des mots différents sont utilisés dans un même bloc de texte dans les différents témoins</item>
+                           <item> <emph>#add-words</emph> : un témoin présente un ou plusieurs mots qui ne se trouvent pas dans les autres</item>
+                           <item> <emph>#text-segmentation</emph> : la séparation du texte en paragraphes et pages est différente d'un témoin à l'autre</item>
+                           <item> <emph>#ornementation</emph> : la décoration du manuscrit varie d'un témoin à l'autre</item>
+                        </list>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <app corresp="#add-words #text-segmentation">
+                              <lem wit="#brn #brl"><milestone unit="tei:p"/><lb/>Depuis</lem>
+                              <rdg wit="#atw">Et depuis</rdg>
+                           </app>
+                        </egXML>
+                     </p>
+                  </div4>
+                  <div4>
+                     <head>Identifier les personnages dans le corps du texte avec l'élément <gi>persName</gi></head>
+                  </div4>
+                  <div4>
+                     <head>Identifier les lieux dans le corps du texte avec l'élément <gi>placeName</gi></head>
+                  </div4>
                </div3>
             </div2>
             <div2>
