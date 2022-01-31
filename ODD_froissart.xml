@@ -244,13 +244,13 @@
                         contrairement à <att>type</att>, <att>corresp</att> permet de fournir plusieurs valeurs et donc d'indiquer plusieurs différences entre les témoins au sein d'un même <gi>app</gi>. 
                         La liste des valeurs possibles pour <att>corresp</att> est :
                         <list>
-                           <item> <emph>#orth</emph> : différence orthographique</item>
-                           <item> <emph>#punct</emph> : différence de ponctuation</item>
-                           <item> <emph>#sentence-order</emph> : différence dans l'ordre des mots dans un bloc de texte</item>
-                           <item> <emph>#word-diff</emph> : des mots différents sont utilisés dans un même bloc de texte dans les différents témoins</item>
-                           <item> <emph>#add-words</emph> : un témoin présente un ou plusieurs mots qui ne se trouvent pas dans les autres</item>
-                           <item> <emph>#text-segmentation</emph> : la séparation du texte en paragraphes et pages est différente d'un témoin à l'autre</item>
-                           <item> <emph>#ornementation</emph> : la décoration du manuscrit varie d'un témoin à l'autre</item>
+                           <item><emph>#orth</emph> : différence orthographique</item>
+                           <item><emph>#punct</emph> : différence de ponctuation</item>
+                           <item><emph>#sentence-order</emph> : différence dans l'ordre des mots dans un bloc de texte</item>
+                           <item><emph>#word-diff</emph> : des mots différents sont utilisés dans un même bloc de texte dans les différents témoins</item>
+                           <item><emph>#add-words</emph> : un témoin présente un ou plusieurs mots qui ne se trouvent pas dans les autres</item>
+                           <item><emph>#text-segmentation</emph> : la séparation du texte en paragraphes et pages est différente d'un témoin à l'autre</item>
+                           <item><emph>#ornementation</emph> : la décoration du manuscrit varie d'un témoin à l'autre.</item>
                         </list>
                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
                            <app corresp="#add-words #text-segmentation">
@@ -262,14 +262,88 @@
                   </div4>
                   <div4>
                      <head>Identifier les personnages dans le corps du texte avec l'élément <gi>persName</gi></head>
+                     <p>Dans le corps du texte, les différents personnages mentionnés sont encodés dans un <gi>persName</gi>. L'élément est utilisé à chaque fois qu'il est fait mention d'un personnage, 
+                        et pas seulement quand le personnage est nommé. Cela permet de faire un renvoi vers le descriptif du personnage situé dans le <gi>teiHeader</gi>. Dans le corps du texte (<gi>body</gi>),
+                        le <gi>persName</gi> orend un attribut <att>ref</att> dont la valeur est un identifiant à quatres lettres précédées d'un '#'. Ces valeurs sont dérivées de l'attribut <att>xml:id</att> 
+                        de chaque personnage (valeur référencée dans le <gi>person</gi> du <gi>teiHeader</gi> : /TEI/teiHeader[1]/profileDesc[1]/particDesc[1]/listPerson[1]/person). Les valeurs possibles sont :
+                        <list>
+                           <item><emph>"#djdb"</emph> : Jean Ier de Berry</item>
+                           <item><emph>"#mjda"</emph> : Jeanne d'Armagnac</item>
+                           <item><emph>"#cgfb"</emph> : Gaston III de Foix-Béarn</item>
+                           <item><emph>"#fjda"</emph> : Jeanne, comtesse d'Auvergne et de Boulogne</item>
+                           <item><emph>"#cjdb"</emph> : Jean II d'Auvergne</item>
+                           <item><emph>"#rcha"</emph> : Charles VI</item>
+                           <item><emph>"#dpdb"</emph> : Philippe II de Bourgogne</item>
+                           <item><emph>"#fjdb"</emph> : Jean II de Berry</item>
+                           <item><emph>"#sbdr"</emph> ! Bureau de la Rivière</item>
+                           <item><emph>"#cdas"</emph> : Jean de la Personne</item>
+                           <item><emph>"#egdv"</emph> : Guillaume VI de Vienne</item>
+                           <item><emph>"#mgdt"</emph> : Guillaume de la Trémoille</item>
+                           <item><emph>"#cjdx"</emph> : Jean III de Sancerre</item>
+                           <item><emph>"#pclv"</emph> : Clément VII</item>
+                           <item><emph>"#mldx"</emph> : Louis de Sancerre</item>
+                           <item><emph>"#djdg"</emph> : Jean de Gand</item>
+                           <item><emph>"#hcde"</emph> : Henri IV (conte d'Erbi dans le texte)</item>
+                        </list>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <persName ref="#dpdb">duc de<app corresp="#orth">
+                              <lem wit="#atw #brl">Bourgoingne</lem>
+                              <rdg wit="#brn">Bourgongne</rdg>
+                           </app>
+                           </persName>
+                        </egXML>
+                     </p>
                   </div4>
                   <div4>
                      <head>Identifier les lieux dans le corps du texte avec l'élément <gi>placeName</gi></head>
+                     <p>Dans le corps du texte, les différents lieux mentionnés sont encodés dans un <gi>placeName</gi> ; comme avec <gi>persName</gi>, cet élément porte un attribut <att>ref</att>
+                        dont la valeur (trois lettres précédées d'un '#') permet de renvoyer au descriptif du lieu situé dans dans le <gi>teiHeader</gi>. Les valeurs de <att>ref</att> sont dérivées du
+                        <att>xml:id</att> de chaque lieu, qui est situé dans l'élément <gi>place</gi> du <gi>teiHeader</gi> (/TEI/teiHeader[1]/profileDesc[1]/settingDesc[1]/listPlace[1]/place).
+                        Les valeurs possibles de <att>ref</att> sont :
+                        <list>
+                           <item><emph>"#avg"</emph> : renvoi à Avignon</item>
+                           <item><emph>"#nim"</emph> : renvoi à Nîmes</item>
+                           <item><emph>"#mtp"</emph> : renvoi à Montpellier</item>
+                           <item><emph>"#bsr"</emph> : renvoi à Béziers</item>
+                           <item><emph>"#crs"</emph> : renvoi à Carcassonne</item>
+                           <item><emph>"#tls"</emph> : renvoi à Toulouse</item>
+                           <item><emph>"#otz"</emph> : renvoi à Orthez</item>
+                           <item><emph>"#bdx"</emph> : renvoi à Bordeaux</item>
+                           <item><emph>"#nrb"</emph> : renvoi à Narbonne</item>
+                           <item><emph>"#nnt"</emph> : renvoi à Nonnette</item>
+                        </list>
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <placeName ref="#avg">Avignon</placeName>
+                        </egXML>
+                     </p>
                   </div4>
                </div3>
             </div2>
             <div2>
                <head>Les avantages d'un apparat critique nativement numérique</head>
+               <p>Constituer un apparat critique nativuement numérique des <emph>Chroniques</emph> de <persName>Froissart</persName> présente plusieurs avantages par rapport à un apparat critique classique :
+                  <list>
+                     <item><emph>La caractérisation des variations</emph>. Grâce à l'attribut <att>corresp</att> ou <att>type</att> placé sur les <gi>app</gi> et autres <gi>rdgGrp</gi>, il est facile de
+                        caractériser la différence entre les témoins et d'indiquer si c'est une différence orthographique, de conjuguaison ou encore de une erreur de copie.</item>
+                     <item><emph>Enrichissement et mise à jour de l'apparat</emph>. La TEI est un format de conservation pour des données textuelles ; cependant, c'est un format qui peut être enrichi.
+                        Il est possible de rajouter d'autres témoins à la présente édition de ce chapitre ; grâce à cette ODD, il est aussi possible d'encoder d'autres chapitres du <emph>Froissart</emph>.
+                        Enfin, le présent encodage peut être amélioré en lui apportant plus de précision scientifique : la liste de variations possibles pour un <gi>app</gi>, par exemple, peut être
+                        affinée ; il est aussi possible d'indiquer la raison de la variation, grâce à l'élément <gi>cause</gi>.</item>
+                     <item><emph>Possibilités d'exploitation de l'apparat</emph>.
+                        <list>
+                           <item><emph>Publication</emph>. Si la TEI est un format de conservation pérenne des documents, elle peut également servir de format pivot à partir duquel l'apparat encodé peut être transformé
+                              et prendre d'autres formes : à l'aide d'une feuille XSL, il est par exemple envisageable de transformer cette édition en une publication sur internet (transformation de XML-TEI vers
+                              HTML ou XHTMK), d'en faire une publication papier (transformation vers un format dérivé de .TeX) ou encore de transformer l'apparat en un autre document XML (transformation de 
+                              XML vers XML).</item>
+                           <item><emph>Analyses statistiques</emph>. Grâce au haut degré de précision et de caractérisation permis par un apparat critique en TEI, il est envisageable de mener une étude des textes
+                              encodés par "lecture distante" (<gloss>analyse des textes par des méthodes computationnelles</gloss>). Il serait par exemple possible d'étudier le degré de proximité entre des
+                              témoins (mesurer le nombre de mots qui diffèrent entre les témoins, quantifier la similitude entre les témoins...). Il est aussi possible d'étudier les types de variations, puisqu'elles
+                              ont étés caractérisées selon un vocabulaire contrôlé : on peut par exemple mesurer la proportion de chaque type de variation, ou voir quelle variation est la plus répandue</item>
+                        </list>
+                     </item>
+                     <item><emph>La lisibilité</emph>. Grâce à la segmentation parrallèle, toute l'édition est faite dans le corps du texte, sans renvoi à des notes de bas de pages. Une édition critique en TEI
+                        n'utilise pas les abbréviations complexes des apparats critiques traditionnels ; un document nativement numérique est donc potentiellement plus facile à comprendre pour un.e novice.</item>
+                  </list></p>
             </div2>
          </div1>
          <div1>
