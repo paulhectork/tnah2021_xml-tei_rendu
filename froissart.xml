@@ -208,7 +208,8 @@
         <segmentation>
           <p>Pour mieux aligner les textes et mettre en avant les variations entre les témoins, les paragraphes ne sont pas contenus dans des &lt;p&gt;.
             Le passage d'un paragraphe à l'autre est signalé par un &lt;milestone unit="tei:p"/&gt; et par un &lt;lb/&gt;.
-            Cette méthode est suggérée par Beshero-Bondar, Cayless, Vigilanti (2019: 3.10)<bibl>
+            Cette méthode est suggérée par Beshero-Bondar, Cayless, Vigilanti (2019: 3.10)
+            <bibl>
               <author>
                 <persName>Beshero-Bondar</persName>
                 <persName>Cayless</persName>

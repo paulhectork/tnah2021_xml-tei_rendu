@@ -86,7 +86,98 @@
                </div3>
             </div2>
             <div2>
+               <head>Structure du document</head>
+               <p>Le document est <emph>TEI-conformant</emph> : il est conforme aux principes de la TEI, et la présente ODD est donc une spécification des <emph>TEI guidelines</emph>.</p>
+               <div3>
+                  <head>Encoder les métadonnées: le <gi>teiHeader</gi></head>
+               </div3>
+               <div3>
+                  <head>Construire son apparat critique : le <gi>body</gi></head>
+               </div3>
+            </div2>
+            <div2>
                <head>Méthodologie d'encodage</head>
+               <div3>
+                  <head>Choix de la leçon principale</head>
+                  <p>Comme cela a été dit au dessus, le témoin principal est le <emph xml:lang="de">Breslauer Froissart</emph>, conservé à Berlin par la <emph xml:lang="de">Staatsbibliothek</emph>.
+                     C'est le témoin le plus ancien et le plus précisément daté du présent apparat critique. C'est donc ce témoin qui est encodé dans le <gi>lem</gi>, tandis que les autres
+                     témoins sont encodés dans des éléments <gi>rdg</gi>. Lorsque le contenu d'un des autres témoins est similaire à celui du manuscrit de Berlin, le témoin non-Berlin est
+                     également encodé dans le <gi>lem</gi> : il correspond à la leçon principale.</p>
+               </div3>
+               <div3>
+                  <head>Principes généraux d'encodage : découpage du texte, imbrication des <gi>app</gi>, groupement des témoins</head>
+                  <div4>
+                     <head>Découpage du texte</head>
+                     <p>L'édition critique a été réalisée à partir du fichier XML produit par <orgName ref="https://collatex.net/">Collatex</orgName>, un logiciel d'édition critique. Le script python
+                        qui a produit le fichier de base est inclut dans le dépôt GitHub, dans le dossier <emph>collatex</emph>.</p>
+                     <p><orgName>Collatex</orgName> permet de faire une <emph>tokénisation</emph> au mot : l'étude de variance entre les témoins est faite mot-par-mot (et non lettre par lettre, par
+                        exemple).</p>
+                     <p>À partir de la base fournie par <orgName>Collatex</orgName>, l'encodage a été repris pour le rendre plus scientifiquement pertinent : 
+                        <list>
+                           <item>un témoin principal a été choisi, et l'élément lui correspondant a été transformé de <gi>rdg</gi> à <gi>lem</gi> grâce à un script xQuery (disponible à la racine du dépôt
+                              GitHub : <emph>froissart_xquery_createlem.xq</emph>).</item>
+                           <item>Les témoins se ressemblant ont été groupés dans un <gi>rdgGrp</gi></item>
+                           <item>Les différences dans la structure du texte sont considérées comme plus importantes que les différences orthographiques ; le découpage de <orgName>Collatex</orgName>
+                              a donc été repris pour suivre ces principes</item>
+                        </list>
+                     </p>
+                     <p>L'ensemble du texte est contenu dans un élément <gi>ab</gi> dans le <gi>body</gi> de l'édition critique. Ce <gi>ab</gi> prend un attribut <att>type</att> qui permet d'indiquer
+                        qu'il s'agit d'un chapitre SHF ainsi qu'un attribut <att>n</att> qui permet d'indiquer le numéro de chapitre : 3A-306.
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <body>
+                              <ab type="SHF-chapter" n="3A-306">
+                                 <!-- contenu de l'encodage -->
+                              </ab>
+                           </body>
+                        </egXML>
+                     </p>
+                     <p>Les changements de page sont considérés comme signifiants dans la présente édition critique, puisqu'ils permettent de restituer la structure originelle des témoins.
+                        Ils sont signifiés dans un <gi>app</gi> à l'aide un élément <gi>pb</gi> prenant un attribut <att>n</att> qui permet de donner le numéro de page :
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <app corresp="#text-segmentation">
+                              <lem wit="#atw #brl">Carcassonne</lem>
+                              <rdg wit="#brn">Carcasson<pb n="334 r"/>ne</rdg>
+                           </app>
+                        </egXML>
+                     </p>
+                     <p>Afin de permettre une comparaison des témoins phrase par phrase, le découpage du texte en paragraphes a été abandonné. Les sauts de ligne sont signifiés dans un élément
+                        <gi>milestone</gi> avec attribut <att>unit</att> prenant pour valeur "tei:p" ; cette méthode est proposée dans une présentation du <orgName>TEI consortium</orgName>
+                        (Beshero-Bondar, Cayless, Vigilanti (2019: 3.10) ; voir dans le fichier <emph>froissart.xml</emph> à /TEI/teiHeader[1]/encodingDesc[1]/editorialDecl[1]/segmentation[1]/p[1]/bibl[1]
+                        pour une référence bibliographique complète). Pour s'assurer que la structure du texte est respectée, un élément <gi>lb</gi> suit le <gi>milestone</gi>.
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <app corresp="#text-segmentation">
+                              <lem wit="#brn #brl">
+                                 <milestone unit="tei:p"/>
+                                 <lb/>
+                              </lem>
+                           </app>
+                        </egXML>
+                     </p>
+                     <p>Dans cet édition critique, la ponctuation a été prise en compte : une différence de ponctuation entre les témoins sera encodée dans un <gi>app</gi>.
+                        <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                           <app corresp="#punct">
+                              <lem wit="#brl"/>
+                              <rdg wit="#atw #brn">,</rdg>
+                           </app>
+                        </egXML>
+                     </p>
+                  </div4>
+                  <div4>
+                     <head>Imbrication des <gi>app</gi> et modularité de l'édition critique</head>
+                     <p>Comme cela a été dit plus haut, la présente édition critique suit un principe de modularité : elle permet de voir "les-variations-dans-les-variations"</p>
+                     quand la même phrase est dans un ordre différent dans différents témoins, cette phrase est encodée comme un élément entier, 
+                     plutôt que de rassembler les mêmes mots de la phrase dans un seul élément &lt;app&gt;(ce qui permettrait de mettre en avant les différences orthographiques entre ces mêmes mots)
+                  </div4>
+                  <div4>
+                     <head>Groupement des témoins : l'usage du <gi>rdgGrp</gi></head>
+                  </div4>
+               </div3>
+               <div3>
+                  <head>Caractérisation de l'encodage : utilisation des attributs <att>wit</att>, <att>corresp</att> <att>persName</att> et <att>placeName</att></head>
+               </div3>
+            </div2>
+            <div2>
+               <head>Les avantages d'un apparat critique nativement numérique</head>
             </div2>
          </div1>
          <div1>
