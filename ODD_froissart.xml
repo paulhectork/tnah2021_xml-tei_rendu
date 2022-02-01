@@ -90,9 +90,97 @@
                <p>Le document est <emph>TEI-conformant</emph> : il est conforme aux principes de la TEI, et la présente ODD est donc une spécification des <emph>TEI guidelines</emph>.</p>
                <div3>
                   <head>Encoder les métadonnées: le <gi>teiHeader</gi></head>
+                  <div4>
+                     <head>L'élément <gi>fileDesc</gi></head>
+                     <p>Cet élément sert à encoder les informations principales sur le document encodé ; il regroupe donc
+                        <list>
+                           <item>Le titre et le nom de l'auteur du document originel, dans les éléments <gi>title</gi> et <gi>author</gi>.</item>
+                           <item>Des références aux responsables de l'édition numérique, c'est à dire:
+                              <list>
+                                 <item>Le responsable de la présente ODD et de l'édition en TEI (moi), dans le <gi>principal</gi></item>
+                                 <item>Les responsables du Online Froissart, dans trois <gi>respStmt</gi> (le premier indiquant le nom du projet, le second les responsables
+                                    scientifiques et le troisième les institutions partenaires du projet.</item>
+                              </list>
+                           </item>
+                           <item>Le <gi>publicationStmt</gi> permet d'encoder les informations relatives à la présente édition en XML-TEI.</item>
+                        </list>
+                     </p>
+                  </div4>
+                  <div4>
+                     <head>Le <gi>sourceDesc</gi></head>
+                     <p>Le <gi>sourceDesc</gi> sert à encoder les informations relatives aux trois témoins encodés dans la présente édition critique. Ils constituent les
+                        sources "matérielles", par opposition au texte de Jean Froissart, une source "intellectuelle" ; c'est pourquoi ce sont les témoins qui sont décrits
+                        dans le <gi>sourceDesc</gi>, et non le texte de Froissart.</p>
+                  </div4>
+                  <div4>
+                     <head>Le <gi>encodingDesc</gi></head>
+                     <p>Cet élement sert à décire l'encodage de l'apparat critique en TEI. Il contient autant des données descriptives sur l'encodage (contexte de
+                        production de l'encodage dans le <gi>projectDesc</gi>, méthode d'alignement dans le <gi>variantEncoding</gi>) que les principes éditoriaux 
+                        suivis pendant l'encodage, dans le <gi>editorialDesc</gi> ; ces principes sont également décrits dans la présente ODD
+                        (/TEI/text[1]/body[1]/div1[1]/div2[3]).</p>
+                  </div4>
+                  <div4>
+                     <head>Le <gi>profileDesc</gi></head>
+                     <p>Cet élément contient une description des aspects non bibliographiques du texte encodé.
+                        <list>
+                           <item>Il contient d'abord, dans le <gi>creation</gi>, des informations
+                              relatives à la création du texte originel de Froissard. </item>
+                           <item>Le <gi>particDesc</gi> contient des informations sur les personnages dans l'extrait :
+                              <list>
+                                 <item>La liste des personnages, dans un <gi>listPerson</gi>. Pour chaque
+                                    personnage du passage encodé, un attribut unique (<att>xml:id</att>) est fourni, ainsi que le
+                                    nom du personnages, sous deux formes : nom contemporain et noms des personnages dans les témoins.
+                                    Pour le nom des personnages dans les témoins, un élément <gi>app</gi> sert à encoder les différences
+                                    orthographiques d'un témoin à l'autre. Éventuellement, les noms des personnages peuvent être complétés
+                                    par une courte notice bibliographique, dans un élément <gi>note</gi>.</item>
+                                 <item>La liste des relations entre les personnages, dans un <gi>listRelation</gi>. Ces relations
+                                    sont encodées dans des éléments <gi>relation</gi> et complétées d'une courte description (<gi>desc</gi>). Un 
+                                    cas particulier complique cette liste des relations : dans le manuscrit d'Anvers, Clément VII est le 
+                                    cousin de Jeanne II d'Auvergne ; dans les autres textes, le pape est cousin du père de Jeanne II. 
+                                    Ne pouvant pas utiliser un <gi>app</gi> dans le <gi>listRelation</gi>, le parti-pris a été d'encoder 
+                                    ce cas particulier dans un <gi>listRelation</gi> contenu au sein du premier <gi>listRelation</gi> :
+                                    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                       <listRelation>
+                                          <!-- ... -->
+                                          <listRelation>
+                                             <relation name="cousin" mutual="#pclv #fjda">
+                                                <desc>Dans Antwerp M 15.6, Clément VII est cousin de Jeanne II d'Auvergne.</desc>
+                                             </relation>
+                                             <relation name="cousin" mutual="#pclv #cjdb">
+                                                <desc>Dans le manuscrit de Berlin (Dep. Breslau I), Clément VII est cousin du conte Jean de Boulogne, père de Jeanne II d'Auvergne.</desc>
+                                             </relation>
+                                          </listRelation>
+                                       </listRelation>
+                                    </egXML></item>
+                              </list>
+                           </item>
+                           <item>Enfin, le <gi>settingDesc</gi> permet de décrire les lieux mentionnés dans l'extrait, dans un 
+                              <gi>listPlace</gi>. Comme pour les noms des personnages, un <att>xml:id</att> et un nom contemporain 
+                              sont fournis, ainsi que les orthographes du nom utilisées dans les différents témoins. La valeur 
+                              de l'attribut <att>att</att> de <gi>placeName</gi> permett d'indiquer s'il s'agit du nom 
+                              contemporain ou du nom dans les témoins :
+                              <egXML xmlns="http://www.tei-c.org/ns/Examples">
+                                 <place xml:id="nim">
+                                    <placeName type="contemporary-name">Nîmes</placeName>
+                                    <placeName type="text-name">
+                                       <app>
+                                          <lem wit="#brn #brl">Nismes</lem>
+                                          <rdg wit="#atw">Nimes</rdg>
+                                       </app>
+                                    </placeName>
+                                 </place>
+                              </egXML>
+                           </item>
+                        </list>
+                     </p>
+                  </div4>
                </div3>
                <div3>
-                  <head>Construire son apparat critique : le <gi>body</gi></head>
+                  <head>Construire son apparat critique : le <gi>text</gi></head>
+                  <p>Cet élément contient le corps des témoins encodés. Ils sont contenus dans un <gi>ab</gi>, un conteneur qui a été choisi car il n'a 
+                     pas de valeur sémantique, ni de valeur structurante pour le texte (contrairement à <gi>p</gi>), mais qui peut contenir directement du 
+                     texte (contrairement à <gi>div</gi>). Les principes suivis pour l'encodage du texte des trois témoins sont décrits dans la partie suivante :
+                     <emph>Méthodologie d'encodage</emph>.</p>
                </div3>
             </div2>
             <div2>
@@ -343,7 +431,8 @@
                      </item>
                      <item><emph>La lisibilité</emph>. Grâce à la segmentation parrallèle, toute l'édition est faite dans le corps du texte, sans renvoi à des notes de bas de pages. Une édition critique en TEI
                         n'utilise pas les abbréviations complexes des apparats critiques traditionnels ; un document nativement numérique est donc potentiellement plus facile à comprendre pour un.e novice.</item>
-                  </list></p>
+                  </list>
+               </p>
             </div2>
          </div1>
          <div1>

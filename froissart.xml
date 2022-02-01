@@ -1,4 +1,3 @@
-
 <?xml-model href="out/ODD_froissart.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <!-- méthode de signalement des sigles etc: "SIGLE. Nom complet" (cf <orgName>) -->
@@ -227,6 +226,7 @@
       </projectDesc>
       <variantEncoding method="parallel-segmentation" location="internal"/>
     </encodingDesc>
+    
     <!-- Aspects non bibliographiques du texte numérique : langues, contexte de production, participants... -->
     <profileDesc>
       <creation>
@@ -606,6 +606,7 @@
             <placeName type="contemporary-name">Nîmes</placeName>
             <placeName type="text-name">
               <app>
+                <lem wit="#brn #brl">Nismes</lem>
                 <rdg wit="#atw">Nimes</rdg>
               </app>
             </placeName>
@@ -659,6 +660,9 @@
       </settingDesc>
     </profileDesc>
   </teiHeader>
+  
+  
+  
   <text>
     <body>
       <ab type="SHF-chapter" n="3A-306">
