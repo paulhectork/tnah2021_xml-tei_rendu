@@ -1,4 +1,6 @@
 <?xml-model href="out/ODD_froissart.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="out/ODD_froissart.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <!-- méthode de signalement des sigles etc: "SIGLE. Nom complet" (cf <orgName>) -->
   <teiHeader>
@@ -555,7 +557,7 @@
             <relation name="married" mutual="#djdb #mjda">
               <desc>Jeanne d'Armignac est la première femme du duc de Berry</desc>
             </relation>
-            <relation name="guardian" active="#cgfb #fjda">
+            <relation name="guardian" active="#cgfb" passive="#fjda">
               <desc>Gaston de Foix est le gardien de Jeanne, comtesse d'Auvergne et de Boulogne</desc>
             </relation>
             <relation name="parent" active="#cjdb" passive="#fjda">

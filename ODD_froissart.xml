@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:lang="fr">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:s="http://purl.oclc.org/dsdl/schematron" xml:lang="fr">
    
    <!-- les exemples : les encoder dans <exemplum> (présentation de l'exemple) <egXML> (dans exemplum, contenu de l'exemple) -->
    
@@ -515,22 +515,67 @@
                </elementSpec>
                
                <elementSpec ident="lem" mode="change"> <!-- attList ok -->
+                  <constraintSpec scheme="schematron" ident="lemWit" mode="add">
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:lem/@wit">
+                           <s:assert test="contains(., '#brl')">
+                              L'élément &lt;lem&gt; doit contenir un attribut @wit
+                              qui contient '#brl'</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="cert" mode="delete"/>
                      <attDef ident="resp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
+                     <attDef ident="wit" mode="change">
+                        <desc>Indique le témoin grâce à son identifiant <att>xml:id</att></desc>
+                        <valList mode="replace" type="closed">
+                           <valItem ident="#atw">
+                              <desc>Renvoi au témoin Antwerp M. 15.6</desc>
+                           </valItem>
+                           <valItem ident="#brl">
+                              <desc>Renvoi au témoin Berlin Rehdiger 3, la leçon principale de cette édition critique</desc>
+                           </valItem>
+                           <valItem ident="#brn">
+                              <desc>Renvoi au témoin Bern A14</desc>
+                           </valItem>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                
                <elementSpec ident="rdg" mode="change"> <!-- attList ok -->
+                  <constraintSpec scheme="schematron" ident="rdgWit" mode="add">
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:rdg/@wit">
+                           <s:assert test="not(contains(., '#brl'))">
+                              La valeur du @wit de l'élément &lt;rdg&gt; ne peut pas contenir '#brl'</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="cert" mode="delete"/>
                      <attDef ident="resp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
+                     <attDef ident="wit" mode="change">
+                        <desc>Indique le témoin grâce à son identifiant <att>xml:id</att></desc>
+                        <valList mode="replace" type="closed">
+                           <valItem ident="#atw">
+                              <desc>Renvoi au témoin Antwerp M. 15.6</desc>
+                           </valItem>
+                           <valItem ident="#brl">
+                              <desc>Renvoi au témoin Berlin Rehdiger 3, la leçon principale de cette édition critique</desc>
+                           </valItem>
+                           <valItem ident="#brn">
+                              <desc>Renvoi au témoin Bern A14</desc>
+                           </valItem>
+                        </valList>
+                     </attDef>
                   </attList>
                </elementSpec>
                
@@ -575,6 +620,15 @@
                </elementSpec>
                
                <elementSpec ident="witDetail" mode="change"> <!-- attList ok --> <!-- attributs OKOKOKOKOKOK -->
+                  <desc>L'élément <gi>witDetail</gi> sert à donner des détails qui ne portent pas sur le contenu textuel des témoins.</desc>
+                  <constraintSpec scheme="schematron" ident="witDetailAttWit" mode="add">
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:witDetail">
+                           <s:assert test="@wit">
+                              Un élément &lt;witDetail&gt; doit contenir un attribut @wit</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="cert" mode="delete"/>
@@ -616,27 +670,27 @@
                </elementSpec>
                
                <elementSpec ident="witness" mode="change"> <!-- attList ok -->
+                  <constraintSpec scheme="schematron" ident="witnessID" mode="add">
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:witness">
+                           <s:assert test="@xml:id">
+                              Les &lt;witness&gt; doivent avoir un identifiant unique @xml:id.</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
+                  <constraintSpec scheme="schematron" ident="witnessIDRegex" mode="add">
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:witness/@xml:id">
+                           <s:assert test="matches(., '\w{3}')">
+                              Le @xml:id des &lt;witness&gt; doit être un identifiant à trois lettres.</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="cert" mode="delete"/>
                      <attDef ident="resp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
-                     <!--
-                        <attDef ident="xml:id" mode="change">
-                        <desc>L'identifiant de chacun des manuscrits encodés</desc>
-                        <valList type="closed">
-                        <valItem ident="atw">
-                        <desc>Renvoi au témoin Antwerp M. 15.6</desc>
-                        </valItem>
-                        <valItem ident="brl">
-                        <desc>Renvoi au témoin Berlin Rehdiger 3, la leçon principale de cette édition critique</desc>
-                        </valItem>
-                        <valItem ident="brn">
-                        <desc>Renvoi au témoin Bern A14</desc>
-                        </valItem>
-                        </valList>
-                        </attDef>
-                     -->
                   </attList>
                </elementSpec>
                
@@ -1009,6 +1063,13 @@
                      </attDef>
                      <attDef ident="ref" mode="change">
                         <desc>Attribut utilisé pour renvoyer à des personnages mentionnés dans la <gi>listPerson</gi></desc>
+                        <constraintSpec scheme="schematron" ident="persNameRef">
+                           <constraint>
+                              <s:rule context="tei:TEI//tei:body//tei:persName">
+                                 <s:assert test="@ref">Dans le &lt;body&gt;, les éléments &lt;persName&gt; doivent contenir un attribut @ref.</s:assert>
+                              </s:rule>
+                           </constraint>
+                        </constraintSpec>
                         <valList>
                            <valItem ident="#djdb">
                               <desc>Renvoi au duc Jean Ier de Berry</desc>
@@ -1431,6 +1492,16 @@
                </elementSpec>
                
                <elementSpec ident="relation" mode="change"> <!-- attList ok -->
+                  <constraintSpec scheme="schematron" ident="relationRegex">
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:relation">
+                           <s:assert test="matches(@mutual, '#\w{4}\s#\w{4}') or matches(@active, '#\w{4}') and matches(@passive, '#\w{4}')">
+                              Une &lt;relation&gt; mutuelle doit être décrite avec deux références à des @xml:id de personnes,
+                              composées chacune d'un '#' et de 4 lettres et séparées d'un espace. Une relation active/passive doit être décrite avec
+                              deux attributs @passive et @active, chacun contenant une référence à un xml:id composé d'un '#' et de 4 lettres.</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
                   <attList>
                      <attDef ident="name" mode="change">
                         <desc>Le nom de la relation décrite.</desc>
