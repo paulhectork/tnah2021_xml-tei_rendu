@@ -1381,64 +1381,6 @@
                      <attDef ident="cert" mode="delete"/>
                      <attDef ident="resp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
-                     <!--
-                        <attDef ident="xml:id" mode="change">
-                        <desc>Identifiants des personnages du texte.</desc>
-                        <valList mode="change" type="closed">
-                        <valItem ident="djdb">
-                        <desc>Jean Ier de Berry</desc>
-                        </valItem>
-                        <valItem ident="mjda">
-                        <desc>Jeanne d'Armagnac</desc>
-                        </valItem>
-                        <valItem ident="cgfb">
-                        <desc>Gaston III de Foix-Béarn</desc>
-                        </valItem>
-                        <valItem ident="fjda">
-                        <desc>Jeanne, comtesse d'Auvergne et de Boulogne</desc>
-                        </valItem>
-                        <valItem ident="cjdb">
-                        <desc>Jean II d'Auvergne</desc>
-                        </valItem>
-                        <valItem ident="rcha">
-                        <desc>Charles VI</desc>
-                        </valItem>
-                        <valItem ident="dpdb">
-                        <desc>Philippe II de Bourgogne</desc>
-                        </valItem>
-                        <valItem ident="fjdb">
-                        <desc>Jean II de Berry</desc>
-                        </valItem>
-                        <valItem ident="sbdr">
-                        <desc>Bureau de la Rivière</desc>
-                        </valItem>
-                        <valItem ident="egdv">
-                        <desc>Guillaume VI de Vienne</desc>
-                        </valItem>
-                        <valItem ident="cdas">
-                        <desc>Jean de la Personne</desc>
-                        </valItem>
-                        <valItem ident="mgdt">
-                        <desc>Guillaume de la Trémoille</desc>
-                        </valItem>
-                        <valItem ident="cjdx">
-                        <desc>Jean III de Sancerre</desc>
-                        </valItem>
-                        <valItem ident="pclv">
-                        <desc>Clément VII</desc>
-                        </valItem>
-                        <valItem ident="mldx">
-                        <desc>Louis de Sancerre</desc>
-                        </valItem>
-                        <valItem ident="djdg">
-                        <desc>Jean de Gand</desc>
-                        </valItem>
-                        <valItem ident="hcde">
-                        <desc>Henri IV</desc>
-                        </valItem>
-                        </valList>
-                        </attDef>
-                     -->
                   </attList>
                </elementSpec>
                
@@ -1449,45 +1391,6 @@
                      <attDef ident="resp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
                      <attDef ident="type" mode="delete"/>
-                     <!--
-                        <attDef ident="xml:id" mode="change">
-                        <desc>Identifiants des différents lieux du texte.</desc>
-                        <valList mode="change" type="closed">
-                        <valItem ident="avg">
-                        <desc>Identifiant de Avignon</desc>
-                        </valItem>
-                        <valItem ident="nim">
-                        <desc>Identifiant de Nîmes</desc>
-                        </valItem>
-                        <valItem ident="mtp">
-                        <desc>Identifiant de Montpellier</desc>
-                        </valItem>
-                        <valItem ident="bsr">
-                        <desc>Identifiant de Béziers</desc>
-                        </valItem>
-                        <valItem ident="crs">
-                        <desc>Identifiant de Carcassonne</desc>
-                        </valItem>
-                        <valItem ident="tls">
-                        <desc>Identifiant de Toulouse</desc>
-                        </valItem>
-                        <valItem ident="otz">
-                        <desc>Identifiant de Orthez</desc>
-                        </valItem>
-                        <valItem ident="bdx">
-                        <desc>Identifiant de Bordeaux</desc>
-                        </valItem>
-                        <valItem ident="nrb">
-                        <desc>Identifiant de Narbonne</desc>
-                        </valItem>
-                        <valItem ident="nnt">
-                        <desc>Identifiant de Nonnette</desc>
-                        </valItem>
-                        </valList>
-                        <remarks><p>Ces identifiants servent à faire référence aux descriptions des lieux de <gi>listPlace</gi> dans le corps du texte :
-                        dans le texte, les lieux sont à encoder dans des <gi>place</gi> contenant des attribut <att>ref</att>.</p></remarks>
-                        </attDef>
-                     -->
                   </attList>
                </elementSpec>
                
@@ -2130,35 +2033,6 @@
                      <attDef ident="cert" mode="delete"/>
                      <attDef ident="resp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
-                     <!--
-                        <attDef ident="xml:id" mode="change">
-                        <desc>L'identifiant des types de différences possibles entre les témoins.</desc>
-                        <valList type="closed">
-                        <valItem ident="orth">
-                        <desc>Valeur utilisée pour indiquer une différence orthographique entre des témoins</desc>
-                        </valItem>
-                        <valItem ident="punct">
-                        <desc>Valeur utilisée pour indiquer une différence de ponctuation entre deux témoins</desc>
-                        </valItem>
-                        <valItem ident="sentence-order">
-                        <desc>Valeur utilisée pour indiquer une différence dans l'ordre des mots entre deux témoins</desc>
-                        </valItem>
-                        <valItem ident="word-diff">
-                        <desc>Valeur utiliser pour indiquer une différence dans les mots utilisés entre deux témoins</desc>
-                        </valItem>
-                        <valItem ident="add-words">
-                        <desc>Valeur utilisée pour indiquer qu'un ou plusieurs témoins présente plusieurs mots qui ne se trouvent pas dans les autres témoins</desc>
-                        </valItem>
-                        <valItem ident="text-segmentation">
-                        <desc>Valeur utilisée pour indiquer que la segmentation du texte en paragraphes ou pages varie d'un témoin à l'autre</desc>
-                        </valItem>
-                        <valItem ident="ornementation">
-                        <desc>Valeur utilisée pour indiquer la différence dans l'ornementation entre un témoin et un autre</desc>
-                        </valItem>
-                        </valList>
-                        <remarks><p>Dans le corps du texte, les différences sont à indiquer dans l'attribut <att>corresp</att> des éléments <gi>app</gi> et <gi>rdgGrp</gi>, précédés d'un "#"..</p></remarks>
-                        </attDef>
-                     -->
                   </attList>
                </elementSpec>
                
@@ -2417,15 +2291,6 @@
                      <attDef ident="cert" mode="delete"/>
                      <attDef ident="resp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
-                     <!--
-                        <attDef ident="xml:id" mode="change">
-                        <valList>
-                        <valItem ident="phk">
-                        <desc>Identifiant de l'encodeur.</desc>
-                        </valItem>
-                        </valList>
-                        </attDef>
-                     -->
                   </attList>
                </elementSpec>
                

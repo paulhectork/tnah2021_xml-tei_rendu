@@ -1,5 +1,5 @@
-<?xml-model href="out/ODD_froissart.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<?xml-model href="out/ODD_froissart.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="odd_documentation/ODD_froissart.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!DOCTYPE TEI SYSTEM "odd_documentation/ODD_froissart.dtd">
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0">
   <!-- méthode de signalement des sigles etc: "SIGLE. Nom complet" (cf <orgName>) -->
