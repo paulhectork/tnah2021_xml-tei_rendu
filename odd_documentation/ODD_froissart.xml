@@ -10,13 +10,23 @@
             <title>ODD de l'édition critique numérique des Chroniques (XIVè s.) de Jean Froissart en XML TEI</title>
          </titleStmt>
          <publicationStmt>
-            <p>Unpublished first draft </p>
-            <p>ODD réalisée à partir de oddbyexample, une feuille XSLT créée par le TEI Consortium.</p>
+            <publisher>
+               <orgName>École nationale des Chartes</orgName>
+               <note>ODD réalisée à partir de ODD by Example, une feuille XSL créé par le TEI consortium.</note>
+            </publisher>
+            <pubPlace>Paris, France</pubPlace>
+            <date when-iso="2022-01-31" type="date-de-rendu">31 janvier 2022</date>
          </publicationStmt>
          <sourceDesc>
-            <p>Derived from <ref target="https://www.tei-c.org/Vault/P5/current/xml/tei/odd/p5subset.xml">base odd</ref> after an analysis of 5 files in file:/home/paulhector/documents/enc_tnah/xml-tei/rendu/</p>
+            <p>Dérivé de <ref target="https://www.tei-c.org/Vault/P5/current/xml/tei/odd/p5subset.xml">l'odd de la TEI</ref> après l'analyse des fichiers TEI du rendu.</p>
          </sourceDesc>
       </fileDesc>
+      <encodingDesc>
+         <editorialDecl>
+            <p>L'ODD de base a été adaptée (ajout des valeurs de tous les attributs, création de règles schematron); une documentation descriptive y a été ajoutée dans un <gi>div1</gi> 
+               (<emph>XPath</emph>: /TEI/text[1]/body[1]/div1[1]). La documentation des éléments, attributs et valeurs autorisés se trouve dans une autre <gi>div1</gi> : /TEI/text[1]/body[1]/div1[2].</p>
+         </editorialDecl>
+      </encodingDesc>
    </teiHeader>
    <text>
       <body>
@@ -28,7 +38,7 @@
                <p>Ce projet est une proposition d'encodage numérique d'un passage des <emph>Chroniques</emph> de Jean Froissart à l'aide de la 
                   <emph><orgName><ref target="https://www.tei-c.org">Text Encoding Initiative</ref></orgName></emph>. L'apparat critique est composé de trois témoins
                   encodés en segmentation parrallèle (<gloss>collation des différentes version d'un textes faite en les mettant en parrallèle dans le corps du document</gloss>).
-                  Grâce à l'encodage déjà réalisé et de la présente ODD qui documente le projet et la méthode à suivre pour la collation, il est possible de compléter l'encodage
+                  Grâce à l'encodage déjà réalisé et à la présente ODD qui documente le projet et la méthode à suivre pour la collation, il est possible de compléter l'encodage
                   par l'ajout d'autres manuscrits, ou d'encoder d'autres chapitres des <emph>Chroniques</emph>.</p>
                <div3>
                   <head>Le second mariage du duc de Berry : présentation de l'extrait encodé</head>
@@ -37,7 +47,7 @@
                      Dès la mort de sa première femme, le duc a organisé des négociations avec le comte <persName>Gaston de Foix-Béarn</persName>, surnommé Fébus. Ce dernier refuse de laisser
                      le duc lui prendre sa protégée sans négociation, à cause de de querelles familiales. Afin de convaincre <persName>Fébus</persName>, le <persName>duc de Berry</persName> cherche à trouver
                      un accord ; pour ce faire, il mobilise tout son important cercle d'influence, dont le <persName>duc de Bourgogne</persName> et même <persName>Charles VI</persName> le roi de France.</p>
-                  <p>Les messagers du duc et ses proches se lançent donc dans un voyage pour rencontrer le conte de Foix, s'arrêtant à Avignon chez le <persName>pape Clément</persName>.
+                  <p>Les messagers du duc et ses proches se lançent donc dans un voyage pour rencontrer le conte de Foix, s'arrêtant à Avignon chez le <persName>pape Clément</persName>. Connu pour
                      <ref target="https://fr.wikipedia.org/wiki/Gaston_III_de_Foix-B%C3%A9arn#Le_communicant">sa finesse politique</ref>, <persName>Fébus</persName> s'est servi de <persName>Jeanne</persName>
                      afin d'obtenir les bonnes grâces du duc. Il accepte donc de céder la jeune femme au duc, pour obtenir ses bonnes grâces.</p>
                   <p>Ce court réçit est, comme l'ensemble des <emph>Chroniques</emph>, est un témoignagne du climat politique de la Guerre de Cent Ans, mais aussi des mœurs du XVe siècle : le texte décrit 
@@ -58,15 +68,15 @@
                      </list>
                   </p>
                   <p>Le texte des trois témoins est retranscrit et aligné sur <orgName> <ref target="https://www.dhi.ac.uk/onlinefroissart">The Online Froissart</ref></orgName>. Ce 
-                     site, issu d'un projet inter-universitaire dirigé par <persName>Peter Ainsworth</persName> et <persName>Godfried Croenen</persName>. Ce projet propose une édition 
+                     site est issu d'un projet inter-universitaire dirigé par <persName>Peter Ainsworth</persName> et <persName>Godfried Croenen</persName>. Ce projet propose une édition 
                      numérique de plusieurs témoins des <emph>Chroniques</emph>, avec un alignement par chapitres. À partir de cette base, la présente édition, documentée dans cette ODD, 
                      propose une édition critique plus fine, qui retrace toutes les variations entre les trois témoins.</p>
                   <div4>
                      <head>Le Berlin Rehdiger 3</head>
-                     <p>Le manuscrit de Berlin a été copié au XVe siècle, entre 1468 et 1469. Le troisième volume des chroniques est également enrichi de 
-                        miniatures. La présence de ces miniatures est attestée sur l'<orgName>Online Froissart</orgName> Il est l'un des quatres volumes conservés par la 
-                        <emph><orgName xml:lang="de">Staatbibliothek</orgName></emph>. Tous les volumes viennent du dépôt Breslau et sont conservés par le département des manuscrits médiévaux 
-                        (<emph>Manuscrpta medievalia</emph>). Le premier volume mesure 344 folio, le deuxième 414, le troisième (qui contient le chapitre encodé) 373, et le quatrième 
+                     <p>Le manuscrit de Berlin a été copié au XVe siècle, entre 1468 et 1469. Le troisième volume des chroniques est enrichi de 
+                        miniatures dont la présence est attestée sur l'<orgName>Online Froissart</orgName> Il est l'un des quatres volumes conservés par la 
+                        <emph><orgName xml:lang="de">Staatbibliothek</orgName></emph>. Tous les quatre viennent du dépôt Breslau et sont conservés par le département des manuscrits médiévaux 
+                        (<emph>Manuscrpta medievalia</emph>). Le premier volume fait 344 folio, le deuxième 414, le troisième (qui contient le chapitre encodé) 373, et le quatrième 
                         volume 324 pages.</p>
                      <p>Ce manuscrit est le plus ancien des trois manuscrits qui constituent la présente édition critique. C'est aussi le plus précisément daté. 
                         C'est pourquoi il a été choisi comme le témoin principal, et encodé dans l'élément <gi>lem</gi>.</p>
@@ -79,7 +89,7 @@
                   <div4>
                      <head>Le Bern A14</head>
                      <p>Le manuscrit de Berne a été écrit entre <date>1470 et 1490</date>. Le troisième volume mesure 336 folio ; il est complété par une page de couverture
-                        et un page de dos et mesure 44 centimètres de haut, 34,5 cm de large et 10 cm de profondeur. Anciennement propriété du comte <persName>Alexandre de Donha</persName>
+                        et un page de dos et mesure 44 centimètres de haut, 34,5 cm de large et 10 cm de profondeur. Il est à l'origine la propriété du comte <persName>Alexandre de Donha</persName>
                         , un bourgeois de Berne. Celui-çi en a fait don à la <emph><orgName>Bibliothèque de la Bourgeoisie</orgName></emph> de Berne (Suisse) en <date>1697</date>.
                         Depuis cette date, c'est cette institution qui conserve le manuscrit.</p>
                   </div4>
@@ -108,7 +118,7 @@
                   </div4>
                   <div4>
                      <head>Le <gi>sourceDesc</gi></head>
-                     <p>Le <gi>sourceDesc</gi> sert à encoder les informations relatives aux trois témoins encodés dans la présente édition critique. Ils constituent les
+                     <p>Le <gi>sourceDesc</gi> sert à encoder les informations relatives aux trois témoins qui composent la présente édition critique. Ils constituent les
                         sources "matérielles", par opposition au texte de Jean Froissart, une source "intellectuelle" ; c'est pourquoi ce sont les témoins qui sont décrits
                         dans le <gi>sourceDesc</gi>, et non le texte de Froissart.</p>
                   </div4>
@@ -124,7 +134,7 @@
                      <p>Cet élément contient une description des aspects non bibliographiques du texte encodé.
                         <list>
                            <item>Il contient d'abord, dans le <gi>creation</gi>, des informations
-                              relatives à la création du texte originel de Froissard. </item>
+                              relatives à la création du texte originel de Froissart. </item>
                            <item>Le <gi>particDesc</gi> contient des informations sur les personnages dans l'extrait :
                               <list>
                                  <item>La liste des personnages, dans un <gi>listPerson</gi>. Pour chaque
@@ -155,8 +165,9 @@
                               </list>
                            </item>
                            <item>Enfin, le <gi>settingDesc</gi> permet de décrire les lieux mentionnés dans l'extrait, dans un 
-                              <gi>listPlace</gi>. Comme pour les noms des personnages, un <att>xml:id</att> et un nom contemporain 
-                              sont fournis, ainsi que les orthographes du nom utilisées dans les différents témoins. La valeur 
+                              <gi>listPlace</gi>. Comme pour les noms des personnages, un <att>xml:id</att> est fourni, ainsi 
+                              que les orthographes du nom utilisées dans les différents témoins et l'appelation contemporaine du nom 
+                              (si elle diffère de l'appelation dans les témoins). La valeur 
                               de l'attribut <att>att</att> de <gi>placeName</gi> permett d'indiquer s'il s'agit du nom 
                               contemporain ou du nom dans les témoins :
                               <egXML xmlns="http://www.tei-c.org/ns/Examples">
@@ -179,7 +190,7 @@
                   <head>Construire son apparat critique : le <gi>text</gi></head>
                   <p>Cet élément contient le corps des témoins encodés. Ils sont contenus dans un <gi>ab</gi>, un conteneur qui a été choisi car il n'a 
                      pas de valeur sémantique, ni de valeur structurante pour le texte (contrairement à <gi>p</gi>), mais qui peut contenir directement du 
-                     texte (contrairement à <gi>div</gi>). Les principes suivis pour l'encodage du texte des trois témoins sont décrits dans la partie suivante :
+                     texte (contrairement à <gi>div</gi> ). Les principes suivis pour l'encodage du texte des trois témoins sont décrits dans la partie suivante :
                      <emph>Méthodologie d'encodage</emph>.</p>
                </div3>
             </div2>
@@ -189,18 +200,18 @@
                   <head>Choix de la leçon principale</head>
                   <p>Comme cela a été dit au dessus, le témoin principal est le <emph xml:lang="de">Breslauer Froissart</emph>, conservé à Berlin par la <emph xml:lang="de">Staatsbibliothek</emph>.
                      C'est le témoin le plus ancien et le plus précisément daté du présent apparat critique. C'est donc ce témoin qui est encodé dans le <gi>lem</gi>, tandis que les autres
-                     témoins sont encodés dans des éléments <gi>rdg</gi>. Lorsque le contenu d'un des autres témoins est similaire à celui du manuscrit de Berlin, le témoin non-Berlin est
+                     témoins sont encodés dans des éléments <gi>rdg</gi>. Lorsque le contenu d'un des autres témoins est similaire à celui du manuscrit de Berlin, le témoin "non-Berlin" est
                      également encodé dans le <gi>lem</gi> : il correspond à la leçon principale.</p>
                </div3>
                <div3>
                   <head>Principes généraux d'encodage : découpage du texte, imbrication des <gi>app</gi>, groupement des témoins</head>
                   <div4>
                      <head>Découpage du texte</head>
-                     <p>L'édition critique a été réalisée à partir du fichier XML produit par <orgName ref="https://collatex.net/">Collatex</orgName>, un logiciel d'édition critique. Le script python
+                     <p>L'édition critique a été réalisée à partir du fichier XML produit par <ref target="https://collatex.net/"><orgName>Collatex</orgName></ref>, un logiciel d'édition critique. Le script python
                         qui a produit le fichier de base est inclut dans le dépôt GitHub, dans le dossier <emph>collatex</emph>.</p>
                      <p><orgName>Collatex</orgName> permet de faire une <emph>tokénisation</emph> au mot : l'étude de variance entre les témoins est faite mot-par-mot (et non lettre par lettre, par
                         exemple).</p>
-                     <p>À partir de la base fournie par <orgName>Collatex</orgName>, l'encodage a été repris pour le rendre plus scientifiquement pertinent : 
+                     <p>À partir de la base fournie par <orgName>Collatex</orgName> (également présente dans le dossier <emph>collatex</emph>, l'encodage a été repris pour le rendre plus scientifiquement pertinent : 
                         <list>
                            <item>un témoin principal a été choisi, et l'élément lui correspondant a été transformé de <gi>rdg</gi> à <gi>lem</gi> grâce à un script xQuery (disponible à la racine du dépôt
                               GitHub : <emph>froissart_xquery_createlem.xq</emph>).</item>
@@ -242,8 +253,8 @@
                         </egXML>
                      </p>
                      <p>Pour cet encodage, on considère que les différences au niveau de la structure de la phrase sont plus importantes que les différences orthographiques. L'encodage suit ce principe:
-                        quand la mêmephrase est dans un ordre différent dans différents témoins, cette phrase est encodée comme un élément entier, plutôt que de rassembler les mêmes mots de la phrase 
-                        dans un seul élément <gi>app</gi>(ce qui permettrait de mettre en avant les différences orthographiques entre ces mêmes mots). Dans l'exemple ci-dessous, par exemple, plutôt que
+                        quand la même phrase est dans un ordre différent dans différents témoins, cette phrase est encodée comme un élément entier, plutôt que de rassembler les mêmes mots de la phrase 
+                        dans un seul élément <gi>app</gi> (ce qui permettrait de mettre en avant les différences orthographiques entre ces mêmes mots). Dans l'exemple ci-dessous, par exemple, plutôt que
                         de chercher à rassembler les mêmes mots des deux témoins, l'encodage met en avant une différence dans la structure de la phrase.
                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
                            <app corresp="#sentence-order">
@@ -264,13 +275,13 @@
                   <div4>
                      <head>Imbrication des <gi>app</gi> et modularité de l'édition critique</head>
                      <p>Comme cela a été dit plus haut, la présente édition critique suit un principe de modularité : elle permet de voir "les-variations-dans-les-variations".
-                        DPour permettre l'étude de variance la plus précise possible, l'encodage suit un principe de modularité: lorsque 2 témoins sont semblables et diffèrent du 3e témoin, 
+                        Pour permettre l'étude de variance la plus précise possible, l'encodage suit un principe de modularité: lorsque 2 témoins sont semblables et diffèrent du 3e témoin, 
                         alors ces 2 témoins sont encodés dans un seul élément <gi>rdg</gi> (ou <gi>lem</gi>). Les variations au sein de ces 2 témoins sont signalées dans un <gi>app</gi> 
                         à l'intérieur du <gi>rdg</gi> ou du <gi>lem</gi>. L'édition est donc construite en variations/sous-variations.</p>
                      <p> L'exemple ci-dessous montre une imbrication où un <gi>app</gi> contient 
                         <list>
                            <item>Un <gi>lem</gi></item>
-                           <item> Un <gi>rdg</gi> ; ce dernier élément contient deux <gi>app</gi> à la suite.</item>
+                           <item> Un <gi>rdg</gi> ; ce dernier élément contient deux <gi>app</gi> à la suite et permet d'encoder des variations mineures entre deux témoins.</item>
                         </list>
                         Cette organisation permet d'indiquer deux  niveaux de variations : 
                         <list>
@@ -299,7 +310,7 @@
                      <p>L'élément <gi>rdgGrp</gi> permet de rassembler plusieurs témoins partageant des caractéristiques. Il est à utiliser quand les témoins du <gi>rdgGrp</gi> présentent pas
                         assez de similarités pour être encodés dans un même <gi>rdg</gi> / <gi>lem</gi>. Dans les faits, les <gi>rdgGrp</gi> sont principalement utilisés lorsque un <gi>app</gi> 
                         ne contient qu'un mot et que, dans ce <gi>app</gi>, un groupe de témoins se distingue d'un autre (voir l'exemple qui suit). Sinon, pour privilégier l'étude de la variation
-                        entre les témoins et pour coller au plus près de ces variations, l'utilisation d'éléments <gi>app</gi> imbriqués(comme décrit au dessus) est privilégiée.
+                        entre les témoins et pour coller au plus près de ces variations, l'utilisation d'éléments <gi>app</gi> imbriqués (comme décrit au dessus) est privilégiée.
                         <egXML xmlns="http://www.tei-c.org/ns/Examples">
                            <app corresp="#word-diff">
                               <rdg wit="#atw">dit</rdg>
@@ -313,7 +324,7 @@
                   </div4>
                </div3>
                <div3>
-                  <head>Caractérisation de l'encodage : utilisation des attributs <att>wit</att>, <att>corresp</att> et des éléments <att>persName</att> et <att>placeName</att></head>
+                  <head>Caractérisation de l'encodage : utilisation des attributs <att>wit</att>, <att>corresp</att> et des éléments <gi>persName</gi> et <gi>placeName</gi></head>
                   <div4>
                      <head>Identifier les témoins avec l'attribut <att>wit</att></head>
                      <p>Placé sur les éléments <gi>rdg</gi> et <gi>lem</gi>, l'attribut <att>wit</att> permet d'identifier les témoins au sein de l'apparat critique. Trois valeurs sont possibles:
@@ -352,7 +363,7 @@
                      <head>Identifier les personnages dans le corps du texte avec l'élément <gi>persName</gi></head>
                      <p>Dans le corps du texte, les différents personnages mentionnés sont encodés dans un <gi>persName</gi>. L'élément est utilisé à chaque fois qu'il est fait mention d'un personnage, 
                         et pas seulement quand le personnage est nommé. Cela permet de faire un renvoi vers le descriptif du personnage situé dans le <gi>teiHeader</gi>. Dans le corps du texte (<gi>body</gi>),
-                        le <gi>persName</gi> orend un attribut <att>ref</att> dont la valeur est un identifiant à quatres lettres précédées d'un '#'. Ces valeurs sont dérivées de l'attribut <att>xml:id</att> 
+                        le <gi>persName</gi> prend un attribut <att>ref</att> dont la valeur est un identifiant à quatres lettres précédées d'un '#'. Ces valeurs sont dérivées de l'attribut <att>xml:id</att> 
                         de chaque personnage (valeur référencée dans le <gi>person</gi> du <gi>teiHeader</gi> : /TEI/teiHeader[1]/profileDesc[1]/particDesc[1]/listPerson[1]/person). Les valeurs possibles sont :
                         <list>
                            <item><emph>"#djdb"</emph> : Jean Ier de Berry</item>
@@ -363,7 +374,7 @@
                            <item><emph>"#rcha"</emph> : Charles VI</item>
                            <item><emph>"#dpdb"</emph> : Philippe II de Bourgogne</item>
                            <item><emph>"#fjdb"</emph> : Jean II de Berry</item>
-                           <item><emph>"#sbdr"</emph> ! Bureau de la Rivière</item>
+                           <item><emph>"#sbdr"</emph> : Bureau de la Rivière</item>
                            <item><emph>"#cdas"</emph> : Jean de la Personne</item>
                            <item><emph>"#egdv"</emph> : Guillaume VI de Vienne</item>
                            <item><emph>"#mgdt"</emph> : Guillaume de la Trémoille</item>
@@ -406,6 +417,45 @@
                      </p>
                   </div4>
                </div3>
+               <div3>
+                  <head>Restrictions et contraintes: l'usage de règles Schematron</head>
+                  <p>Huit règles Schematron ont étés crées; parmi elles, 7 utilisent des conditions multiples (avec des <emph>and</emph> et <emph>or</emph>). Voici la liste et leur utilité:
+                     <list>
+                        <item>Règle contraignant l'usage d'un attribut et ses valeurs : un <gi>lem</gi> prend un attribut <att>wit</att> obligatoire ;
+                           Cet attribut doit contenir '#brl' parmi ses valeurs (c-à-d : la valeur de <att>wit</att> doit renvoyer au témoin principal).
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[3]/constraintSpec[1]/TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[3]/constraintSpec[1]</item></list>
+                        </item>
+                        <item>Règle contraignant l'usage d'un attribut et ses valeurs : un <gi>rdg</gi> doit contenir un <att>wit</att> dont la valeur ne peut pas
+                           contenir '#brl', puisque c'est le témoin principal.
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[3]/constraintSpec[1]</item></list>
+                        </item>
+                        <item>Règle contraignant l'usage d'un attribut et de ses valeurs : un <gi>witDetail</gi> doit contenir un <att>wit</att>. 
+                           La valeur de cet attribut doit être une ou plusieurs séquences de '#' suivi de 3 lettres minuscules.
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[5]/constraintSpec[1]</item></list>
+                        </item>
+                        <item>Règle contraignant l'usage d'un attribut et ses valeurs : un <gi>witness</gi> doit contenir un attribut <att>xml:id</att>
+                           dont la valeur est composée de 3 chiffres minuscules.
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[5]/constraintSpec[1]</item></list>
+                        </item>
+                        <item>Règle contraignant l'usage d'un attribut en fonction de son contexte : un <gi>persName</gi> doit prendre un attribut attribut <att>type</att>
+                           si il est contenu dans le <gi>profileDesc</gi>.
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[33]/constraintSpec[1]</item></list>
+                        </item>
+                        <item>Règle contraignant l'usage d'un attribut et ses valeurs : un <gi>persName</gi> dans le <gi>body</gi> prend un attribut <att>ref</att>.
+                           La valeur de cet attribut doit être un '#' suivi de 4 lettres minuscules ('#djdb')
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[33]/attList[1]/attDef[9]/constraintSpec[1]</item></list>
+                        </item>
+                        <item>Règle contraignant les usages d'attributs et les valeurs: une <gi>relation</gi>; mutuelle doit être décrite avec deux références à des <att>xml:id</att> de personnes,
+                           composées chacune d'un '#' et de 4 lettres et séparées d'un espace. Une relation active/passive doit être décrite avec
+                           deux attributs <att>passive</att> et <att>active</att>, chacun contenant une référence à un <att>xml:id</att> composée d'un '#' et de 4 lettres ('#djdb').
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[48]/constraintSpec[1]</item></list>
+                        </item>
+                        <item>Règle contraignant l'enchaînement d'attributs : un <gi>milestone</gi> doit être suivi directement d'un élément <gi>lb</gi>.
+                           <list><item><emph>XPath</emph>: /TEI/text[1]/body[1]/div1[2]/schemaSpec[1]/elementSpec[69]/constraintSpec[1]</item></list>
+                        </item>
+                     </list>
+                  </p>
+               </div3>
             </div2>
             <div2>
                <head>Les avantages d'un apparat critique nativement numérique</head>
@@ -414,14 +464,14 @@
                      <item><emph>La caractérisation des variations</emph>. Grâce à l'attribut <att>corresp</att> ou <att>type</att> placé sur les <gi>app</gi> et autres <gi>rdgGrp</gi>, il est facile de
                         caractériser la différence entre les témoins et d'indiquer si c'est une différence orthographique, de conjuguaison ou encore de une erreur de copie.</item>
                      <item><emph>Enrichissement et mise à jour de l'apparat</emph>. La TEI est un format de conservation pour des données textuelles ; cependant, c'est un format qui peut être enrichi.
-                        Il est possible de rajouter d'autres témoins à la présente édition de ce chapitre ; grâce à cette ODD, il est aussi possible d'encoder d'autres chapitres du <emph>Froissart</emph>.
+                        Il est possible de rajouter d'autres témoins à la présente édition de ce chapitre ; grâce à cette ODD, il est aussi possible d'encoder d'autres chapitres du Froissart.
                         Enfin, le présent encodage peut être amélioré en lui apportant plus de précision scientifique : la liste de variations possibles pour un <gi>app</gi>, par exemple, peut être
                         affinée ; il est aussi possible d'indiquer la raison de la variation, grâce à l'élément <gi>cause</gi>.</item>
                      <item><emph>Possibilités d'exploitation de l'apparat</emph>.
                         <list>
                            <item><emph>Publication</emph>. Si la TEI est un format de conservation pérenne des documents, elle peut également servir de format pivot à partir duquel l'apparat encodé peut être transformé
                               et prendre d'autres formes : à l'aide d'une feuille XSL, il est par exemple envisageable de transformer cette édition en une publication sur internet (transformation de XML-TEI vers
-                              HTML ou XHTMK), d'en faire une publication papier (transformation vers un format dérivé de .TeX) ou encore de transformer l'apparat en un autre document XML (transformation de 
+                              HTML ou XHTML), d'en faire une publication papier (transformation vers un format dérivé de .TeX) ou encore de transformer l'apparat en un autre document XML (transformation de 
                               XML vers XML).</item>
                            <item><emph>Analyses statistiques</emph>. Grâce au haut degré de précision et de caractérisation permis par un apparat critique en TEI, il est envisageable de mener une étude des textes
                               encodés par "lecture distante" (<gloss>analyse des textes par des méthodes computationnelles</gloss>). Il serait par exemple possible d'étudier le degré de proximité entre des
@@ -515,11 +565,11 @@
                </elementSpec>
                
                <elementSpec ident="lem" mode="change"> <!-- attList ok -->
-                  <constraintSpec scheme="schematron" ident="lemWit" mode="add">
+                  <constraintSpec scheme="schematron" ident="lemWit" mode="add"> <!-- règle contraignant l'usage d'un attribut et ses valeurs -->
                      <constraint>
-                        <s:rule context="tei:TEI//tei:lem/@wit">
-                           <s:assert test="contains(., '#brl')">
-                              L'élément &lt;lem&gt; doit contenir un attribut @wit
+                        <s:rule context="tei:TEI//tei:lem">
+                           <s:assert test="./@wit and ./@wit[contains(., '#brl')]">
+                              L'élément &lt;lem&gt; doit avoir un attribut @wit
                               qui contient '#brl'</s:assert>
                         </s:rule>
                      </constraint>
@@ -548,11 +598,12 @@
                </elementSpec>
                
                <elementSpec ident="rdg" mode="change"> <!-- attList ok -->
-                  <constraintSpec scheme="schematron" ident="rdgWit" mode="add">
+                  <constraintSpec scheme="schematron" ident="rdgWit" mode="add"> <!-- règle contraignant l'usage d'un attribut et ses valeurs -->
                      <constraint>
-                        <s:rule context="tei:TEI//tei:rdg/@wit">
-                           <s:assert test="not(contains(., '#brl'))">
-                              La valeur du @wit de l'élément &lt;rdg&gt; ne peut pas contenir '#brl'</s:assert>
+                        <s:rule context="tei:TEI//tei:rdg">
+                           <s:assert test="./@wit and ./@wit[not(contains(., '#brl'))]">
+                              L'élément &lt;rdg&gt; doit contenir un @wit. 
+                              La valeur de cet attribut ne peut pas contenir '#brl'</s:assert>
                         </s:rule>
                      </constraint>
                   </constraintSpec>
@@ -621,11 +672,12 @@
                
                <elementSpec ident="witDetail" mode="change"> <!-- attList ok --> <!-- attributs OKOKOKOKOKOK -->
                   <desc>L'élément <gi>witDetail</gi> sert à donner des détails qui ne portent pas sur le contenu textuel des témoins.</desc>
-                  <constraintSpec scheme="schematron" ident="witDetailAttWit" mode="add">
+                  <constraintSpec scheme="schematron" ident="witDetailAttWit" mode="add"> <!-- règle contraignant l'usage d'un attribut et ses valeurs possibles -->
                      <constraint>
                         <s:rule context="tei:TEI//tei:witDetail">
-                           <s:assert test="@wit">
-                              Un élément &lt;witDetail&gt; doit contenir un attribut @wit</s:assert>
+                           <s:assert test="@wit and @wit/matches(., '(#[a-z]{3}\s?)+')">
+                              Un élément &lt;witDetail&gt; doit contenir un attribut @wit.
+                              La valeur du @wit doit être: une ou plusieurs séquences de "#" suivies de 3 lettres minuscules séparées d'un espace ('#brl #brn', '#atw'...)</s:assert>
                         </s:rule>
                      </constraint>
                   </constraintSpec>
@@ -670,19 +722,12 @@
                </elementSpec>
                
                <elementSpec ident="witness" mode="change"> <!-- attList ok -->
-                  <constraintSpec scheme="schematron" ident="witnessID" mode="add">
+                  <constraintSpec scheme="schematron" ident="witnessID" mode="add"> <!-- règle contraignant l'usage d'un attribut et ses valeurs -->
                      <constraint>
                         <s:rule context="tei:TEI//tei:witness">
-                           <s:assert test="@xml:id">
-                              Les &lt;witness&gt; doivent avoir un identifiant unique @xml:id.</s:assert>
-                        </s:rule>
-                     </constraint>
-                  </constraintSpec>
-                  <constraintSpec scheme="schematron" ident="witnessIDRegex" mode="add">
-                     <constraint>
-                        <s:rule context="tei:TEI//tei:witness/@xml:id">
-                           <s:assert test="matches(., '\w{3}')">
-                              Le @xml:id des &lt;witness&gt; doit être un identifiant à trois lettres.</s:assert>
+                           <s:assert test="@xml:id and @xml:id/matches(., '[a-z]{3}')">
+                              Les &lt;witness&gt; doivent avoir un identifiant unique @xml:id.
+                              La valeur de cet attribut doit être composée de 3 lettres minuscules</s:assert>
                         </s:rule>
                      </constraint>
                   </constraintSpec>
@@ -1012,6 +1057,14 @@
                </elementSpec>
                
                <elementSpec ident="persName" mode="change"> <!-- attList ok -->
+                  <constraintSpec scheme="schematron" ident="typeConstraint" mode="add"> <!-- règle contraignant l'usage d'un attribut en fonction de son contexte -->
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:persName">
+                           <s:assert test="./not(ancestor::profileDesc) or (./@type and ./ancestor::profileDesc)">
+                              Le &lt;persName&gt; doit contenir un attribut @type si il est contenu dans le &lt;profileDesc&gt;.</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="source" mode="delete"/>
@@ -1063,10 +1116,12 @@
                      </attDef>
                      <attDef ident="ref" mode="change">
                         <desc>Attribut utilisé pour renvoyer à des personnages mentionnés dans la <gi>listPerson</gi></desc>
-                        <constraintSpec scheme="schematron" ident="persNameRef">
+                        <constraintSpec scheme="schematron" ident="persNameRef"> <!-- règle contraignant l'usage d'un attribut et ses valeurs -->
                            <constraint>
                               <s:rule context="tei:TEI//tei:body//tei:persName">
-                                 <s:assert test="@ref">Dans le &lt;body&gt;, les éléments &lt;persName&gt; doivent contenir un attribut @ref.</s:assert>
+                                 <s:assert test="@ref and @ref/matches(., '#[a-z]{4}')">
+                                    Dans le &lt;body&gt;, les éléments &lt;persName&gt; doivent contenir un attribut @ref.
+                                    La valeur de cet attribut doit être un '#' suivi de 4 lettres minuscules ('#djdb')</s:assert>
                               </s:rule>
                            </constraint>
                         </constraintSpec>
@@ -1395,10 +1450,10 @@
                </elementSpec>
                
                <elementSpec ident="relation" mode="change"> <!-- attList ok -->
-                  <constraintSpec scheme="schematron" ident="relationRegex">
+                  <constraintSpec scheme="schematron" ident="relationRegex"> <!-- règle contraignant l'usage d'un attribut et ses valeurs -->
                      <constraint>
                         <s:rule context="tei:TEI//tei:relation">
-                           <s:assert test="matches(@mutual, '#\w{4}\s#\w{4}') or matches(@active, '#\w{4}') and matches(@passive, '#\w{4}')">
+                           <s:assert test="matches(@mutual, '#[a-z]{4}\s#[a-z]{4}') or matches(@active, '#[a-z]{4}') and matches(@passive, '#[a-z]{4}')">
                               Une &lt;relation&gt; mutuelle doit être décrite avec deux références à des @xml:id de personnes,
                               composées chacune d'un '#' et de 4 lettres et séparées d'un espace. Une relation active/passive doit être décrite avec
                               deux attributs @passive et @active, chacun contenant une référence à un xml:id composé d'un '#' et de 4 lettres.</s:assert>
@@ -2063,6 +2118,14 @@
                </elementSpec>
                
                <elementSpec ident="milestone" mode="change"> <!-- attList ok -->
+                  <constraintSpec scheme="schematron" ident="milestoneToLb" mode="add"> <!-- règle sur l'enchaînement de deux éléments de même niveau -->
+                     <constraint>
+                        <s:rule context="tei:TEI//tei:body//tei:*[./tei:milestone]">
+                           <s:assert test="./tei:milestone/following-sibling::tei:lb">
+                              Un élément &lt;milestone&gt; doit être suivi par un &lt;lb/&gt;</s:assert>
+                        </s:rule>
+                     </constraint>
+                  </constraintSpec>
                   <attList>
                      <attDef ident="corresp" mode="delete"/>
                      <attDef ident="cert" mode="delete"/>

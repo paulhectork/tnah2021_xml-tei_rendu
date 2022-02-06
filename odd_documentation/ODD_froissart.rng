@@ -5,7 +5,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2022-02-05T12:15:42Z. .
+Schema generated from ODD source 2022-02-06T18:41:43Z. .
 TEI Edition: Version 4.3.0. Last updated on
         31st August 2021, revision b4f72b1ff
 TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.3.0/
@@ -2145,6 +2145,16 @@ Normalization 12. Critical Apparatus]</a:documentation>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(borne) marque un point permettant de délimiter les sections d'un texte selon un autre systeme que les éléments de structure ; une balise de ce type marque une frontière. [3.11.3. Milestone
 Elements]</a:documentation>
          <empty/>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="oddbyexample-milestone-milestoneToLb-constraint-rule-8">
+            <s:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                    xmlns="http://www.tei-c.org/ns/1.0"
+                    xmlns:s="http://purl.oclc.org/dsdl/schematron"
+                    context="tei:TEI//tei:body//tei:*[./tei:milestone]">
+               <s:assert test="./tei:milestone/following-sibling::tei:lb">
+                              Un élément &lt;milestone&gt; doit être suivi par un &lt;lb/&gt;</s:assert>
+            </s:rule>
+         </pattern>
          <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
@@ -2611,13 +2621,13 @@ ayant les fonctions d'un titre) paraphrase descriptive de l'oeuvre fonctionnant 
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-lem-lemWit-constraint-rule-8">
+                  id="oddbyexample-lem-lemWit-constraint-rule-9">
             <s:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                     xmlns="http://www.tei-c.org/ns/1.0"
                     xmlns:s="http://purl.oclc.org/dsdl/schematron"
-                    context="tei:TEI//tei:lem/@wit">
-               <s:assert test="contains(., '#brl')">
-                              L'élément &lt;lem&gt; doit contenir un attribut @wit
+                    context="tei:TEI//tei:lem">
+               <s:assert test="./@wit and ./@wit[contains(., '#brl')]">
+                              L'élément &lt;lem&gt; doit avoir un attribut @wit
                               qui contient '#brl'</s:assert>
             </s:rule>
          </pattern>
@@ -2667,13 +2677,14 @@ ayant les fonctions d'un titre) paraphrase descriptive de l'oeuvre fonctionnant 
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-rdg-rdgWit-constraint-rule-9">
+                  id="oddbyexample-rdg-rdgWit-constraint-rule-10">
             <s:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                     xmlns="http://www.tei-c.org/ns/1.0"
                     xmlns:s="http://purl.oclc.org/dsdl/schematron"
-                    context="tei:TEI//tei:rdg/@wit">
-               <s:assert test="not(contains(., '#brl'))">
-                              La valeur du @wit de l'élément &lt;rdg&gt; ne peut pas contenir '#brl'</s:assert>
+                    context="tei:TEI//tei:rdg">
+               <s:assert test="./@wit and ./@wit[not(contains(., '#brl'))]">
+                              L'élément &lt;rdg&gt; doit contenir un @wit. 
+                              La valeur de cet attribut ne peut pas contenir '#brl'</s:assert>
             </s:rule>
          </pattern>
          <ref name="att.global.attribute.xmlid"/>
@@ -2723,7 +2734,7 @@ ayant les fonctions d'un titre) paraphrase descriptive de l'oeuvre fonctionnant 
             </zeroOrMore>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-rdgGrp-only1lem-constraint-assert-7">
+                  id="oddbyexample-rdgGrp-only1lem-constraint-assert-8">
             <rule context="tei:rdgGrp">
                <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -2767,13 +2778,14 @@ ayant les fonctions d'un titre) paraphrase descriptive de l'oeuvre fonctionnant 
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-witDetail-witDetailAttWit-constraint-rule-10">
+                  id="oddbyexample-witDetail-witDetailAttWit-constraint-rule-11">
             <s:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                     xmlns="http://www.tei-c.org/ns/1.0"
                     xmlns:s="http://purl.oclc.org/dsdl/schematron"
                     context="tei:TEI//tei:witDetail">
-               <s:assert test="@wit">
-                              Un élément &lt;witDetail&gt; doit contenir un attribut @wit</s:assert>
+               <s:assert test="@wit and @wit/matches(., '(#[a-z]{3}\s?)+')">
+                              Un élément &lt;witDetail&gt; doit contenir un attribut @wit.
+                              La valeur du @wit doit être: une ou plusieurs séquences de "#" suivies de 3 lettres minuscules séparées d'un espace ('#brl #brn', '#atw'...)</s:assert>
             </s:rule>
          </pattern>
          <ref name="att.global.attribute.xmlid"/>
@@ -2854,23 +2866,14 @@ ayant les fonctions d'un titre) paraphrase descriptive de l'oeuvre fonctionnant 
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-witness-witnessID-constraint-rule-11">
+                  id="oddbyexample-witness-witnessID-constraint-rule-12">
             <s:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                     xmlns="http://www.tei-c.org/ns/1.0"
                     xmlns:s="http://purl.oclc.org/dsdl/schematron"
                     context="tei:TEI//tei:witness">
-               <s:assert test="@xml:id">
-                              Les &lt;witness&gt; doivent avoir un identifiant unique @xml:id.</s:assert>
-            </s:rule>
-         </pattern>
-         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-witness-witnessIDRegex-constraint-rule-12">
-            <s:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                    xmlns="http://www.tei-c.org/ns/1.0"
-                    xmlns:s="http://purl.oclc.org/dsdl/schematron"
-                    context="tei:TEI//tei:witness/@xml:id">
-               <s:assert test="matches(., '\w{3}')">
-                              Le @xml:id des &lt;witness&gt; doit être un identifiant à trois lettres.</s:assert>
+               <s:assert test="@xml:id and @xml:id/matches(., '[a-z]{3}')">
+                              Les &lt;witness&gt; doivent avoir un identifiant unique @xml:id.
+                              La valeur de cet attribut doit être composée de 3 lettres minuscules</s:assert>
             </s:rule>
          </pattern>
          <ref name="att.global.attribute.xmlid"/>
@@ -3723,6 +3726,17 @@ The element <name/> may appear once only
       <element name="persName">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(nom de personne) contient un nom propre ou une expression nominale se référant à une personne, pouvant inclure tout ou partie de ses prénoms, noms de famille, titres honorifiques, noms ajoutés, etc. [13.2.1. Personal Names]</a:documentation>
          <ref name="macro.phraseSeq"/>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="oddbyexample-persName-typeConstraint-constraint-rule-14">
+            <s:rule xmlns:xi="http://www.w3.org/2001/XInclude"
+                    xmlns:rng="http://relaxng.org/ns/structure/1.0"
+                    xmlns="http://www.tei-c.org/ns/1.0"
+                    xmlns:s="http://purl.oclc.org/dsdl/schematron"
+                    context="tei:TEI//tei:persName">
+               <s:assert test="./not(ancestor::profileDesc) or (./@type and ./ancestor::profileDesc)">
+                              Le &lt;persName&gt; doit contenir un attribut @type si il est contenu dans le &lt;profileDesc&gt;.</s:assert>
+            </s:rule>
+         </pattern>
          <ref name="att.global.attribute.xmlid"/>
          <ref name="att.global.attribute.n"/>
          <ref name="att.global.attribute.xmllang"/>
@@ -3810,13 +3824,15 @@ The element <name/> may appear once only
             </attribute>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-persName-ref-persNameRef-constraint-rule-14">
+                  id="oddbyexample-persName-ref-persNameRef-constraint-rule-15">
             <s:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                     xmlns:rng="http://relaxng.org/ns/structure/1.0"
                     xmlns="http://www.tei-c.org/ns/1.0"
                     xmlns:s="http://purl.oclc.org/dsdl/schematron"
                     context="tei:TEI//tei:body//tei:persName">
-               <s:assert test="@ref">Dans le &lt;body&gt;, les éléments &lt;persName&gt; doivent contenir un attribut @ref.</s:assert>
+               <s:assert test="@ref and @ref/matches(., '#[a-z]{4}')">
+                                    Dans le &lt;body&gt;, les éléments &lt;persName&gt; doivent contenir un attribut @ref.
+                                    La valeur de cet attribut doit être un '#' suivi de 4 lettres minuscules ('#djdb')</s:assert>
             </s:rule>
          </pattern>
          <optional>
@@ -4396,19 +4412,20 @@ The element <name/> may appear once only
             <ref name="desc"/>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-relation-relationRegex-constraint-rule-15">
+                  id="oddbyexample-relation-relationRegex-constraint-rule-16">
             <s:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                     xmlns:rng="http://relaxng.org/ns/structure/1.0"
                     xmlns="http://www.tei-c.org/ns/1.0"
                     xmlns:s="http://purl.oclc.org/dsdl/schematron"
                     context="tei:TEI//tei:relation">
-               <s:assert test="matches(@mutual, '#\w{4}\s#\w{4}') or matches(@active, '#\w{4}') and matches(@passive, '#\w{4}')">
+               <s:assert test="matches(@mutual, '#[a-z]{4}\s#[a-z]{4}') or matches(@active, '#[a-z]{4}') and matches(@passive, '#[a-z]{4}')">
                               Une &lt;relation&gt; mutuelle doit être décrite avec deux références à des @xml:id de personnes,
-                              composées chacune d'un '#' et de 4 lettres et séparées d'un espace.</s:assert>
+                              composées chacune d'un '#' et de 4 lettres et séparées d'un espace. Une relation active/passive doit être décrite avec
+                              deux attributs @passive et @active, chacun contenant une référence à un xml:id composé d'un '#' et de 4 lettres.</s:assert>
             </s:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-relation-reforkeyorname-constraint-assert-14">
+                  id="oddbyexample-relation-reforkeyorname-constraint-assert-15">
             <rule context="tei:relation">
                <assert xmlns:xi="http://www.w3.org/2001/XInclude"
                        xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -4680,7 +4697,7 @@ The element <name/> may appear once only
       </optional>
    </define>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="oddbyexample-att.repeatable-MINandMAXoccurs-constraint-rule-16">
+            id="oddbyexample-att.repeatable-MINandMAXoccurs-constraint-rule-17">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:xi="http://www.w3.org/2001/XInclude"
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -4713,7 +4730,7 @@ The element <name/> may appear once only
       </optional>
    </define>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="oddbyexample-att.deprecated-validUntil-deprecation-two-month-warning-constraint-rule-18">
+            id="oddbyexample-att.deprecated-validUntil-deprecation-two-month-warning-constraint-rule-19">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:xi="http://www.w3.org/2001/XInclude"
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -4734,7 +4751,7 @@ The element <name/> may appear once only
       </sch:rule>
    </pattern>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="oddbyexample-att.deprecated-validUntil-deprecation-should-be-explained-constraint-rule-19">
+            id="oddbyexample-att.deprecated-validUntil-deprecation-should-be-explained-constraint-rule-20">
       <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:xi="http://www.w3.org/2001/XInclude"
                 xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -4796,7 +4813,7 @@ The element <name/> may appear once only
       <element name="moduleRef">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(référence de module) référence un module qui doit être incorporé dans un schéma. [22.2. Modules and Schemas]</a:documentation>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-moduleRef-modref-constraint-rule-20">
+                  id="oddbyexample-moduleRef-modref-constraint-rule-21">
             <rule xmlns:xi="http://www.w3.org/2001/XInclude"
                   xmlns:rng="http://relaxng.org/ns/structure/1.0"
                   xmlns:s="http://purl.oclc.org/dsdl/schematron"
@@ -4867,7 +4884,7 @@ Child elements of <name/> are only allowed when an external module is being load
             </zeroOrMore>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-schemaSpec-deprecate_schemaSpec_in_bizarre_places-constraint-rule-21">
+                  id="oddbyexample-schemaSpec-deprecate_schemaSpec_in_bizarre_places-constraint-rule-22">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -4925,7 +4942,7 @@ Child elements of <name/> are only allowed when an external module is being load
             </zeroOrMore>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-elementSpec-child-constraint-based-on-mode-constraint-rule-22">
+                  id="oddbyexample-elementSpec-child-constraint-based-on-mode-constraint-rule-23">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -5071,7 +5088,7 @@ Child elements of <name/> are only allowed when an external module is being load
              prefix="teix"
              uri="http://www.tei-c.org/ns/Examples"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-attDef-attDefContents-constraint-assert-22">
+                  id="oddbyexample-attDef-attDefContents-constraint-assert-23">
             <rule context="tei:attDef">
                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        xmlns:xi="http://www.w3.org/2001/XInclude"
@@ -5083,7 +5100,7 @@ Child elements of <name/> are only allowed when an external module is being load
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-attDef-noDefault4Required-constraint-rule-24">
+                  id="oddbyexample-attDef-noDefault4Required-constraint-rule-25">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -5094,7 +5111,7 @@ Child elements of <name/> are only allowed when an external module is being load
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-attDef-defaultIsInClosedList-twoOrMore-constraint-rule-25">
+                  id="oddbyexample-attDef-defaultIsInClosedList-twoOrMore-constraint-rule-26">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -5108,7 +5125,7 @@ Child elements of <name/> are only allowed when an external module is being load
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="oddbyexample-attDef-defaultIsInClosedList-one-constraint-rule-26">
+                  id="oddbyexample-attDef-defaultIsInClosedList-one-constraint-rule-27">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
@@ -6133,7 +6150,7 @@ Child elements of <name/> are only allowed when an external module is being load
       </attribute>
    </define>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="oddbyexample-att.identified-spec-in-module-constraint-rule-27">
+            id="oddbyexample-att.identified-spec-in-module-constraint-rule-28">
       <rule xmlns:xi="http://www.w3.org/2001/XInclude"
             xmlns:rng="http://relaxng.org/ns/structure/1.0"
             xmlns:s="http://purl.oclc.org/dsdl/schematron"
