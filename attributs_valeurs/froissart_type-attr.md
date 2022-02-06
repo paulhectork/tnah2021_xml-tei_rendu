@@ -1,4 +1,4 @@
-# VALEURS POSSIBLES POUR L'ATTRIBUT `TYPE` DE L'ÉLÉMENT `APP`
+# VALEURS POSSIBLES POUR L'ATTRIBUT `CORRESP` DE L'ÉLÉMENT `APP` ET `RDGGRP`
 
 - `orth` : différence orthographique
 - `punct` : différence de ponctuation
