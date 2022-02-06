@@ -6,7 +6,7 @@
 Encodage critique du chapitre **SHF 306** : *Négogiation du mariage du Duc de Berry*
 
 ### Structure du dépôt
-- **dossier racine**:
+- **`dossier racine`**:
 	- `froissart.xml` : l'encodage des trois témoins en XML-TEI
 	- `froissart_xquery_createlem.xq` : la requête xquery utilisée pour transformer les éléments `rdg` en `lem` en fonction de la valeur de leur attribut `@wit`
 	- `froissart.jpg` : une petite image pour décorer le présent README
