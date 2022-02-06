@@ -3,7 +3,7 @@
 
 ![Froissart bloublou](froissart.jpg)
 
-Encodage critique du chapitre **SHF 306** : *Négogiation du mariage du Duc de Berry*
+Édition critique du chapitre **SHF 306** : *Négogiation du mariage du Duc de Berry*
 
 ### Structure du dépôt
 - **`dossier racine`**:
